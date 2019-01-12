@@ -1,6 +1,6 @@
 import Boot from './states/Boot';
 import Preload from './states/Preload';
-import Main from './states/Main';
+import Cutscene from './states/Cutscene';
 
 class Game extends Phaser.Game {
 
@@ -9,7 +9,7 @@ class Game extends Phaser.Game {
 
 		this.state.add('Boot', Boot, false);
 		this.state.add('Preload', Preload, false);
-		this.state.add('Main', Main, false);
+		this.state.add('Cutscene', Cutscene, false);
 
 		this.state.start('Boot');
 	}
