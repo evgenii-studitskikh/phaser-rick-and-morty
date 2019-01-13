@@ -4,8 +4,6 @@ export default class Cutscene extends Phaser.State {
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    this.game.stage.backgroundColor = '#fffff';
-
     this.mountainsBack = this.game.add.tileSprite(0, 
 			this.game.height - this.game.cache.getImage('mountains-back').height, 
 			this.game.width, 
@@ -51,7 +49,8 @@ export default class Cutscene extends Phaser.State {
 		
 		this.sound.setDecodedCallback([ this.music ], this.start, this);
 
-		// this.button = this.game.add.button(200, 200, 'button', this.click, this, 0, 1, 2);
+		this.button = this.game.add.button(200, 200, 'button', this.click, this, 0, 1, 2);
+		this.button.scale.setTo(0.1, 0.1);
 	}
 	
 	start() {
@@ -67,7 +66,7 @@ export default class Cutscene extends Phaser.State {
     this.mountainsMid1.tilePosition.x -= 4.0;
 		this.mountainsMid2.tilePosition.x -= 8.0;
 		
-		if (this.rick.rotation > 0.63) {
+		if (this.rick.rotation > 0.8) {
 			this.rickDirection = 'right';
 		}
 
