@@ -20,9 +20,10 @@ export default class Cutscene extends Phaser.State {
 			'planet'
 		);
 
+		//rick
 		this.rick = this.game.add.tileSprite(
-			600, 
-			100, 
+			-100, 
+			window.innerHeight * window.devicePixelRatio, 
 			this.game.cache.getImage('rick').width, 
 			this.game.cache.getImage('rick').height, 
 			'rick'
@@ -30,7 +31,24 @@ export default class Cutscene extends Phaser.State {
 
 		this.rickDirection = 'left';
 		this.rick.rotation = 0.50;
-		this.rick.scale.setTo(0.7, 0.7);
+		this.rick.anchor.setTo(0.5);
+		this.rick.scale.setTo(0.1, 0.1);
+
+		this.add.tween(this.rick).to( 
+      { x: this.world.centerX, y:this.world.centerY + 200 }, 
+      6000, 
+      Phaser.Easing.easeInOut,
+      true,
+      3000
+		);
+		
+		this.add.tween(this.rick.scale).to( 
+      { x: 0.7, y: 0.7 }, 
+      6000, 
+      Phaser.Easing.easeInOut,
+      true,
+      3000
+		);
 		
 		this.music = this.sound.add('soundtrack');
 		
@@ -39,6 +57,10 @@ export default class Cutscene extends Phaser.State {
 	
 	start() {
 		this.music.play();
+
+		setTimeout(() => {
+      this.game.state.start('Enterence');
+    }, 10000);
 	}
 
 	click() {
