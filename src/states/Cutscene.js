@@ -4,25 +4,12 @@ export default class Cutscene extends Phaser.State {
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    this.mountainsBack = this.game.add.tileSprite(0, 
-			this.game.height - this.game.cache.getImage('mountains-back').height, 
-			this.game.width, 
-			this.game.cache.getImage('mountains-back').height, 
-			'mountains-back'
-    );
-
-    this.mountainsMid1 = this.game.add.tileSprite(0, 
-			this.game.height - this.game.cache.getImage('mountains-mid1').height, 
-			this.game.width, 
-			this.game.cache.getImage('mountains-mid1').height, 
-			'mountains-mid1'
-    );
-
-    this.mountainsMid2 = this.game.add.tileSprite(0, 
-			this.game.height - this.game.cache.getImage('mountains-mid2').height, 
-			this.game.width, 
-			this.game.cache.getImage('mountains-mid2').height, 
-			'mountains-mid2'
+    this.space = this.game.add.tileSprite( 
+			0,
+			0, 
+			this.game.width,
+      this.game.height,
+			'space'
     );
 
     this.planet = this.game.add.tileSprite(
@@ -43,14 +30,11 @@ export default class Cutscene extends Phaser.State {
 
 		this.rickDirection = 'left';
 		this.rick.rotation = 0.50;
-		this.rick.scale.setTo(0.5, 0.5);
+		this.rick.scale.setTo(0.7, 0.7);
 		
 		this.music = this.sound.add('soundtrack');
 		
 		this.sound.setDecodedCallback([ this.music ], this.start, this);
-
-		this.button = this.game.add.button(200, 200, 'button', this.click, this, 0, 1, 2);
-		this.button.scale.setTo(0.1, 0.1);
 	}
 	
 	start() {
@@ -62,9 +46,7 @@ export default class Cutscene extends Phaser.State {
 	}
 
   update() {
-    this.mountainsBack.tilePosition.x -= 2.0;
-    this.mountainsMid1.tilePosition.x -= 4.0;
-		this.mountainsMid2.tilePosition.x -= 8.0;
+    this.space.tilePosition.x -= 20.0;
 		
 		if (this.rick.rotation > 0.8) {
 			this.rickDirection = 'right';
