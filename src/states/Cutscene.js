@@ -1,9 +1,22 @@
 export default class Cutscene extends Phaser.State {
 
+	constructor() {
+		super();
+
+		this.rickText = [
+			'Text1',
+			'Text2',
+			'Text3'
+		]
+
+		this.currentDialog = 0;
+	}
+
   create() {
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
+		//background
     this.space = this.game.add.tileSprite( 
 			0,
 			0, 
@@ -12,6 +25,7 @@ export default class Cutscene extends Phaser.State {
 			'space'
     );
 
+		//planet
     this.planet = this.game.add.tileSprite(
 			window.innerWidth * window.devicePixelRatio - this.game.cache.getImage('planet').width/2, 
 			window.innerHeight * window.devicePixelRatio - this.game.cache.getImage('planet').height/2, 
@@ -35,7 +49,7 @@ export default class Cutscene extends Phaser.State {
 		this.rick.scale.setTo(0.1, 0.1);
 
 		this.add.tween(this.rick).to( 
-      { x: this.world.centerX, y:this.world.centerY + 200 }, 
+      { x: this.world.centerX/2	, y:this.world.centerY + 200 }, 
       6000, 
       Phaser.Easing.easeInOut,
       true,
@@ -49,6 +63,12 @@ export default class Cutscene extends Phaser.State {
       true,
       3000
 		);
+
+		//dialog
+		setTimeout(() => {
+      this.showDialog()
+    }, 100);
+		
 		
 		this.music = this.sound.add('soundtrack');
 		
@@ -56,15 +76,53 @@ export default class Cutscene extends Phaser.State {
 	}
 	
 	start() {
-		this.music.play();
-
-		setTimeout(() => {
-      this.game.state.start('Enterence');
-    }, 10000);
+		// this.music.play();
 	}
 
-	click() {
+	showDialog() {
 
+		//dialog
+		this.dialog = this.game.add.tileSprite(
+			this.world.centerX - 300, 
+			this.world.centerY + 70,
+			this.game.cache.getImage('dialog').width, 
+			this.game.cache.getImage('dialog').height, 
+			'dialog'
+		);
+		this.dialog.anchor.setTo(0, 1);
+		this.dialog.scale.setTo(2, 2);
+
+		this.dialogText = this.add.text(
+      this.world.centerX + this.game.cache.getImage('dialog').width - 330, 
+			this.world.centerY - this.game.cache.getImage('dialog').height,
+      this.rickText[this.currentDialog], 
+      { 
+        fontFamily: 'Arial', 
+        fontSize: 28, 
+        fill: '#000000',
+        align: 'center'
+      }
+    );
+		this.dialogText.anchor.setTo(0, 1);
+		
+		//skip button
+		this.buttonSkip = this.add.button(
+      this.world.centerX + this.game.cache.getImage('dialog').width - 290, 
+			this.world.centerY - this.game.cache.getImage('dialog').height + 80,
+      'arrow-skip',
+      () => this.handleSkipClick()
+    );
+    this.buttonSkip.anchor.setTo(0.5);
+		this.buttonSkip.scale.setTo(1);
+	}
+
+	handleSkipClick() {
+		if (this.currentDialog < this.rickText.length - 1) {
+			this.dialogText.text = this.rickText[++this.currentDialog]
+		} 
+		else {
+			console.log('next character');
+		}
 	}
 
   update() {

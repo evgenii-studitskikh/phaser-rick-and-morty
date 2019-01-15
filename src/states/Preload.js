@@ -10,6 +10,8 @@ export default class Preload extends Phaser.State {
     this.game.load.image('frame', 'assets/frame.png');
     this.game.load.image('arrow', 'assets/arrow.png');
     this.game.load.image('accept', 'assets/accept.png');
+    this.game.load.image('dialog', 'assets/dialog.png');
+    this.game.load.image('arrow-skip', 'assets/arrow_skip.png');
     this.game.load.spritesheet('heads', 'assets/heads.png', 350, 315);
 
     this.load.audio('soundtrack', [
@@ -26,6 +28,6 @@ export default class Preload extends Phaser.State {
   }
 
   create() {
-		this.game.state.start('Intro');
+		this.game.state.start('Cutscene');
 	}
 }
