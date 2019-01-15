@@ -14,58 +14,39 @@ export default class Intro extends Phaser.State {
     this.portal = this.add.tileSprite(
       this.world.centerX,
       this.world.centerY,
-      0,
-      0,
+      850,
+      800,
       'portal'
     );
-    this.portal.scale.setTo(5, 5);
+    this.portal.scale.setTo(1);
     this.portal.anchor.setTo(0.5);
 
     this.add.tween(this.portal).to( 
-      { rotation: 2 }, 
-      10000, 
+      { rotation: 20 }, 
+      100000, 
       Phaser.Easing.easeInOut,
       true,
-      false
     );
 
     //text
-    this.welcomeText = this.add.text(
+    this.welcomeText = this.add.tileSprite(
       this.world.centerX,
       this.world.centerY, 
-      "#username#, \n  I'm the insane chaotic thing \n I welcome you!", 
-      { 
-        fontFamily: 'Arial', 
-        fontSize: 48, 
-        fill: '#ffffff', 
-        align: 'center'
-      }
+      460,
+      105,
+      'portal-text'
     );
+    this.welcomeText.scale.setTo(1.2);
     this.welcomeText.anchor.setTo(0.5);
 
     //button
     this.buttonAccept = this.add.button(
       this.world.centerX,
-      this.world.centerY + 180,
-      'accept',
+      this.world.centerY + 120,
+      'portal-button',
       () => this.handleRightClick()
     );
     this.buttonAccept.anchor.setTo(0.5);
-    this.buttonAccept.scale.setTo(0.2, 0.2);
-
-    //button text
-    this.buttonAcceptText = this.add.text(
-      this.world.centerX,
-      this.world.centerY + 180, 
-      "I got you! Let's go!", 
-      { 
-        fontFamily: 'Arial', 
-        fontSize: 28, 
-        fill: '#FF8FFC',
-        align: 'center'
-      }
-    );
-    this.buttonAcceptText.anchor.setTo(0.5);
 
     //sound of enter
     this.soundEnter = this.sound.add('enter');
@@ -76,14 +57,6 @@ export default class Intro extends Phaser.State {
     this.soundEnter.play();
 
     this.add.tween(this.buttonAccept).to( 
-      { alpha: 0 }, 
-      1000, 
-      Phaser.Easing.easeInOut,
-      true,
-      false
-    );
-
-    this.add.tween(this.buttonAcceptText).to( 
       { alpha: 0 }, 
       1000, 
       Phaser.Easing.easeInOut,
@@ -107,23 +80,23 @@ export default class Intro extends Phaser.State {
     );
 
     this.add.tween(this.portal.scale).to( 
-      { x: 55, y: 55 }, 
-      6000, 
+      { x: 15, y: 15 }, 
+      3000 + Math.random() * 1000,
       Phaser.Easing.easeInOut,
       true,
       false,
     );
 
     this.add.tween(this.portal).to( 
-      { rotation: 12 }, 
-      10000, 
-      Phaser.Easing.easeInOut,
+      { rotation: 50 }, 
+      3000 + Math.random() * 100, 
+      Phaser.Easing.Bounce.In,
       true,
       false
     );
 
     setTimeout(() => {
       this.game.state.start('Cutscene');
-    }, 6000);
+    }, 5000);
   }
 }

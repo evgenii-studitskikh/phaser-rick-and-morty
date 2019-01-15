@@ -3,8 +3,8 @@ export default class Cutscene extends Phaser.State {
 	constructor() {
 		super();
 
-		this.rickText = [
-			'Text1',
+		this.char3Text = [
+			'Если человек родился с короткими ногами, \nбудут ли его скрещивать с другим \nуродливым человеком, а потом \nвыставлять их детей напоказ как такс?',
 			'Text2',
 			'Text3'
 		]
@@ -27,28 +27,29 @@ export default class Cutscene extends Phaser.State {
 
 		//planet
     this.planet = this.game.add.tileSprite(
-			window.innerWidth * window.devicePixelRatio - this.game.cache.getImage('planet').width/2, 
-			window.innerHeight * window.devicePixelRatio - this.game.cache.getImage('planet').height/2, 
+			window.innerWidth * window.devicePixelRatio, 
+			window.innerHeight * window.devicePixelRatio, 
 			this.game.cache.getImage('planet').width, 
 			this.game.cache.getImage('planet').height, 
 			'planet'
 		);
+		this.planet.anchor.setTo(0.5, 0.5);
 
 		//rick
-		this.rick = this.game.add.tileSprite(
+		this.char3 = this.game.add.tileSprite(
 			-100, 
 			window.innerHeight * window.devicePixelRatio, 
-			this.game.cache.getImage('rick').width, 
-			this.game.cache.getImage('rick').height, 
-			'rick'
+			720, 
+			530, 
+			'cutscene-char3'
 		);
 
-		this.rickDirection = 'left';
-		this.rick.rotation = 0.50;
-		this.rick.anchor.setTo(0.5);
-		this.rick.scale.setTo(0.1, 0.1);
+		this.char3Direction = 'left';
+		this.char3.rotation = 0.50;
+		this.char3.anchor.setTo(0.5);
+		this.char3.scale.setTo(0.1, 0.1);
 
-		this.add.tween(this.rick).to( 
+		this.add.tween(this.char3).to( 
       { x: this.world.centerX/2	, y:this.world.centerY + 200 }, 
       6000, 
       Phaser.Easing.easeInOut,
@@ -56,8 +57,8 @@ export default class Cutscene extends Phaser.State {
       3000
 		);
 		
-		this.add.tween(this.rick.scale).to( 
-      { x: 0.7, y: 0.7 }, 
+		this.add.tween(this.char3.scale).to( 
+      { x: 1.5, y: 1.5 }, 
       6000, 
       Phaser.Easing.easeInOut,
       true,
@@ -67,7 +68,7 @@ export default class Cutscene extends Phaser.State {
 		//dialog
 		setTimeout(() => {
       this.showDialog()
-    }, 100);
+    }, 10000);
 		
 		
 		this.music = this.sound.add('soundtrack');
@@ -76,7 +77,7 @@ export default class Cutscene extends Phaser.State {
 	}
 	
 	start() {
-		// this.music.play();
+		this.music.play();
 	}
 
 	showDialog() {
@@ -85,19 +86,19 @@ export default class Cutscene extends Phaser.State {
 		this.dialog = this.game.add.tileSprite(
 			this.world.centerX - 300, 
 			this.world.centerY + 70,
-			this.game.cache.getImage('dialog').width, 
-			this.game.cache.getImage('dialog').height, 
-			'dialog'
+			395,
+			290,
+			'cutscene-dialog'
 		);
 		this.dialog.anchor.setTo(0, 1);
 		this.dialog.scale.setTo(2, 2);
 
 		this.dialogText = this.add.text(
-      this.world.centerX + this.game.cache.getImage('dialog').width - 330, 
+      this.world.centerX + this.game.cache.getImage('dialog').width - 500, 
 			this.world.centerY - this.game.cache.getImage('dialog').height,
-      this.rickText[this.currentDialog], 
+      this.char3Text[this.currentDialog], 
       { 
-        fontFamily: 'Arial', 
+        fontFamily: 'Ubuntu', 
         fontSize: 28, 
         fill: '#000000',
         align: 'center'
@@ -107,9 +108,9 @@ export default class Cutscene extends Phaser.State {
 		
 		//skip button
 		this.buttonSkip = this.add.button(
-      this.world.centerX + this.game.cache.getImage('dialog').width - 290, 
-			this.world.centerY - this.game.cache.getImage('dialog').height + 80,
-      'arrow-skip',
+      this.world.centerX + this.game.cache.getImage('dialog').width + 50, 
+			this.world.centerY - this.game.cache.getImage('dialog').height + 100,
+      'cutscene-arrow-next',
       () => this.handleSkipClick()
     );
     this.buttonSkip.anchor.setTo(0.5);
@@ -117,31 +118,105 @@ export default class Cutscene extends Phaser.State {
 	}
 
 	handleSkipClick() {
-		if (this.currentDialog < this.rickText.length - 1) {
-			this.dialogText.text = this.rickText[++this.currentDialog]
+		if (this.currentDialog < this.char3Text.length - 1) {
+			this.dialogText.text = this.char3Text[++this.currentDialog]
 		} 
 		else {
-			console.log('next character');
+
+			this.add.tween(this.dialog).to( 
+				{ alpha: 0 }, 
+				1000, 
+				Phaser.Easing.easeInOut,
+				true,
+				false
+			);
+
+			this.add.tween(this.buttonSkip).to( 
+				{ alpha: 0 }, 
+				100, 
+				Phaser.Easing.easeInOut,
+				true,
+				false
+			);
+			
+			this.add.tween(this.dialogText).to( 
+				{ alpha: 0 }, 
+				100, 
+				Phaser.Easing.easeInOut,
+				true,
+				false
+			);
+
+			this.add.tween(this.char3).to( 
+				{ x: this.game.width - 200, y: this.game.height - 200}, 
+				6000, 
+				Phaser.Easing.easeInOut,
+				true,
+				false
+			);
+
+			this.add.tween(this.char3.scale).to( 
+				{ x: 0, y: 0 }, 
+				6000, 
+				Phaser.Easing.easeInOut,
+				true
+			);
+
+			this.add.tween(this.planet.scale).to( 
+				{ x: 10, y: 10 }, 
+				10000, 
+				Phaser.Easing.easeInOut,
+				true,
+				13000
+			);
+
+			this.add.tween(this.planet).to( 
+				{ x: this.world.centerX, y: this.world.centerY }, 
+				15000, 
+				Phaser.Easing.easeInOut,
+				true,
+				8000
+			);
+
+			this.add.tween(this.planet).to( 
+				{ alpha: 0 }, 
+				3000, 
+				Phaser.Easing.easeInOut,
+				true,
+				18000
+			);
+
+			this.add.tween(this.space).to( 
+				{ alpha: 0 }, 
+				1000, 
+				Phaser.Easing.easeInOut,
+				true,
+				17000
+			);
+
+			setTimeout(() => {
+				this.game.state.start('Enterence');
+			}, 22000);
 		}
 	}
 
   update() {
     this.space.tilePosition.x -= 20.0;
 		
-		if (this.rick.rotation > 0.8) {
-			this.rickDirection = 'right';
+		if (this.char3.rotation > 0.5) {
+			this.char3Direction = 'right';
 		}
 
-		if (this.rick.rotation < 0.6) {
-			this.rickDirection = 'left';
+		if (this.char3.rotation < 0.2) {
+			this.char3Direction = 'left';
 		}
 
-		if (this.rickDirection === 'left') {
-			this.rick.rotation += 0.01;
+		if (this.char3Direction === 'left') {
+			this.char3.rotation += 0.001;
 		}
 
-		if (this.rickDirection === 'right') {
-			this.rick.rotation -= 0.01;
+		if (this.char3Direction === 'right') {
+			this.char3.rotation -= 0.001;
 		}
   }
 }
