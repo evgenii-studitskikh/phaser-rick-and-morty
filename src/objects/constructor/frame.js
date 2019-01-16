@@ -1,8 +1,12 @@
 export default class Frame {
 
   constructor(game){
-    this.frame = game.add.image(0, 200, 'frame');
 
-    this.frame.scale.setTo(1.5, 1.5);
+    this.frame = game.add.image(
+      40, 
+      game.height - 40,
+      'enterenece-constructor-bg'
+    );
+    this.frame.anchor.setTo(0, 1);
   }
 }

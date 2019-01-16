@@ -97,6 +97,6 @@ export default class Intro extends Phaser.State {
 
     setTimeout(() => {
       this.game.state.start('Cutscene');
-    }, 5000);
+    }, 4000);
   }
 }

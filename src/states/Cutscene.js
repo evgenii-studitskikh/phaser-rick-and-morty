@@ -14,8 +14,6 @@ export default class Cutscene extends Phaser.State {
 
   create() {
 
-    this.game.physics.startSystem(Phaser.Physics.ARCADE);
-
 		//background
     this.space = this.game.add.tileSprite( 
 			0,
@@ -35,7 +33,7 @@ export default class Cutscene extends Phaser.State {
 		);
 		this.planet.anchor.setTo(0.5, 0.5);
 
-		//rick
+		//character 3
 		this.char3 = this.game.add.tileSprite(
 			-100, 
 			window.innerHeight * window.devicePixelRatio, 
@@ -94,8 +92,8 @@ export default class Cutscene extends Phaser.State {
 		this.dialog.scale.setTo(2, 2);
 
 		this.dialogText = this.add.text(
-      this.world.centerX + this.game.cache.getImage('dialog').width - 500, 
-			this.world.centerY - this.game.cache.getImage('dialog').height,
+      this.world.centerX + 100, 
+			this.world.centerY - 350,
       this.char3Text[this.currentDialog], 
       { 
         fontFamily: 'Ubuntu', 
@@ -104,12 +102,12 @@ export default class Cutscene extends Phaser.State {
         align: 'center'
       }
     );
-		this.dialogText.anchor.setTo(0, 1);
+		this.dialogText.anchor.setTo(0.5);
 		
 		//skip button
 		this.buttonSkip = this.add.button(
-      this.world.centerX + this.game.cache.getImage('dialog').width + 50, 
-			this.world.centerY - this.game.cache.getImage('dialog').height + 100,
+      this.world.centerX + 320, 
+			this.world.centerY - 160,
       'cutscene-arrow-next',
       () => this.handleSkipClick()
     );
@@ -118,6 +116,7 @@ export default class Cutscene extends Phaser.State {
 	}
 
 	handleSkipClick() {
+
 		if (this.currentDialog < this.char3Text.length - 1) {
 			this.dialogText.text = this.char3Text[++this.currentDialog]
 		} 
