@@ -27,11 +27,12 @@ export default class Cutscene extends Phaser.State {
     this.planet = this.game.add.tileSprite(
 			window.innerWidth * window.devicePixelRatio, 
 			window.innerHeight * window.devicePixelRatio, 
-			this.game.cache.getImage('planet').width, 
-			this.game.cache.getImage('planet').height, 
-			'planet'
+			2000, 
+			1200, 
+			'cutscene-planet'
 		);
-		this.planet.anchor.setTo(0.5, 0.5);
+		this.planet.anchor.setTo(1);
+		this.planet.scale.setTo(0.5);
 
 		//character 3
 		this.char3 = this.game.add.tileSprite(
@@ -75,7 +76,7 @@ export default class Cutscene extends Phaser.State {
 	}
 	
 	start() {
-		this.music.play();
+		// this.music.play();
 	}
 
 	showDialog() {
@@ -147,7 +148,7 @@ export default class Cutscene extends Phaser.State {
 			);
 
 			this.add.tween(this.char3).to( 
-				{ x: this.game.width - 200, y: this.game.height - 200}, 
+				{ x: this.game.width - 200, y: this.game.height - 350}, 
 				6000, 
 				Phaser.Easing.easeInOut,
 				true,
@@ -163,18 +164,21 @@ export default class Cutscene extends Phaser.State {
 
 			this.add.tween(this.planet.scale).to( 
 				{ x: 10, y: 10 }, 
-				10000, 
+				3000, 
 				Phaser.Easing.easeInOut,
 				true,
-				13000
+				10000
 			);
-
+	
 			this.add.tween(this.planet).to( 
-				{ x: this.world.centerX, y: this.world.centerY }, 
-				15000, 
+				{ 
+					x: window.innerWidth*1.2 * window.devicePixelRatio, 
+					y: window.innerHeight*3 * window.devicePixelRatio,  
+				}, 
+				3000, 
 				Phaser.Easing.easeInOut,
 				true,
-				8000
+				10000
 			);
 
 			this.add.tween(this.planet).to( 
@@ -182,7 +186,7 @@ export default class Cutscene extends Phaser.State {
 				3000, 
 				Phaser.Easing.easeInOut,
 				true,
-				18000
+				12000
 			);
 
 			this.add.tween(this.space).to( 
@@ -190,12 +194,31 @@ export default class Cutscene extends Phaser.State {
 				1000, 
 				Phaser.Easing.easeInOut,
 				true,
-				17000
+				12000
+			);
+
+			this.add.tween(this.planet.scale).to( 
+				{ x: 5, y: 5 }, 
+				6000, 
+				Phaser.Easing.easeInOut,
+				true,
+				10000
+			);
+	
+			this.add.tween(this.planet).to( 
+				{ 
+					x: window.innerWidth*1.2 * window.devicePixelRatio, 
+					y: window.innerHeight*2.8 * window.devicePixelRatio,  
+				}, 
+				6000, 
+				Phaser.Easing.easeInOut,
+				true,
+				10000
 			);
 
 			setTimeout(() => {
 				this.game.state.start('Enterence');
-			}, 22000);
+			}, 15000);
 		}
 	}
 

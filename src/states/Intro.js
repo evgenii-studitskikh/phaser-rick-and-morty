@@ -14,8 +14,8 @@ export default class Intro extends Phaser.State {
     this.portal = this.add.tileSprite(
       this.world.centerX,
       this.world.centerY,
-      850,
-      800,
+      1156,
+      1080,
       'portal'
     );
     this.portal.scale.setTo(1);

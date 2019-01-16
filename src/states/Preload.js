@@ -1,7 +1,6 @@
 export default class Preload extends Phaser.State {
 
 	preload() {
-    this.game.load.image('planet', 'assets/planet.png');
     this.game.load.image('space', 'assets/space.png');
     this.game.load.image('portal', 'assets/portal.svg');
     this.game.load.image('portal-text', 'assets/intro_text.svg');
@@ -9,6 +8,7 @@ export default class Preload extends Phaser.State {
     this.game.load.image('cutscene-char3', 'assets/cutscene_char3.svg');
     this.game.load.image('cutscene-dialog', 'assets/cutscene_dialog.svg');
     this.game.load.image('cutscene-arrow-next', 'assets/cutscene_button_next.svg');
+    this.game.load.image('cutscene-planet', 'assets/cutscene_planet.svg');
     this.game.load.image('enterenece-constructor-bg', 'assets/enterence_constructor_bg.svg');
     this.game.load.image('constructor-arrow-left', 'assets/constructor_arrow_left.svg');
     this.game.load.image('constructor-arrow-right', 'assets/constructor_arrow_right.svg');
@@ -28,6 +28,6 @@ export default class Preload extends Phaser.State {
   }
 
   create() {
-		this.game.state.start('Enterence');
+		this.game.state.start('Cutscene');
 	}
 }
