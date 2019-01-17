@@ -1,61 +1,50 @@
-'use strict';
-
 export default class Select {
 
-  constructor(game){
-    this.textData = ['head1', 'head2231', 'head3', 'head4', 'head5', 'head6', 'head7', 'head8', 'head9'];
-    this.currentIndex = 0;
+  constructor(game, options){
+
+    this.name = options.name;
+    this.currentSprite = 1;
 
     this.arrow_right = game.add.button(
-      740, 
-      game.height - 900, 
+      730, 
+      game.height - options.y, 
       'constructor-arrow-right', 
       () => this.handleRightClick()
     );
+    this.arrow_right.anchor.setTo(0.5);
     
     this.arrow_left = game.add.button(
-      530, 
-      game.height - 900,
+      550, 
+      game.height - options.y,
       'constructor-arrow-left', 
       () => this.handleLeftClick()
     );
+    this.arrow_left.anchor.setTo(0.5);
 
-    this.selectValue = game.add.text( //change to picture
-      643, 
-      game.height - 887,
-      this.textData[this.currentIndex], 
-      { 
-        fontFamily: 'Arial', fontSize: 28, fill: '#000000', align: 'center'
-      }
+    this.selectValue = game.add.image(
+      640, 
+      game.height - options.y,
+      `constructor-select-${options.name}`
     );
     this.selectValue.anchor.setTo(0.5);
 
-    this.head = game.add.sprite(
-      190, 
-      game.height - 887,
-      'heads'
+    this.sprite = game.add.sprite(
+      250, 
+      game.height - options.y + 100,
+      options.name + this.currentSprite
     );
-    this.head.frame = 0;
-    this.head.scale.setTo(0.4, 0.4);
+    this.sprite.anchor.setTo(0.5);
 
     this.soundClick = game.sound.add('click');
   }
 
   handleLeftClick() {
-    if (this.currentIndex > 0) {
-      this.soundClick.play();
-      this.currentIndex--;
-      this.selectValue.text = this.textData[this.currentIndex];
-      this.head.frame = this.currentIndex;
-    }
+    this.soundClick.play();
+    this.sprite.loadTexture(this.name + --this.currentSprite);
   }
 
   handleRightClick() {
-    if (this.currentIndex < this.textData.length - 1) {
-      this.soundClick.play();
-      this.currentIndex++;
-      this.selectValue.text = this.textData[this.currentIndex];
-      this.head.frame = this.currentIndex;
-    }
+    this.soundClick.play();
+    this.sprite.loadTexture(this.name + ++this.currentSprite);
   }
 }

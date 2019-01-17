@@ -27,8 +27,8 @@ export default class Cutscene extends Phaser.State {
     this.planet = this.game.add.tileSprite(
 			window.innerWidth * window.devicePixelRatio, 
 			window.innerHeight * window.devicePixelRatio, 
-			2000, 
-			1200, 
+			2050, 
+			1000, 
 			'cutscene-planet'
 		);
 		this.planet.anchor.setTo(1);
@@ -76,7 +76,8 @@ export default class Cutscene extends Phaser.State {
 	}
 	
 	start() {
-		// this.music.play();
+		this.music.play();
+		this.music.loopFull();
 	}
 
 	showDialog() {

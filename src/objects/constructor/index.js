@@ -6,6 +6,20 @@ export default class Constructor {
   constructor(game){
 
     this.frame = new Frame(game);
-    this.select = new Select(game);
+
+    this.select = new Select(game, {
+      name: 'body',
+      y: 730,
+    });
+
+    this.select = new Select(game, {
+      name: 'head',
+      y: 930,
+    });
+
+    this.select = new Select(game, {
+      name: 'legs',
+      y: 530,
+    });
 	}
 }
