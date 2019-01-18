@@ -1,3 +1,17 @@
+@font-face {
+  font-family: 'Lasco';
+  src: local('Lasco'), url('../fonts/lasco/lasco.woff2') format('woff2'), url('../fonts/lasco/lasco.woff') format('woff'), url('../fonts/lasco/lasco.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lasco';
+  src: local('Lasco Bold'), local('Lasco-Bold'), url('../fonts/lasco/lascobold.woff2') format('woff2'), url('../fonts/lasco/lascobold.woff') format('woff'), url('../fonts/lasco/lascobold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 html {
   width: 100%;
   height: 100%;
@@ -13,3 +27,32 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.comments {
+  border: 10px solid #E0E0E0;
+  width: 400px;
+}
+
+.comments__title {
+  margin: 0;
+  font-family: Lasco, sans-serif;
+  line-height: 26px;
+  font-size: 24px;
+  color: #212121;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  border-bottom: 10px solid #E0E0E0;
+}
+
+.comments__list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comments__item {
+
+}
+
