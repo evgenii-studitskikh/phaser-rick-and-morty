@@ -17,6 +17,7 @@ export default class Enterence extends Phaser.State {
       'planet-enterence'
     );
     this.planet.anchor.setTo(0, 0.5);
+    this.planet.width = this.game.width;
 
     this.constructor = new Constructor(this.game);
   }

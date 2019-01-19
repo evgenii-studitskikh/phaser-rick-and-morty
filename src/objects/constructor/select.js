@@ -29,8 +29,8 @@ export default class Select {
     this.selectValue.anchor.setTo(0.5);
 
     this.sprite = game.add.sprite(
-      250, 
-      game.height - options.y + 100,
+      options.spriteX, 
+      game.height - options.spriteY,
       options.name + this.currentSprite
     );
     this.sprite.anchor.setTo(0.5);
