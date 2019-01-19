@@ -19,6 +19,10 @@ export default class Preload extends Phaser.State {
     this.game.load.image('constructor-select-body', 'assets/constructor_select_body.svg');
     this.game.load.image('constructor-select-arms', 'assets/constructor_select_arms.svg');
     this.game.load.image('constructor-select-legs', 'assets/constructor_select_legs.svg');
+    this.game.load.image('constructor-apply', 'assets/constructor_apply.svg');
+    this.game.load.image('constructor-yellow-head', 'assets/constructor_yellow_head.svg');
+
+    this.game.load.image('space-lemon', 'assets/space/lemon.svg');
 
     //constructor heads
     this.game.load.image('head1', 'assets/constructor/head_1.svg');
