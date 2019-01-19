@@ -8,8 +8,13 @@ export default class Constructor {
     this.frame = new Frame(game);
 
     this.select = new Select(game, {
-      name: 'body',
+      name: 'arms',
       y: 730,
+    });
+    
+    this.select = new Select(game, {
+      name: 'body',
+      y: 530,
     });
 
     this.select = new Select(game, {
@@ -19,7 +24,7 @@ export default class Constructor {
 
     this.select = new Select(game, {
       name: 'legs',
-      y: 530,
+      y: 330,
     });
 	}
 }
