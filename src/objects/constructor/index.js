@@ -7,28 +7,28 @@ export default class Constructor {
 
     this.frame = new Frame(game);
 
-    this.select = new Select(game, {
+    this.arms = new Select(game, {
       name: 'arms',
       y: 730,
       spriteY: 730,
       spriteX: 250,
     });
 
-    this.select = new Select(game, {
+    this.legs = new Select(game, {
       name: 'legs',
       y: 330,
       spriteY: 415,
-      spriteX: 260,
+      spriteX: 261,
     });
     
-    this.select = new Select(game, {
+    this.body = new Select(game, {
       name: 'body',
       y: 530,
       spriteY: 610,
       spriteX: 250,
     });
 
-    this.select = new Select(game, {
+    this.head = new Select(game, {
       name: 'head',
       y: 930,
       spriteY: 730,

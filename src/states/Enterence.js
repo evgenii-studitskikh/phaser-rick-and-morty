@@ -1,4 +1,5 @@
 import Constructor from '../objects/constructor';
+import Meteor from '../objects/space/meteor';
 
 export default class Enterence extends Phaser.State {
 
@@ -13,15 +14,34 @@ export default class Enterence extends Phaser.State {
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    this.lemon = this.game.add.sprite(
-      900, 
-      300, 
-      'space-lemon'
-    );
-    this.lemon.anchor.set(0.5);
-    this.game.physics.enable(this.lemon, Phaser.Physics.ARCADE);
-    this.lemon.body.angularVelocity = -200;
-    this.lemon.body.velocity.setTo(-200, -200);
+    this.lemon = new Meteor(this.game, {
+      x: 900,
+      y: 300,
+      sprite: 'space-lemon',
+      angularVelocity: -200,
+    });
+
+    this.blueBall = new Meteor(this.game, {
+      x: 1200,
+      y: 100,
+      sprite: 'space-blue-ball',
+      angularVelocity: -200,
+      velocity: {
+        x: 300,
+        y: 300
+      }
+    });
+
+    this.greyBall = new Meteor(this.game, {
+      x: 200,
+      y: 600,
+      sprite: 'space-grey-ball',
+      angularVelocity: -100,
+      velocity: {
+        x: 400,
+        y: 400
+      }
+    });
 
     this.planet = this.game.add.sprite(
       0,
@@ -50,29 +70,10 @@ export default class Enterence extends Phaser.State {
   }
 
   update() {
+    this.space.tilePosition.x -= 0.7;
 
-    this.space.tilePosition.x -= 0.3;
-
-    this.screenWrap(this.lemon);
-  }
-
-  screenWrap(sprite) {
-    if (sprite.x < 0)
-    {
-      sprite.x = this.game.width;
-    }
-    else if (sprite.x > this.game.width)
-    {
-      sprite.x = 0;
-    }
-
-    if (sprite.y < 0)
-    {
-      sprite.y = this.game.height;
-    }
-    else if (sprite.y > this.game.height)
-    {
-      sprite.y = 0;
-    }
+    this.lemon.screenWrap();
+    this.blueBall.screenWrap();
+    this.greyBall.screenWrap();
   }
 }
