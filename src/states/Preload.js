@@ -1,6 +1,23 @@
 export default class Preload extends Phaser.State {
 
 	preload() {
+
+    //preloading screen sprites
+    this.preloadPortal = this.game.add.sprite(
+      this.world.centerX,
+      this.world.centerY,
+      'preload-portal'
+    );
+    this.preloadPortal.anchor.setTo(0.5);
+
+    this.preloadPortalGradient = this.game.add.sprite(
+      this.world.centerX,
+      this.world.centerY,
+      'preload-portal-gradient'
+    );
+    this.preloadPortalGradient.anchor.setTo(0.5);
+
+    //preloading for all game resources
     this.game.load.image('space', 'assets/space.png');
     this.game.load.image('portal', 'assets/portal.svg');
     this.game.load.image('portal-text', 'assets/intro_text.svg');
@@ -66,6 +83,6 @@ export default class Preload extends Phaser.State {
   }
 
   create() {
-		this.game.state.start('Enterence');
+		this.game.state.start('Intro');
 	}
 }

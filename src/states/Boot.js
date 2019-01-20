@@ -1,7 +1,8 @@
 class Boot extends Phaser.State {
 
 	preload() {
-
+		this.game.load.image('preload-portal', 'assets/preload_portal.png');
+    this.game.load.image('preload-portal-gradient', 'assets/preload_portal_gradient.svg');
 	}
 
 	create() {
