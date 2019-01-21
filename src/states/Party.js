@@ -71,7 +71,7 @@ export default class Party extends Phaser.State {
     comments.innerHTML = htmlTemplate;
     const list = document.querySelector('.comments__list');
 
-    data.forEach(comment => {
+    data.forEach((comment,i) => {
       const item = document.createElement('li');
       item.classList.add('comments__item');
       item.innerHTML =
