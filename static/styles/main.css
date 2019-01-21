@@ -39,13 +39,19 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  background-color: #000;
 }
 
 .comments {
-  position: relative;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
   border-top: 15px solid #E0E0E0;
   border-image: url('../assets/comments_border_top.svg') 15 round round;
   width: 400px;
+  background: #fff;
 }
 
 .comments::before {
@@ -102,7 +108,7 @@ body {
   content: '';
   position: absolute;
   z-index: 100;
-  bottom: -10px;
+  bottom: -3px;
   left: 0;
   right: 0;
   height: 15px;

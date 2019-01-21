@@ -72,6 +72,7 @@ export default class Party extends Phaser.State {
     const list = document.querySelector('.comments__list');
 
     data.forEach((comment,i) => {
+    //Дабвляем li в .comments__list:
       const item = document.createElement('li');
       item.classList.add('comments__item');
       item.innerHTML =
@@ -88,18 +89,33 @@ export default class Party extends Phaser.State {
     });
   };
 
+  getSizeBg(imageSrc) {
+    const img = new Image();
+    img.src = imageSrc;
+    const imgRatio = img.width / img.height;
+    return {width: img.width, height: img.height, ratio: imgRatio};
+  }
+
   create() {
+
     this.commentsBar(this.dataComment);
     //background
     console.log('---', 'Party');
-    this.club = this.add.tileSprite(
+    console.log('---', this.getSizeBg('../assets/nightclub.jpg'));
+
+    // const sizeBg = this.getSizeBg('../assets/nightclub.jpg');
+    // const bgHeight = window.innerWidth * window.devicePixelRatio-425 * sizeBg.ratio;
+    // const bgWidth =  window.innerHeight * window.devicePixelRatio * sizeBg.ratio;
+    //
+    // this.scale.setGameSize(bgWidth, bgHeight);
+    this.club = this.add.sprite(
       0,
       0,
-      this.game.width,
-      this.game.height,
       'party-club-bg'
     );
-  }
 
+    this.club.resizeFrame(null,  this.game.width-400,
+      this.game.height)
+  }
 
 }
