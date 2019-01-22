@@ -52,6 +52,10 @@ export default class Party extends Phaser.State {
     ];
   }
 
+  init() {
+
+  }
+
   commentsBar(data = [{name: 'Данные не загруженны', date: 'Данные не загруженны', comment: 'Данные не загруженны'}]) {
 
     let comments = document.createElement('section');
@@ -71,8 +75,8 @@ export default class Party extends Phaser.State {
     comments.innerHTML = htmlTemplate;
     const list = document.querySelector('.comments__list');
 
-    data.forEach((comment,i) => {
-    //Дабвляем li в .comments__list:
+    data.forEach((comment, i) => {
+      //Дабвляем li в .comments__list:
       const item = document.createElement('li');
       item.classList.add('comments__item');
       item.innerHTML =
@@ -97,25 +101,71 @@ export default class Party extends Phaser.State {
   }
 
   create() {
+    this.moving = 0;
+    const bgImgWidth = 1920;
+    const bgImgHeight = 1080;
+    const widthCommentsList = 400;
+    const bgWidth = window.innerWidth * window.devicePixelRatio;
+    const bgHeight = window.innerHeight * window.devicePixelRatio;
 
     this.commentsBar(this.dataComment);
-    //background
-    console.log('---', 'Party');
-    console.log('---', this.getSizeBg('../assets/nightclub.jpg'));
 
-    // const sizeBg = this.getSizeBg('../assets/nightclub.jpg');
-    // const bgHeight = window.innerWidth * window.devicePixelRatio-425 * sizeBg.ratio;
-    // const bgWidth =  window.innerHeight * window.devicePixelRatio * sizeBg.ratio;
-    //
-    // this.scale.setGameSize(bgWidth, bgHeight);
-    this.club = this.add.sprite(
-      0,
-      0,
-      'party-club-bg'
-    );
 
-    this.club.resizeFrame(null,  this.game.width-400,
-      this.game.height)
+
+    this.scale.setGameSize(bgWidth,bgHeight);
+    this.camera.setSize(bgWidth-widthCommentsList, bgHeight);
+    this.camera.setPosition(widthCommentsList/2,0);
+
+    this.world.setBounds(0, 0, bgImgWidth, bgImgHeight);
+    this.clubBg = this.add.sprite(0, 0, 'party-club-bg');
+
+    this.physics.startSystem(Phaser.Physics.P2JS);
+    this.physics.p2.enable(this.clubBg);
+    this.clubBg.body.fixedRotation = true;
+
+    this.cursors = this.input.keyboard.createCursorKeys();
+
+    this.input.onDown.add(this.toggle, this);
+
+  }
+
+  toggle() {
+    this.moving = (this.moving === 0) ? this.moving = 1 : this.moving = 0;
+  }
+
+  update() {
+
+    if (this.moving === 0) {
+      if (this.cursors.up.isDown) {
+        this.camera.y -= 4;
+      }
+      else if (this.cursors.down.isDown) {
+        this.camera.y += 4;
+      }
+
+      if (this.cursors.left.isDown) {
+        this.camera.x -= 4;
+      }
+      else if (this.cursors.right.isDown) {
+        this.camera.x += 4;
+      }
+    }
+    else {
+      if (this.cursors.left.isDown) {
+        this.x -= 4;
+      }
+      else if (this.cursors.right.isDown) {
+        this.x += 4;
+      }
+
+      if (this.cursors.up.isDown) {
+        this.y -= 4;
+      }
+      else if (this.cursors.down.isDown) {
+        this.y += 4;
+      }
+    }
+
   }
 
 }

@@ -118,7 +118,8 @@ body {
 }
 
 .comments__list-inner {
-  height: calc(100vh - 110px);
+  height: calc(100vh - 98px);
+  width: calc(100% - 5px);
   overflow-y: auto;
   position: relative;
 }
