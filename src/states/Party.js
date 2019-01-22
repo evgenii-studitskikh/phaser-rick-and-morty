@@ -123,11 +123,18 @@ export default class Party extends Phaser.State {
 
     this.cursors = this.input.keyboard.createCursorKeys();
 
-    this.music = this.add.audio('TheFluHatinRap');
-    this.sound.setDecodedCallback([ this.music ], this.start, this);
+    this.music1 = this.add.audio('TheFluHatinRap');
+    this.music2 = this.add.audio('GetSchwifty');
+    this.music3 = this.add.audio('LetMeOut');
+    this.music4 = this.add.audio('TheRickDance');
+    this.musicArr = [ this.music1,this.music2,this.music3,this.music4 ];
+    this.indexMusic = 0;
+
+    this.sound.setDecodedCallback( this.musicArr, this.start, this);
 
     this.input.onDown.add(this.toggle, this);
-    this.input.onDown.add(this.changeVolume, this);
+    // this.input.onDown.add(this.changeVolume, this);
+    this.input.onDown.add(this.changeMusic, this);
   }
 
   toggle() {
@@ -169,19 +176,26 @@ export default class Party extends Phaser.State {
   }
 
   start() {
-    this.music.play();
-    this.music.loopFull();
+    this.musicArr[this.indexMusic].play();
+    this.musicArr[this.indexMusic].loopFull();
   }
 
   changeVolume(pointer) {
     if (pointer.y < 300)
     {
-      this.music.pause();
+      this.musicArr[this.indexMusic].pause();
     }
     else
     {
-      this.music.resume();
+      this.musicArr[this.indexMusic].resume();
     }
+  }
+
+  changeMusic() {
+      this.musicArr[this.indexMusic].stop();
+      this.indexMusic = this.indexMusic === this.musicArr.length - 1 ? 0 : ++this.indexMusic;
+      this.musicArr[this.indexMusic].play();
+      this.musicArr[this.indexMusic].loopFull();
   }
 
 }
