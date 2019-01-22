@@ -101,16 +101,14 @@ export default class Party extends Phaser.State {
   }
 
   create() {
+    this.commentsBar(this.dataComment);
+
     this.moving = 0;
     const bgImgWidth = 1920;
     const bgImgHeight = 1080;
     const widthCommentsList = 400;
     const bgWidth = window.innerWidth * window.devicePixelRatio;
     const bgHeight = window.innerHeight * window.devicePixelRatio;
-
-    this.commentsBar(this.dataComment);
-
-
 
     this.scale.setGameSize(bgWidth,bgHeight);
     this.camera.setSize(bgWidth-widthCommentsList, bgHeight);
@@ -125,8 +123,11 @@ export default class Party extends Phaser.State {
 
     this.cursors = this.input.keyboard.createCursorKeys();
 
-    this.input.onDown.add(this.toggle, this);
+    this.music = this.add.audio('TheFluHatinRap');
+    this.sound.setDecodedCallback([ this.music ], this.start, this);
 
+    this.input.onDown.add(this.toggle, this);
+    this.input.onDown.add(this.changeVolume, this);
   }
 
   toggle() {
@@ -134,7 +135,6 @@ export default class Party extends Phaser.State {
   }
 
   update() {
-
     if (this.moving === 0) {
       if (this.cursors.up.isDown) {
         this.camera.y -= 4;
@@ -166,6 +166,22 @@ export default class Party extends Phaser.State {
       }
     }
 
+  }
+
+  start() {
+    this.music.play();
+    this.music.loopFull();
+  }
+
+  changeVolume(pointer) {
+    if (pointer.y < 300)
+    {
+      this.music.pause();
+    }
+    else
+    {
+      this.music.resume();
+    }
   }
 
 }

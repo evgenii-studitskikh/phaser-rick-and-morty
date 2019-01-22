@@ -74,6 +74,12 @@ export default class Preload extends Phaser.State {
       'music/techno.mp3'
     ]);
 
+    //partyMusic:
+    this.load.audio('TheFluHatinRap',['sounds/TheFluHatinRap.ogg', 'sounds/TheFluHatinRap.mp3']);
+    this.load.audio('TheRickDance',['sounds/TheRickDance.ogg', 'sounds/TheRickDance.mp3']);
+    this.load.audio('LetMeOut',['sounds/LetMeOut.ogg', 'sounds/LetMeOut.mp3']);
+    this.load.audio('GetSchwifty',['sounds/GetSchwifty.ogg', 'sounds/GetSchwifty.mp3']);
+
     //audio
     this.load.audio('click', [
       'sounds/click.mp3'
