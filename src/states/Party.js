@@ -104,22 +104,20 @@ export default class Party extends Phaser.State {
     this.commentsBar(this.dataComment);
 
     this.moving = 0;
-    const bgImgWidth = 1920;
-    const bgImgHeight = 1080;
+    const bgImgWidth = 2649;
+    const bgImgHeight = 1632;
     const widthCommentsList = 400;
     const bgWidth = window.innerWidth * window.devicePixelRatio;
     const bgHeight = window.innerHeight * window.devicePixelRatio;
-
-    this.scale.setGameSize(bgWidth,bgHeight);
-    this.camera.setSize(bgWidth-widthCommentsList, bgHeight);
-    this.camera.setPosition(widthCommentsList/2,0);
+    console.log('--- window.innerWidth * window.devicePixelRatio', bgWidth);
+    console.log('---window.innerHeight * window.devicePixelRatio', bgHeight);
 
     this.world.setBounds(0, 0, bgImgWidth, bgImgHeight);
-    this.clubBg = this.add.sprite(0, 0, 'party-club-bg');
 
-    this.physics.startSystem(Phaser.Physics.P2JS);
-    this.physics.p2.enable(this.clubBg);
-    this.clubBg.body.fixedRotation = true;
+    this.camera.setSize(window.innerWidth - widthCommentsList, window.innerHeight);
+    this.camera.setPosition((bgImgWidth - window.innerWidth + widthCommentsList)/2 , (bgImgHeight - window.innerHeight)/2);
+
+    this.clubBg = this.add.sprite(0, 0, 'party-club-bg');
 
     this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -130,11 +128,11 @@ export default class Party extends Phaser.State {
     this.musicArr = [ this.music1,this.music2,this.music3,this.music4 ];
     this.indexMusic = 0;
 
-    this.sound.setDecodedCallback( this.musicArr, this.start, this);
+    // this.sound.setDecodedCallback( this.musicArr, this.start, this);
 
     this.input.onDown.add(this.toggle, this);
     // this.input.onDown.add(this.changeVolume, this);
-    this.input.onDown.add(this.changeMusic, this);
+    // this.input.onDown.add(this.changeMusic, this);
   }
 
   toggle() {
