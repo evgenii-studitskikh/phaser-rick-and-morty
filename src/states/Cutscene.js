@@ -91,6 +91,7 @@ export default class Cutscene extends Phaser.State {
       3000
 		);
 
+
 		tweenCharScale.onComplete.add(this.showDialog, this);
 		
 		this.music = this.sound.add('soundtrack');
@@ -193,78 +194,104 @@ export default class Cutscene extends Phaser.State {
 
 			this.add.tween(this.char).to( 
 				{ x: this.game.width - 200, y: this.game.height - 350}, 
-				6000, 
+				4000, 
 				Phaser.Easing.easeInOut,
 				true,
 				1000
 			);
 
-			this.add.tween(this.char.scale).to( 
+			const tweenCharScale = this.add.tween(this.char.scale).to( 
 				{ x: 0, y: 0 }, 
-				6000, 
-				Phaser.Easing.easeInOut,
+				4000, 
+				Phaser.Easing.easeOut,
 				true,
 				1000
 			);
 
-			this.add.tween(this.planet.scale).to( 
-				{ x: 10, y: 10 }, 
-				3000, 
-				Phaser.Easing.easeInOut,
-				true,
-				10000
-			);
+			tweenCharScale.onComplete.add(this.showInvitation, this);
+
+			// this.add.tween(this.planet.scale).to( 
+			// 	{ x: 10, y: 10 }, 
+			// 	3000, 
+			// 	Phaser.Easing.easeInOut,
+			// 	true,
+			// 	10000
+			// );
 	
-			this.add.tween(this.planet).to( 
-				{ 
-					x: window.innerWidth*1.2 * window.devicePixelRatio, 
-					y: window.innerHeight*3 * window.devicePixelRatio,  
-				}, 
-				3000, 
-				Phaser.Easing.easeInOut,
-				true,
-				10000
-			);
+			// this.add.tween(this.planet).to( 
+			// 	{ 
+			// 		x: window.innerWidth*1.2 * window.devicePixelRatio, 
+			// 		y: window.innerHeight*3 * window.devicePixelRatio,  
+			// 	}, 
+			// 	3000, 
+			// 	Phaser.Easing.easeInOut,
+			// 	true,
+			// 	10000
+			// );
 
-			this.add.tween(this.planet).to( 
-				{ alpha: 0 }, 
-				3000, 
-				Phaser.Easing.easeInOut,
-				true,
-				12000
-			);
+			// this.add.tween(this.planet).to( 
+			// 	{ alpha: 0 }, 
+			// 	3000, 
+			// 	Phaser.Easing.easeInOut,
+			// 	true,
+			// 	12000
+			// );
 
-			this.add.tween(this.space).to( 
-				{ alpha: 0 }, 
-				1000, 
-				Phaser.Easing.easeInOut,
-				true,
-				12000
-			);
+			// this.add.tween(this.space).to( 
+			// 	{ alpha: 0 }, 
+			// 	1000, 
+			// 	Phaser.Easing.easeInOut,
+			// 	true,
+			// 	12000
+			// );
 
-			this.add.tween(this.planet.scale).to( 
-				{ x: 5, y: 5 }, 
-				6000, 
-				Phaser.Easing.easeInOut,
-				true,
-				10000
-			);
+			// this.add.tween(this.planet.scale).to( 
+			// 	{ x: 5, y: 5 }, 
+			// 	6000, 
+			// 	Phaser.Easing.easeInOut,
+			// 	true,
+			// 	10000
+			// );
 	
-			this.add.tween(this.planet).to( 
-				{ 
-					x: window.innerWidth*1.2 * window.devicePixelRatio, 
-					y: window.innerHeight*2.8 * window.devicePixelRatio,  
-				}, 
-				6000, 
-				Phaser.Easing.easeInOut,
-				true,
-				10000
-			);
+			// this.add.tween(this.planet).to( 
+			// 	{ 
+			// 		x: window.innerWidth*1.2 * window.devicePixelRatio, 
+			// 		y: window.innerHeight*2.8 * window.devicePixelRatio,  
+			// 	}, 
+			// 	6000, 
+			// 	Phaser.Easing.easeInOut,
+			// 	true,
+			// 	10000
+			// );
 
 			setTimeout(() => {
 				this.game.state.start('Enterence');
 			}, 15000);
 		}
+	}
+
+	showInvitation() {
+
+		this.dialog = this.game.add.sprite(
+			this.world.centerX, 
+			this.world.centerY - 300,
+			'cutscene-invitation'
+		);
+		this.dialog.anchor.setTo(0.5, 0.5);
+
+		this.dialog = this.game.add.sprite(
+			this.world.centerX, 
+			this.world.centerY - 150,
+			'cutscene-invitation-2'
+		);
+		this.dialog.anchor.setTo(0.5, 0.5);
+
+		this.dialog = this.game.add.sprite(
+			this.world.centerX, 
+			this.world.centerY,
+			'cutscene-accept-button'
+		);
+		this.dialog.anchor.setTo(0.5, 0.5);
 	}
 
   update() {

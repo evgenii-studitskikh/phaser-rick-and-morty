@@ -27,6 +27,9 @@ export default class Preload extends Phaser.State {
     this.game.load.image('cutscene-arrow-next', 'assets/cutscene_button_next.svg');
     this.game.load.image('cutscene-arrow-prev', 'assets/cutscene_button_prev.svg');
     this.game.load.image('cutscene-planet', 'assets/cutscene_planet.svg');
+    this.game.load.image('cutscene-accept-button', 'assets/cutscene_accept_button.svg');
+    this.game.load.image('cutscene-invitation', 'assets/cutscene_invitation.svg');
+    this.game.load.image('cutscene-invitation-2', 'assets/cutscene_invitation_2.svg');
     this.game.load.image('enterenece-constructor-bg', 'assets/enterence_constructor_bg.svg');
     this.game.load.image('party-club-bg', 'assets/nightclub.jpg');
     this.game.load.image('backdrop', 'assets/backdrop.png');
