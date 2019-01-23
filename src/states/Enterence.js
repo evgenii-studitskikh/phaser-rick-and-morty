@@ -69,12 +69,12 @@ export default class Enterence extends Phaser.State {
     this.planet.width = this.game.width;
     this.planet.height = this.game.height;
 
-    // this.yellowHead = this.game.add.sprite(
-    //   650,
-    //   this.game.height - 600,
-    //   'constructor-yellow-head'
-    // );
-    // this.yellowHead.anchor.setTo(0.5);
+    this.yellowHead = this.game.add.sprite(
+      650,
+      this.game.height - 600,
+      'constructor-yellow-head'
+    );
+    this.yellowHead.anchor.setTo(0.5);
 
     this.constructor = new Constructor({
       game: this.game,

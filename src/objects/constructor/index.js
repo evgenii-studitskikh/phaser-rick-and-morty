@@ -12,7 +12,7 @@ export default class Constructor {
       y: 590,
       spriteY: 650,
       spriteX: 210,
-      onSelect: (value) => console.log(value)
+      onSelect: (value) => onSelect(value)
     });
 
     this.legs = new Select(game, {
@@ -20,7 +20,7 @@ export default class Constructor {
       y: 280,
       spriteY: 335,
       spriteX: 221,
-      onSelect: (value) => console.log(value)
+      onSelect: (value) => onSelect(value)
     });
     
     this.body = new Select(game, {
@@ -28,7 +28,7 @@ export default class Constructor {
       y: 440,
       spriteY: 530,
       spriteX: 210,
-      onSelect: (value) => console.log(value)
+      onSelect: (value) => onSelect(value)
     });
 
     this.head = new Select(game, {
@@ -36,7 +36,7 @@ export default class Constructor {
       y: 750,
       spriteY: 650,
       spriteX: 210,
-      onSelect: (value) => console.log(value)
+      onSelect: (value) => onSelect(value)
     });
 
     this.random = new Select(game, {
