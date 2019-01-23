@@ -31,7 +31,8 @@ export default class Preload extends Phaser.State {
     this.game.load.image('cutscene-invitation', 'assets/cutscene_invitation.svg');
     this.game.load.image('cutscene-invitation-2', 'assets/cutscene_invitation_2.svg');
     this.game.load.image('enterenece-constructor-bg', 'assets/enterence_constructor_bg.svg');
-    this.game.load.image('party-club-bg', 'assets/nightclub.jpg');
+    this.game.load.image('party-club-bg', 'assets/club_bg.svg');
+    this.game.load.image('audio-monitors', 'assets/audio_monitors.svg');
     this.game.load.image('backdrop', 'assets/backdrop.png');
     this.game.load.image('planet-enterence', 'assets/planet_enterence.png');
 
@@ -72,10 +73,21 @@ export default class Preload extends Phaser.State {
     this.game.load.image('legs2', 'assets/constructor/legs_2.svg');
     this.game.load.image('legs3', 'assets/constructor/legs_3.svg');
 
-    //music
-    this.load.audio('soundtrack', [
-      'music/techno.mp3'
-    ]);
+    //partyMusic:
+    this.load.audio('1track',['music/1.Too_short_Shake_That_Monkey.ogg', 'music/1.Too_short_Shake_That_Monkey.mp3']);
+    this.load.audio('2track',['music/2.Tony_toni_tone_Feels_good.ogg', 'music/2.Tony_toni_tone_Feels_good.mp3']);
+    this.load.audio('3track',['music/3.Summer_and_Tinkles.ogg', 'music/3.Summer_and_Tinkles.mp3']);
+    this.load.audio('4track',['music/4.Splack_Pack_Shake_That_Ass_Bitch.ogg', 'music/4.Splack_Pack_Shake_That_Ass_Bitch.mp3']);
+    this.load.audio('5track',['music/5.Ryan_Elder_Head_Bent_Over.ogg', 'music/5.Ryan_Elder_Head_Bent_Over.mp3']);
+    this.load.audio('6track',['music/6.Ryan_Elder_Enigma_Parody_Song.ogg', 'music/6.Ryan_Elder_Enigma_Parody_Song.mp3']);
+    this.load.audio('7track',['music/7.Ryan_Elder_African_Dream_Pop.ogg', 'music/7.Ryan_Elder_African_Dream_Pop.mp3']);
+    this.load.audio('8track',['music/8.Rik_i_Morti_Get_Schwifty_(Andromulus_Remix).ogg', 'music/8.Rik_i_Morti_Get_Schwifty_(Andromulus_Remix).mp3']);
+    this.load.audio('9track',['music/9.Justin_Roiland_Ryan_Elder-Raised_Up.ogg', 'music/9.Justin_Roiland_Ryan_Elder-Raised_Up.mp3']);
+    this.load.audio('10track',['music/10.Let_Me_Out.ogg', 'music/10.Let_Me_Out.mp3']);
+    this.load.audio('11track',['music/11.Help_Me_Im_Gonna_Die.ogg', 'music/11.Help_Me_Im_Gonna_Die.mp3']);
+    this.load.audio('12track',['music/12.The_Rick_Dance.ogg', 'music/12.The_Rick_Dance.mp3']);
+    this.load.audio('13track',['music/13.Alien_Jazz_Rap.ogg', 'music/13.Alien_Jazz_Rap.mp3']);
+    this.load.audio('all-tracks',['music/all-tracks.ogg', 'music/all-tracks.mp3']);
 
     //audio
     this.load.audio('click', [
