@@ -28,8 +28,6 @@ export default class Preload extends Phaser.State {
     this.game.load.image('cutscene-arrow-prev', 'assets/cutscene_button_prev.svg');
     this.game.load.image('cutscene-planet', 'assets/cutscene_planet.svg');
     this.game.load.image('cutscene-accept-button', 'assets/cutscene_accept_button.svg');
-    this.game.load.image('cutscene-invitation', 'assets/cutscene_invitation.svg');
-    this.game.load.image('cutscene-invitation-2', 'assets/cutscene_invitation_2.svg');
     this.game.load.image('enterenece-constructor-bg', 'assets/enterence_constructor_bg.svg');
     this.game.load.image('party-club-bg', 'assets/club_bg.svg');
     this.game.load.image('audio-monitors', 'assets/audio_monitors.svg');
@@ -42,8 +40,11 @@ export default class Preload extends Phaser.State {
     this.game.load.image('constructor-select-body', 'assets/constructor_select_body.svg');
     this.game.load.image('constructor-select-arms', 'assets/constructor_select_arms.svg');
     this.game.load.image('constructor-select-legs', 'assets/constructor_select_legs.svg');
+    this.game.load.image('constructor-select-random', 'assets/constructor_select_random.svg');
     this.game.load.image('constructor-apply', 'assets/constructor_apply.svg');
     this.game.load.image('constructor-yellow-head', 'assets/constructor_yellow_head.svg');
+    this.game.load.image('constructor-name-label', 'assets/constructor_name_label.svg');
+    this.game.load.image('constructor-wish-label', 'assets/constructor_wish_label.svg');
 
     this.game.load.image('space-lemon', 'assets/space/lemon.svg');
     this.game.load.image('space-blue-ball', 'assets/space/blue_ball.svg');
@@ -100,6 +101,6 @@ export default class Preload extends Phaser.State {
   }
 
   create() {
-		this.game.state.start('Party');
+		this.game.state.start('Enterence');
 	}
 }

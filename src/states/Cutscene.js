@@ -16,6 +16,18 @@ export default class Cutscene extends Phaser.State {
 		this.currentDialog = 0;
 	}
 
+	preload() {
+
+		this.fontLoader = this.add.text(
+      0, 
+			0,
+      ' ', 
+      { 
+        font: '14px Lasco',
+      }
+    );
+	}
+
   create() {
 
 		//background
@@ -51,22 +63,19 @@ export default class Cutscene extends Phaser.State {
     });
 
 		//planet
-    this.planet = this.game.add.tileSprite(
-			window.innerWidth * window.devicePixelRatio, 
-			window.innerHeight * window.devicePixelRatio, 
-			2050, 
-			1000, 
+    this.planet = this.game.add.sprite(
+			window.innerWidth, 
+			window.innerHeight,
 			'cutscene-planet'
 		);
 		this.planet.anchor.setTo(1);
-		this.planet.scale.setTo(0.5);
+		this.planet.width = 500;
+		this.planet.height = 250;
 
 		//character
-		this.char = this.game.add.tileSprite(
+		this.char = this.game.add.sprite(
 			-100, 
-			window.innerHeight * window.devicePixelRatio, 
-			720, 
-			530, 
+			window.innerHeight,
 			'cutscene-char'
 		);
 
@@ -84,17 +93,16 @@ export default class Cutscene extends Phaser.State {
 		);
 		
 		const tweenCharScale = this.add.tween(this.char.scale).to( 
-      { x: 1.5, y: 1.5 }, 
+      { x: 0.7, y: 0.7 }, 
       6000, 
       Phaser.Easing.easeInOut,
       true,
       3000
 		);
 
-
 		tweenCharScale.onComplete.add(this.showDialog, this);
 		
-		this.music = this.sound.add('soundtrack');
+		this.music = this.sound.add('13track');
 		
 		this.sound.setDecodedCallback([ this.music ], this.start, this);
 	}
@@ -113,15 +121,14 @@ export default class Cutscene extends Phaser.State {
 			'cutscene-dialog'
 		);
 		this.dialog.anchor.setTo(0, 1);
-		this.dialog.scale.setTo(2, 2);
 
 		this.dialogText = this.add.text(
-      this.world.centerX + 140, 
-			this.world.centerY - 300,
+      this.world.centerX - 80, 
+			this.world.centerY - 110,
       this.charText[this.currentDialog], 
       { 
-        fontFamily: 'Ubuntu', 
-        fontSize: 28, 
+        font: 'Lasco', 
+        fontSize: 14, 
         fill: '#000000',
         align: 'center'
       }
@@ -130,17 +137,17 @@ export default class Cutscene extends Phaser.State {
 		
 		//skip button
 		this.buttonSkip = this.add.button(
-      this.world.centerX + 320, 
-			this.world.centerY - 100,
+      this.world.centerX + 30, 
+			this.world.centerY - 20,
       'cutscene-arrow-next',
       () => this.handleSkipClick()
     );
-    this.buttonSkip.anchor.setTo(0.5);
+		this.buttonSkip.anchor.setTo(0.5);
 
 		//back button
 		this.buttonBack = this.add.button(
-      this.world.centerX + 120, 
-			this.world.centerY - 100,
+      this.world.centerX - 70, 
+			this.world.centerY - 20,
       'cutscene-arrow-prev',
       () => this.handleBackClick()
     );
@@ -263,35 +270,44 @@ export default class Cutscene extends Phaser.State {
 			// 	true,
 			// 	10000
 			// );
-
-			setTimeout(() => {
-				this.game.state.start('Enterence');
-			}, 15000);
 		}
 	}
 
 	showInvitation() {
 
-		this.dialog = this.game.add.sprite(
-			this.world.centerX, 
+		this.invateText1 = this.add.text(
+      this.world.centerX, 
 			this.world.centerY - 300,
-			'cutscene-invitation'
-		);
-		this.dialog.anchor.setTo(0.5, 0.5);
+      'У нас день рождения, и мы приглашаем всех \n на виртуальную вечеринку', 
+      { 
+        font: 'Lasco', 
+        fontSize: 18, 
+        fill: '#FFFFFF',
+        align: 'center'
+      }
+    );
+		this.invateText1.anchor.setTo(0.5, 0.5);
 
-		this.dialog = this.game.add.sprite(
-			this.world.centerX, 
-			this.world.centerY - 150,
-			'cutscene-invitation-2'
-		);
-		this.dialog.anchor.setTo(0.5, 0.5);
+		this.invateText2 = this.add.text(
+      this.world.centerX, 
+			this.world.centerY - 200,
+      'Создай своё альтер-эго, придумай имя и давай к нам на праздник', 
+      { 
+        font: 'Lasco', 
+        fontSize: 14, 
+        fill: '#FFFFFF',
+        align: 'center'
+      }
+    );
+		this.invateText2.anchor.setTo(0.5, 0.5);
 
-		this.dialog = this.game.add.sprite(
-			this.world.centerX, 
+		this.enterPartyButton = this.add.button(
+      this.world.centerX,
 			this.world.centerY,
-			'cutscene-accept-button'
-		);
-		this.dialog.anchor.setTo(0.5, 0.5);
+      'cutscene-accept-button',
+      () => this.game.state.start('Enterence')
+    );
+		this.enterPartyButton.anchor.setTo(0.5, 0.5);
 	}
 
   update() {

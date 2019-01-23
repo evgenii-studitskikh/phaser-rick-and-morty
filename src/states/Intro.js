@@ -2,23 +2,19 @@ export default class Intro extends Phaser.State {
 
   create() {
     //background
-    this.space = this.add.tileSprite(
+    this.space = this.add.sprite(
       0,
       0,
-      this.game.width,
-      this.game.height,
       'space'
     );
 
     //portal
-    this.portal = this.add.tileSprite(
+    this.portal = this.add.sprite(
       this.world.centerX,
       this.world.centerY,
-      1156,
-      1080,
       'portal'
     );
-    this.portal.scale.setTo(1);
+    this.portal.scale.setTo(0.5);
     this.portal.anchor.setTo(0.5);
 
     this.add.tween(this.portal).to( 
@@ -29,23 +25,22 @@ export default class Intro extends Phaser.State {
     );
 
     //text
-    this.welcomeText = this.add.tileSprite(
+    this.welcomeText = this.add.sprite(
       this.world.centerX,
-      this.world.centerY, 
-      460,
-      105,
+      this.world.centerY - 30,
       'portal-text'
     );
-    this.welcomeText.scale.setTo(1.2);
+    this.welcomeText.scale.setTo(0.7);
     this.welcomeText.anchor.setTo(0.5);
 
     //button
     this.buttonAccept = this.add.button(
       this.world.centerX,
-      this.world.centerY + 120,
+      this.world.centerY + 50,
       'portal-button',
       () => this.handleRightClick()
     );
+    this.buttonAccept.scale.setTo(0.7);
     this.buttonAccept.anchor.setTo(0.5);
 
     //sound of enter
@@ -79,24 +74,24 @@ export default class Intro extends Phaser.State {
       true
     );
 
-    this.add.tween(this.portal.scale).to( 
-      { x: 15, y: 15 }, 
-      3000 + Math.random() * 1000,
+    const tweenPortalScale = this.add.tween(this.portal.scale).to( 
+      { x: 5, y: 5 }, 
+      4000,
       Phaser.Easing.easeInOut,
       true,
-      false,
     );
 
     this.add.tween(this.portal).to( 
       { rotation: 50 }, 
-      3000 + Math.random() * 100, 
+      4000 + Math.random() * 100, 
       Phaser.Easing.Bounce.In,
       true,
       false
     );
 
-    setTimeout(() => {
-      this.game.state.start('Cutscene');
-    }, 4000);
+    tweenPortalScale.onComplete.add(
+      () => this.game.state.start('Cutscene'), 
+      this
+    );
   }
 }
