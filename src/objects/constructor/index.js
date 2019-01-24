@@ -3,36 +3,45 @@ import Select from './select';
 
 export default class Constructor {
 
-  constructor(game){
+  constructor({game, onSelect}){
 
     this.frame = new Frame(game);
 
     this.arms = new Select(game, {
       name: 'arms',
-      y: 730,
-      spriteY: 730,
-      spriteX: 250,
+      y: 590,
+      spriteY: 650,
+      spriteX: 210,
+      onSelect: (value) => onSelect(value)
     });
 
     this.legs = new Select(game, {
       name: 'legs',
-      y: 330,
-      spriteY: 415,
-      spriteX: 261,
+      y: 280,
+      spriteY: 335,
+      spriteX: 221,
+      onSelect: (value) => onSelect(value)
     });
     
     this.body = new Select(game, {
       name: 'body',
-      y: 530,
-      spriteY: 610,
-      spriteX: 250,
+      y: 440,
+      spriteY: 530,
+      spriteX: 210,
+      onSelect: (value) => onSelect(value)
     });
 
     this.head = new Select(game, {
       name: 'head',
-      y: 930,
-      spriteY: 730,
-      spriteX: 250,
+      y: 750,
+      spriteY: 650,
+      spriteX: 210,
+      onSelect: (value) => onSelect(value)
+    });
+
+    this.random = new Select(game, {
+      name: 'random',
+      y: 120
     });
 	}
 }
