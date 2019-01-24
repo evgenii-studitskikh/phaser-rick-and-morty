@@ -155,12 +155,13 @@ export default class Party extends Phaser.State {
     this.input.onDown.add(this.toggle, this);
 
     //Добавляем акустику:
-    this.audioMonitors = this.add.sprite(1800, 600, 'audio-monitors');
-    this.audioMonitors.customParams = {direction: 1};
+    this.audioMonitorLeft = this.add.sprite(1800, 600, 'audio-monitor');
+    this.audioMonitorRight = this.add.sprite(2195, 795, 'audio-monitor');
     //Включаем обработку событий
-    this.audioMonitors.inputEnabled = true;
-    this.audioMonitors.input.pixelPerfectClick = true;
-    this.audioMonitors.events.onInputDown.add(() => {
+    this.audioMonitorLeft.inputEnabled = true;
+    this.audioMonitorLeft.input.pixelPerfectClick = true;
+    this.audioMonitorLeft.input.useHandCursor = true;
+    this.audioMonitorLeft.events.onInputDown.add(() => {
       this.musicArr[this.indexMusic].onStop.add(() => {});
       this.musicArr[this.indexMusic].stop();
       this.indexMusic = this.indexMusic === this.musicArr.length - 1 ? 0 : ++this.indexMusic;
