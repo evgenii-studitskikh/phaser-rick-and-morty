@@ -20,6 +20,7 @@ export default class Enterence extends Phaser.State {
   }
 
   create() {
+
     this.space = this.game.add.tileSprite(
       0,
       0,
@@ -84,11 +85,8 @@ export default class Enterence extends Phaser.State {
     this.apply = this.game.add.button(
       60, 
       this.game.height - 60,
-      'constructor-apply', 
-      () => console.log({
-        name: this.inputName.value,
-        wish: this.inputWish.value,
-      })
+      'constructor-apply',
+      this.onApplyButton
     );
     this.apply.width = 325;
     this.apply.height = 40;
@@ -119,6 +117,34 @@ export default class Enterence extends Phaser.State {
       this.game.height - 775, 
       this.inputStyles
     );
+
+    this.onApplyButton();
+  }
+
+  onApplyButton() {
+
+    this.tube = this.game.add.sprite(
+      1150, 
+      this.game.height - 55,
+      'constructor-tube'
+    );
+    this.tube.anchor.setTo(0, 1);
+
+    this.goToClub = this.game.add.button(
+      1170, 
+      this.game.height - 320,
+      'constructor-to-club',
+      this.onApplyButton
+    );
+    this.goToClub.anchor.setTo(0.5);
+
+    this.goToConstructor = this.game.add.button(
+      1150, 
+      this.game.height - 220,
+      'constructor-to-constructor',
+      this.onApplyButton
+    );
+    this.goToConstructor.anchor.setTo(0.5);
   }
 
   onConstructorSelect(value) {

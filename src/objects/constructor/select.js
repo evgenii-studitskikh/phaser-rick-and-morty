@@ -34,10 +34,12 @@ export default class Select {
     this.selectValue.anchor.setTo(0.5);
 
     if (options.spriteY || options.spriteX) {
+      const x = bodyparts[`${this.name}1`] ? bodyparts[`${this.name}1`].x : 0;
+      const y = bodyparts[`${this.name}1`] ? bodyparts[`${this.name}1`].y : 0;
 
       this.sprite = this.game.add.sprite(
-        options.spriteX, 
-        this.game.height - options.spriteY,
+        options.spriteX + x,
+        this.game.height - options.spriteY + y,
         options.name + this.currentSprite
       );
       this.sprite.anchor.setTo(0.5);

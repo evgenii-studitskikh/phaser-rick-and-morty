@@ -7,17 +7,17 @@ export default class Constructor {
 
     this.frame = new Frame(game);
 
-    this.arms = new Select(game, {
-      name: 'arms',
-      y: 590,
-      spriteY: 650,
-      spriteX: 210,
+    this.armsRight = new Select(game, {
+      name: 'arms_right',
+      y: 440,
+      spriteY: 466,
+      spriteX: 244,
       onSelect: (value) => onSelect(value)
     });
 
     this.legs = new Select(game, {
       name: 'legs',
-      y: 280,
+      y: 120,
       spriteY: 335,
       spriteX: 221,
       onSelect: (value) => onSelect(value)
@@ -25,9 +25,17 @@ export default class Constructor {
     
     this.body = new Select(game, {
       name: 'body',
-      y: 440,
+      y: 280,
       spriteY: 530,
       spriteX: 210,
+      onSelect: (value) => onSelect(value)
+    });
+
+    this.armsLeft = new Select(game, {
+      name: 'arms_left',
+      y: 590,
+      spriteY: 460,
+      spriteX: 170,
       onSelect: (value) => onSelect(value)
     });
 
@@ -39,9 +47,5 @@ export default class Constructor {
       onSelect: (value) => onSelect(value)
     });
 
-    this.random = new Select(game, {
-      name: 'random',
-      y: 120
-    });
 	}
 }
