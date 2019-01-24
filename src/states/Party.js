@@ -50,10 +50,14 @@ export default class Party extends Phaser.State {
         comment: 'Счастья удачи здоровья веселья доброго сердца'
       }
     ];
-  }
 
-  init() {
-
+    this.pojecotorData = [
+      {key: 'planet-photo1', text: ''},
+      {key: 'planet-photo2', text: ''},
+      {key: 'planet-photo3', text: ''},
+      {key: 'planet-photo4', text: ''},
+      {key: 'planet-photo5', text: ''}
+    ]
   }
 
   commentsBar(data = [{name: 'Данные не загруженны', date: 'Данные не загруженны', comment: 'Данные не загруженны'}]) {
@@ -108,6 +112,7 @@ export default class Party extends Phaser.State {
     const bgImgWidth = 2649;
     const bgImgHeight = 1632;
     const widthCommentsList = 400;
+    const self = this;
 
     //устанавливаем размеры игрового мира:
     this.world.setBounds(0, 0, bgImgWidth, bgImgHeight);
@@ -122,26 +127,11 @@ export default class Party extends Phaser.State {
     //добавляем обработку событий мыши:
     this.cursors = this.input.keyboard.createCursorKeys();
 
-    // v.2
-    // this.music = this.add.audio('all-tracks');
-    // this.music.addMarker('1track', 0, 46.5);
-    // this.music.addMarker('2track', 46.5, 50);
-    // this.music.addMarker('3track', 97, 90);
-    // this.music.addMarker('4track', 187, 33);
-    // this.music.addMarker('5track', 221, 57);
-    // console.log('---', this.music.markers);
-    // this.currentMarker = '1track';
-    // this.sound.setDecodedCallback(this.music, this.startMusic, this);
-
     //подключаем фоновую музыку:
     this.music1 = this.add.audio('1track');
-    // this.music1.addMarker('1', 0, 279);
     this.music2 = this.add.audio('2track');
-    // this.music2.addMarker('2', 0, 298);
     this.music3 = this.add.audio('3track');
-    // this.music3.addMarker('3', 0, 52);
     this.music4 = this.add.audio('4track');
-    // this.music4.addMarker('4', 0, 236);
     this.music5 = this.add.audio('5track');
     this.music6 = this.add.audio('6track');
     this.music7 = this.add.audio('7track');
@@ -152,31 +142,94 @@ export default class Party extends Phaser.State {
     this.music12 = this.add.audio('12track');
     this.music13 = this.add.audio('13track');
     this.musicArr = [ this.music1,this.music2,this.music3,this.music4,this.music5,this.music6,this.music7,this.music8,this.music9,this.music10,this.music11,this.music12,this.music13 ];
-    this.indexMusic = 5;
-    this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
-    // this.sound.autoplay = true;
+    this.indexMusic = this.randomInteger(0, this.musicArr.length);
 
+    //запуск музыки:
+    // this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
+
+    //Двигаем камеру:
     this.input.onDown.add(this.toggle, this);
-    // this.input.onDown.add(this.changeVolume, this);
-    // this.input.onDown.add(this.changeMusic, this);
+
+    //Добавляем аудио мониторы:
+    this.audioMonitorLeft = this.add.sprite(1800, 600, 'audio-monitor-sprite',0);
+    this.audioMonitorRight = this.add.sprite(2195, 795, 'audio-monitor-sprite',0);
+    //Включаем обработку событий
+    this.audioMonitorLeft.inputEnabled = true;
+    this.audioMonitorRight.inputEnabled = true;
+    this.audioMonitorLeft.input.pixelPerfectClick = true;
+    this.audioMonitorRight.input.pixelPerfectClick = true;
+    this.audioMonitorLeft.input.useHandCursor = true;
+    this.audioMonitorRight.input.useHandCursor = true;
+    //переключаем треки при клике на монитор
+    this.audioMonitorLeft.events.onInputDown.add(() => {
+      this.handlerAudioMonitor();
+    }, this);
+    this.audioMonitorRight.events.onInputDown.add(() => {
+      this.handlerAudioMonitor();
+    }, this);
+
+    //создание анимации акустики
+    this.audioMonitorLeft.animations.add('animate',[0,1,2,3,4,2,4,3,2,1],3, true);
+    this.audioMonitorRight.animations.add('animate',[1,2,3,4,0,4,2,4,3,2],3, true);
+
+    //Проектор:
+    let photo;
+    this.photoProjector = this.add.group();
+    const arrPhoto = this.pojecotorData.map(element => {
+      photo = this.photoProjector.create(1960, 566, element.key);
+      photo.customParams = {text: element.text};
+      photo.alpha = 0;
+      photo.inputEnabled = true;
+      photo.input.pixelPerfectClick = true;
+      photo.input.useHandCursor = true;
+      photo.events.onInputDown.add(self.changePhotoProjector, this);
+      return photo;
+    });
+    console.log('---', arrPhoto);
+
+    this.currentPhoto = this.photoProjector.getAt(0);
+    this.currentPhoto.alpha = 1;
+    
+    // console.log('---', this.photoProjector.photoProjectorArr);
   }
 
+  changePhotoProjector(sprite,event) {
+    console.log('---', 'change photo');
+    let newPhoto = this.photoProjector.next();
+    newPhoto.alpha = 1;
+    this.currentPhoto.alpha = 0;
+
+  }
+
+  animateAudioMonitor(sprite, event) {
+    sprite.play('animate');
+  }
+
+  stopAnimateAudioMonitor(sprite, event) {
+    sprite.animations.stop(null, false);
+  }
+
+  handlerAudioMonitor(){
+    this.musicArr[this.indexMusic].onStop.add(() => {});
+    this.musicArr[this.indexMusic].stop();
+    this.indexMusic = this.indexMusic === this.musicArr.length - 1 ? 0 : ++this.indexMusic;
+    this.startMusic();
+  }
 
   startMusic() {
     this.musicArr[this.indexMusic].play();
-    this.musicArr[this.indexMusic].onStop = this.changeMusic;
-
-    // this.musicArr[this.indexMusic].onMarkerComplete =  this.changeMusic();
-    // this.music.loopFull();
-    // this.music.loopFull();
+    this.animateAudioMonitor(this.audioMonitorLeft);
+    this.animateAudioMonitor(this.audioMonitorRight);
+    this.musicArr[this.indexMusic].onStop.add(() => this.changeMusic(this.indexMusic,this.musicArr), this);
   }
 
-  changeMusic() {
-    console.log('---onStop' );
-    // this.indexMusic = this.indexMusic === this.musicArr.length - 1 ? 0 : ++this.indexMusic;
-    // this.musicArr[this.indexMusic].play();
+  changeMusic(indexMusic, musicArr) {
+    indexMusic = indexMusic === musicArr.length - 1 ? 0 : ++indexMusic;
+    this.stopAnimateAudioMonitor(this.audioMonitorLeft);
+    this.stopAnimateAudioMonitor(this.audioMonitorRight);
+    musicArr[indexMusic].play();
+    musicArr[indexMusic].onStop.add(() => this.changeMusic( indexMusic,musicArr));
   }
-
 
   toggle() {
     this.moving = (this.moving === 0) ? this.moving = 1 : this.moving = 0;
@@ -227,6 +280,10 @@ export default class Party extends Phaser.State {
     }
   }
 
-
+  randomInteger(min, max) {
+    let rand = min + Math.random() * (max + 1 - min);
+    rand = Math.floor(rand);
+    return rand;
+  }
 
 }
