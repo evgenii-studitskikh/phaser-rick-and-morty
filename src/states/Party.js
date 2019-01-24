@@ -152,7 +152,7 @@ export default class Party extends Phaser.State {
     this.music12 = this.add.audio('12track');
     this.music13 = this.add.audio('13track');
     this.musicArr = [ this.music1,this.music2,this.music3,this.music4,this.music5,this.music6,this.music7,this.music8,this.music9,this.music10,this.music11,this.music12,this.music13 ];
-    this.indexMusic = 5;
+    this.indexMusic = 9;
     this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
     // this.sound.autoplay = true;
 
@@ -161,22 +161,21 @@ export default class Party extends Phaser.State {
     // this.input.onDown.add(this.changeMusic, this);
   }
 
-
   startMusic() {
     this.musicArr[this.indexMusic].play();
-    this.musicArr[this.indexMusic].onStop = this.changeMusic;
-
-    // this.musicArr[this.indexMusic].onMarkerComplete =  this.changeMusic();
-    // this.music.loopFull();
-    // this.music.loopFull();
+    this.musicArr[this.indexMusic].onStop.add(() => this.changeMusic(this.indexMusic,this.musicArr));
   }
 
-  changeMusic() {
-    console.log('---onStop' );
-    // this.indexMusic = this.indexMusic === this.musicArr.length - 1 ? 0 : ++this.indexMusic;
-    // this.musicArr[this.indexMusic].play();
-  }
+  changeMusic(indexMusic, musicArr) {
+    console.log('---onStop, index:', indexMusic);
 
+    indexMusic = indexMusic === musicArr.length - 1 ? 0 : ++indexMusic;
+
+    musicArr[indexMusic].play();
+
+    musicArr[indexMusic].onStop.add(() => this.changeMusic( indexMusic,musicArr));
+    console.log('---', indexMusic);
+  }
 
   toggle() {
     this.moving = (this.moving === 0) ? this.moving = 1 : this.moving = 0;
