@@ -50,10 +50,14 @@ export default class Party extends Phaser.State {
         comment: 'Счастья удачи здоровья веселья доброго сердца'
       }
     ];
-  }
 
-  init() {
-
+    this.pojecotorData = [
+      {key: 'planet-photo1', text: ''},
+      {key: 'planet-photo2', text: ''},
+      {key: 'planet-photo3', text: ''},
+      {key: 'planet-photo4', text: ''},
+      {key: 'planet-photo5', text: ''}
+    ]
   }
 
   commentsBar(data = [{name: 'Данные не загруженны', date: 'Данные не загруженны', comment: 'Данные не загруженны'}]) {
@@ -108,6 +112,7 @@ export default class Party extends Phaser.State {
     const bgImgWidth = 2649;
     const bgImgHeight = 1632;
     const widthCommentsList = 400;
+    const self = this;
 
     //устанавливаем размеры игрового мира:
     this.world.setBounds(0, 0, bgImgWidth, bgImgHeight);
@@ -138,12 +143,14 @@ export default class Party extends Phaser.State {
     this.music13 = this.add.audio('13track');
     this.musicArr = [ this.music1,this.music2,this.music3,this.music4,this.music5,this.music6,this.music7,this.music8,this.music9,this.music10,this.music11,this.music12,this.music13 ];
     this.indexMusic = this.randomInteger(0, this.musicArr.length);
-    this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
+
+    //запуск музыки:
+    // this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
 
     //Двигаем камеру:
     this.input.onDown.add(this.toggle, this);
 
-    //Добавляем акустику:
+    //Добавляем аудио мониторы:
     this.audioMonitorLeft = this.add.sprite(1800, 600, 'audio-monitor-sprite',0);
     this.audioMonitorRight = this.add.sprite(2195, 795, 'audio-monitor-sprite',0);
     //Включаем обработку событий
@@ -161,9 +168,37 @@ export default class Party extends Phaser.State {
       this.handlerAudioMonitor();
     }, this);
 
-    //
+    //создание анимации акустики
     this.audioMonitorLeft.animations.add('animate',[0,1,2,3,4,2,4,3,2,1],3, true);
     this.audioMonitorRight.animations.add('animate',[1,2,3,4,0,4,2,4,3,2],3, true);
+
+    //Проектор:
+    let photo;
+    this.photoProjector = this.add.group();
+    const arrPhoto = this.pojecotorData.map(element => {
+      photo = this.photoProjector.create(1960, 566, element.key);
+      photo.customParams = {text: element.text};
+      photo.alpha = 0;
+      photo.inputEnabled = true;
+      photo.input.pixelPerfectClick = true;
+      photo.input.useHandCursor = true;
+      photo.events.onInputDown.add(self.changePhotoProjector, this);
+      return photo;
+    });
+    console.log('---', arrPhoto);
+
+    this.currentPhoto = this.photoProjector.getAt(0);
+    this.currentPhoto.alpha = 1;
+    
+    // console.log('---', this.photoProjector.photoProjectorArr);
+  }
+
+  changePhotoProjector(sprite,event) {
+    console.log('---', 'change photo');
+    let newPhoto = this.photoProjector.next();
+    newPhoto.alpha = 1;
+    this.currentPhoto.alpha = 0;
+
   }
 
   animateAudioMonitor(sprite, event) {
