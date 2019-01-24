@@ -135,13 +135,9 @@ export default class Party extends Phaser.State {
 
     //подключаем фоновую музыку:
     this.music1 = this.add.audio('1track');
-    // this.music1.addMarker('1', 0, 279);
     this.music2 = this.add.audio('2track');
-    // this.music2.addMarker('2', 0, 298);
     this.music3 = this.add.audio('3track');
-    // this.music3.addMarker('3', 0, 52);
     this.music4 = this.add.audio('4track');
-    // this.music4.addMarker('4', 0, 236);
     this.music5 = this.add.audio('5track');
     this.music6 = this.add.audio('6track');
     this.music7 = this.add.audio('7track');
@@ -154,11 +150,22 @@ export default class Party extends Phaser.State {
     this.musicArr = [ this.music1,this.music2,this.music3,this.music4,this.music5,this.music6,this.music7,this.music8,this.music9,this.music10,this.music11,this.music12,this.music13 ];
     this.indexMusic = 9;
     this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
-    // this.sound.autoplay = true;
 
+    //Двигаем камеру:
     this.input.onDown.add(this.toggle, this);
-    // this.input.onDown.add(this.changeVolume, this);
-    // this.input.onDown.add(this.changeMusic, this);
+
+    //Добавляем акустику:
+    this.audioMonitors = this.add.sprite(1800, 600, 'audio-monitors');
+    this.audioMonitors.customParams = {direction: 1};
+    //Включаем обработку событий
+    this.audioMonitors.inputEnabled = true;
+    this.audioMonitors.input.pixelPerfectClick = true;
+    this.audioMonitors.events.onInputDown.add(() => {
+      this.musicArr[this.indexMusic].onStop.add(() => {});
+      this.musicArr[this.indexMusic].stop();
+      this.indexMusic = this.indexMusic === this.musicArr.length - 1 ? 0 : ++this.indexMusic;
+      this.startMusic();
+    });
   }
 
   startMusic() {
@@ -167,14 +174,9 @@ export default class Party extends Phaser.State {
   }
 
   changeMusic(indexMusic, musicArr) {
-    console.log('---onStop, index:', indexMusic);
-
     indexMusic = indexMusic === musicArr.length - 1 ? 0 : ++indexMusic;
-
     musicArr[indexMusic].play();
-
     musicArr[indexMusic].onStop.add(() => this.changeMusic( indexMusic,musicArr));
-    console.log('---', indexMusic);
   }
 
   toggle() {
@@ -225,7 +227,5 @@ export default class Party extends Phaser.State {
       this.musicArr[this.indexMusic].resume();
     }
   }
-
-
 
 }
