@@ -41,6 +41,8 @@ export default class Preload extends Phaser.State {
     this.game.load.image('planet-photo5', 'assets/projector_photo_5.png');
     this.game.load.image('planet-photo6', 'assets/projector_photo_6.png');
     this.game.load.image('change-photo-button', 'assets/change_photo_btn.png');
+    this.game.load.spritesheet('portal-sprite-party', 'assets/portal_sprite_party.svg', 189, 290, 15);
+    this.game.load.image('portal-party', 'assets/portal_party.svg');
 
     this.game.load.image('constructor-arrow-left', 'assets/constructor_arrow_left.svg');
     this.game.load.image('constructor-arrow-right', 'assets/constructor_arrow_right.svg');
