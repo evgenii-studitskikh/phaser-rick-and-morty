@@ -56,7 +56,8 @@ export default class Party extends Phaser.State {
       {key: 'planet-photo2', text: ''},
       {key: 'planet-photo3', text: ''},
       {key: 'planet-photo4', text: ''},
-      {key: 'planet-photo5', text: ''}
+      {key: 'planet-photo5', text: ''},
+      {key: 'planet-photo6', text: ''}
     ]
   }
 
@@ -97,13 +98,6 @@ export default class Party extends Phaser.State {
     });
   };
 
-  getSizeBg(imageSrc) {
-    const img = new Image();
-    img.src = imageSrc;
-    const imgRatio = img.width / img.height;
-    return {width: img.width, height: img.height, ratio: imgRatio};
-  }
-
   create() {
     //генерим комменты
     this.commentsBar(this.dataComment);
@@ -119,7 +113,7 @@ export default class Party extends Phaser.State {
 
     //задаем размеры и позицию камеры:
     this.camera.setSize(window.innerWidth - widthCommentsList, window.innerHeight);
-    this.camera.setPosition((bgImgWidth - window.innerWidth + widthCommentsList)/2 , (bgImgHeight - window.innerHeight)/2);
+    this.camera.setPosition((bgImgWidth - window.innerWidth + widthCommentsList) / 2, (bgImgHeight - window.innerHeight) / 2);
 
     //дабавляем спрайт фона:
     this.clubBg = this.add.sprite(0, 0, 'party-club-bg');
@@ -141,7 +135,7 @@ export default class Party extends Phaser.State {
     this.music11 = this.add.audio('11track');
     this.music12 = this.add.audio('12track');
     this.music13 = this.add.audio('13track');
-    this.musicArr = [ this.music1,this.music2,this.music3,this.music4,this.music5,this.music6,this.music7,this.music8,this.music9,this.music10,this.music11,this.music12,this.music13 ];
+    this.musicArr = [this.music1, this.music2, this.music3, this.music4, this.music5, this.music6, this.music7, this.music8, this.music9, this.music10, this.music11, this.music12, this.music13];
     this.indexMusic = this.randomInteger(0, this.musicArr.length);
 
     //запуск музыки:
@@ -151,8 +145,8 @@ export default class Party extends Phaser.State {
     this.input.onDown.add(this.toggle, this);
 
     //Добавляем аудио мониторы:
-    this.audioMonitorLeft = this.add.sprite(1800, 600, 'audio-monitor-sprite',0);
-    this.audioMonitorRight = this.add.sprite(2195, 795, 'audio-monitor-sprite',0);
+    this.audioMonitorLeft = this.add.sprite(1800, 600, 'audio-monitor-sprite', 0);
+    this.audioMonitorRight = this.add.sprite(2195, 795, 'audio-monitor-sprite', 0);
     //Включаем обработку событий
     this.audioMonitorLeft.inputEnabled = true;
     this.audioMonitorRight.inputEnabled = true;
@@ -169,8 +163,8 @@ export default class Party extends Phaser.State {
     }, this);
 
     //создание анимации акустики
-    this.audioMonitorLeft.animations.add('animate',[0,1,2,3,4,2,4,3,2,1],3, true);
-    this.audioMonitorRight.animations.add('animate',[1,2,3,4,0,4,2,4,3,2],3, true);
+    this.audioMonitorLeft.animations.add('animate', [0, 1, 2, 3, 4, 2, 4, 3, 2, 1], 3, true);
+    this.audioMonitorRight.animations.add('animate', [1, 2, 3, 4, 0, 4, 2, 4, 3, 2], 3, true);
 
     //Проектор:
     let photo;
@@ -179,56 +173,74 @@ export default class Party extends Phaser.State {
       photo = this.photoProjector.create(1960, 566, element.key);
       photo.customParams = {text: element.text};
       photo.alpha = 0;
-      photo.inputEnabled = true;
-      photo.input.pixelPerfectClick = true;
-      photo.input.useHandCursor = true;
-      photo.events.onInputDown.add(self.changePhotoProjector, this);
       return photo;
     });
     console.log('---', arrPhoto);
 
-    this.currentPhoto = this.photoProjector.getAt(0);
-    this.currentPhoto.alpha = 1;
-    
-    // console.log('---', this.photoProjector.photoProjectorArr);
-  }
-
-  changePhotoProjector(sprite,event) {
-    console.log('---', 'change photo');
-    let newPhoto = this.photoProjector.next();
-    newPhoto.alpha = 1;
+    this.currentPhoto = this.photoProjector.getRandom();
     this.currentPhoto.alpha = 0;
 
+    // console.log('---', this.photoProjector.photoProjectorArr);
+
+    //Кнопки для листания фото:
+    this.buttonPrev = this.add.sprite(1960, 566, 'change-photo-button');
+    this.buttonPrev.alpha = 0.1;
+    this.buttonPrev.inputEnabled = true;
+    this.buttonPrev.input.pixelPerfectClick = true;
+    this.buttonPrev.input.useHandCursor = true;
+    this.buttonPrev.customParams = {direction: -1};
+    this.buttonPrev.events.onInputDown.add(this.changePhotoProjector, this);
+
+    this.buttonNext = this.add.sprite(2080, 627, 'change-photo-button');
+    this.buttonNext.alpha = 0.1;
+    this.buttonNext.inputEnabled = true;
+    this.buttonNext.input.pixelPerfectClick = true;
+    this.buttonNext.input.useHandCursor = true;
+    this.buttonNext.customParams = {direction: 1};
+    this.buttonNext.events.onInputDown.add(this.changePhotoProjector, this);
   }
 
-  animateAudioMonitor(sprite, event) {
-    sprite.play('animate');
+  changePhotoProjector(button, event) {
+    let newPhoto;
+    if (button.customParams.direction > 0) {
+      newPhoto = this.photoProjector.next();
+    } else {
+      newPhoto = this.photoProjector.previous();
+    }
+    newPhoto.alpha = 1;
+    this.currentPhoto.alpha = 0;
+    this.currentPhoto = newPhoto;
+
   }
 
-  stopAnimateAudioMonitor(sprite, event) {
-    sprite.animations.stop(null, false);
-  }
-
-  handlerAudioMonitor(){
-    this.musicArr[this.indexMusic].onStop.add(() => {});
+  handlerAudioMonitor() {
+    this.musicArr[this.indexMusic].onStop.add(() => {
+    });
     this.musicArr[this.indexMusic].stop();
     this.indexMusic = this.indexMusic === this.musicArr.length - 1 ? 0 : ++this.indexMusic;
     this.startMusic();
   }
 
   startMusic() {
+    this.musicArr[this.indexMusic].onPlay.add(this.animateAudioMonitors, this);
     this.musicArr[this.indexMusic].play();
-    this.animateAudioMonitor(this.audioMonitorLeft);
-    this.animateAudioMonitor(this.audioMonitorRight);
-    this.musicArr[this.indexMusic].onStop.add(() => this.changeMusic(this.indexMusic,this.musicArr), this);
+    this.musicArr[this.indexMusic].onStop.add(() => this.changeMusic(this.indexMusic, this.musicArr), this);
   }
 
   changeMusic(indexMusic, musicArr) {
     indexMusic = indexMusic === musicArr.length - 1 ? 0 : ++indexMusic;
-    this.stopAnimateAudioMonitor(this.audioMonitorLeft);
-    this.stopAnimateAudioMonitor(this.audioMonitorRight);
     musicArr[indexMusic].play();
-    musicArr[indexMusic].onStop.add(() => this.changeMusic( indexMusic,musicArr));
+    musicArr[indexMusic].onStop.add(() => this.changeMusic(indexMusic, musicArr));
+  }
+
+  animateAudioMonitors() {
+    this.audioMonitorLeft.play('animate');
+    this.audioMonitorRight.play('animate');
+  }
+
+  cancelAnimationAudioMonitors() {
+    this.audioMonitorLeft.animations.stop(null, false);
+    this.audioMonitorRight.animations.stop(null, false);
   }
 
   toggle() {
@@ -270,12 +282,10 @@ export default class Party extends Phaser.State {
   }
 
   changeVolume(pointer) {
-    if (pointer.y < 300)
-    {
+    if (pointer.y < 300) {
       this.musicArr[this.indexMusic].pause();
     }
-    else
-    {
+    else {
       this.musicArr[this.indexMusic].resume();
     }
   }

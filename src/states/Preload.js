@@ -30,8 +30,6 @@ export default class Preload extends Phaser.State {
     this.game.load.image('cutscene-accept-button', 'assets/cutscene_accept_button.svg');
     this.game.load.image('enterenece-constructor-bg', 'assets/enterence_constructor_bg.svg');
     this.game.load.image('party-club-bg', 'assets/club_bg.svg');
-    this.game.load.image('audio-monitors', 'assets/audio_monitors.svg');
-    this.game.load.image('audio-monitor', 'assets/audio_monitor.svg');
     this.game.load.spritesheet('audio-monitor-sprite', 'assets/audio_monitor_sprite.svg', 134, 286, 5);
     this.game.load.image('audio-monitor', 'assets/audio_monitor.svg');
     this.game.load.image('backdrop', 'assets/backdrop.png');
@@ -41,6 +39,8 @@ export default class Preload extends Phaser.State {
     this.game.load.image('planet-photo3', 'assets/projector_photo_3.png');
     this.game.load.image('planet-photo4', 'assets/projector_photo_4.png');
     this.game.load.image('planet-photo5', 'assets/projector_photo_5.png');
+    this.game.load.image('planet-photo6', 'assets/projector_photo_6.png');
+    this.game.load.image('change-photo-button', 'assets/change_photo_btn.png');
 
     this.game.load.image('constructor-arrow-left', 'assets/constructor_arrow_left.svg');
     this.game.load.image('constructor-arrow-right', 'assets/constructor_arrow_right.svg');
