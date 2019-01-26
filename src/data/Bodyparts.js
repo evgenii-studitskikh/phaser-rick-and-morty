@@ -136,8 +136,8 @@ export const bodyparts = {
     y: 0,
   },
   arms_left2: {
-    x: 1,
-    y: -2,
+    x: 3,
+    y: -4,
   },
   arms_left3: {
     x: -52,
@@ -156,52 +156,52 @@ export const bodyparts = {
     y: -50,
   },
   arms_left7: {
-    x: 1,
-    y: -2,
+    x: -70,
+    y: -120,
   },
   arms_left8: {
-    x: 1,
-    y: -2,
+    x: -10,
+    y: -20,
   },
   arms_left9: {
-    x: 1,
-    y: -2,
+    x: -30,
+    y: -60,
   },
   arms_left10: {
-    x: 1,
-    y: -2,
+    x: -23,
+    y: -15,
   },
   arms_right1: {
-    x: 0,
-    y: 0,
+    x: 3,
+    y: 2,
   },
   arms_right2: {
     x: 1,
-    y: -2,
+    y: -5,
   },
   arms_right3: {
-    x: -52,
+    x: 52,
     y: -60,
   },
   arms_right4: {
-    x: 1,
-    y: -2,
+    x: 7,
+    y: 1,
   },
   arms_right5: {
-    x: 4,
-    y: 8,
+    x: 3,
+    y: 1,
   },
   arms_right6: {
-    x: 24,
-    y: -50,
+    x: 54,
+    y: -37,
   },
   arms_right7: {
-    x: 1,
-    y: -2,
+    x: 70,
+    y: -130,
   },
   arms_right8: {
-    x: 1,
-    y: -2,
+    x: 25,
+    y: -15,
   },
   arms_right9: {
     x: 1,

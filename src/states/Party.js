@@ -1,17 +1,37 @@
+import Character from '../objects/character';
+
 export default class Party extends Phaser.State {
   constructor() {
     super();
-    this.dataComment = [
+    this.data = [
       {
         name: 'Игорь Николаев',
         date: '14.01.2019',
-        comment: 'Выпьем за любовь!'
+        comment: 'Выпьем за любовь!',
+        figure: {
+          head: 2,
+          body: 4,
+          arm_left: 4,
+          arm_right: 5,
+          legs: 5,
+          x: 1000,
+          y: 10
+        }
       },
 
       {
         name: 'Померанец',
         date: '14.01.2019',
-        comment: 'Желаю побольше в жизни позитива, верных решений, верных друзей и правильных жизненных поворотов!'
+        comment: 'Желаю побольше в жизни позитива, верных решений, верных друзей и правильных жизненных поворотов!',
+        figure: {
+          head: 1,
+          body: 1,
+          arm_left: 1,
+          arm_right: 1,
+          legs: 1,
+          x: 700,
+          y: 10
+        }
       },
 
       {
@@ -100,7 +120,7 @@ export default class Party extends Phaser.State {
 
   create() {
     //генерим комменты
-    this.commentsBar(this.dataComment);
+    this.commentsBar(this.data);
 
     this.moving = 0;
     const bgImgWidth = 2649;
@@ -139,7 +159,7 @@ export default class Party extends Phaser.State {
     this.indexMusic = this.randomInteger(0, this.musicArr.length);
 
     //запуск музыки:
-    // this.soundOver.setDecodedCallback( this.musicArr, this.startMusic, this);
+    // this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
 
     //Двигаем камеру:
     this.input.onDown.add(this.toggle, this);
@@ -201,7 +221,7 @@ export default class Party extends Phaser.State {
     this.buttonPortalParty = this.add.sprite(2030,84,'portal-sprite-party', 0);
     this.buttonPortalParty.customParams =
       {
-        soundOver: self.add.audio('rickportal-sound', 0.9),
+        sound: self.add.audio('rickportal-sound', 0.9),
         soundOut: self.add.audio('rickportal-sound-reverse', 0.9)
       };
     this.buttonPortalParty.inputEnabled = true;
@@ -213,6 +233,11 @@ export default class Party extends Phaser.State {
 
     this.buttonPortalParty.events.onInputOver.add(this.handlerOverButtonPortalParty, this);
     this.buttonPortalParty.events.onInputOut.add(this.handlerOutButtonPortalParty, this);
+
+    //characters generating function calling
+    this.data.map(char => {
+     new Character(this.game, char.figure);
+    })
   }
 
   handlerClickButtonPortalParty() {
@@ -221,7 +246,7 @@ export default class Party extends Phaser.State {
 
   handlerOverButtonPortalParty() {
     this.buttonPortalParty.play('animatePortalOver');
-    this.buttonPortalParty.customParams.soundOver.play();
+    this.buttonPortalParty.customParams.sound.play();
   }
 
   handlerOutButtonPortalParty() {

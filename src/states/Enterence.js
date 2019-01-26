@@ -147,8 +147,8 @@ export default class Enterence extends Phaser.State {
     this.goToConstructor.anchor.setTo(0.5);
   }
 
-  onConstructorSelect(value) {
-    console.log(value);
+  onConstructorSelect(value, part) {
+    console.log(value, part);
   }
 
   onApplyButtonClick() {

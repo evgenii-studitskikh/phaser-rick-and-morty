@@ -12,7 +12,7 @@ export default class Constructor {
       y: 440,
       spriteY: 466,
       spriteX: 244,
-      onSelect: (value) => onSelect(value)
+      onSelect: (value) => onSelect(value, 'arms_right')
     });
 
     this.legs = new Select(game, {
@@ -20,7 +20,7 @@ export default class Constructor {
       y: 120,
       spriteY: 335,
       spriteX: 221,
-      onSelect: (value) => onSelect(value)
+      onSelect: (value) => onSelect(value, 'legs')
     });
     
     this.body = new Select(game, {
@@ -28,7 +28,7 @@ export default class Constructor {
       y: 280,
       spriteY: 530,
       spriteX: 210,
-      onSelect: (value) => onSelect(value)
+      onSelect: (value) => onSelect(value, 'body')
     });
 
     this.armsLeft = new Select(game, {
@@ -36,7 +36,7 @@ export default class Constructor {
       y: 590,
       spriteY: 460,
       spriteX: 170,
-      onSelect: (value) => onSelect(value)
+      onSelect: (value) => onSelect(value, 'arms_left')
     });
 
     this.head = new Select(game, {
@@ -44,7 +44,7 @@ export default class Constructor {
       y: 750,
       spriteY: 650,
       spriteX: 210,
-      onSelect: (value) => onSelect(value)
+      onSelect: (value) => onSelect(value, 'head')
     });
 
 	}

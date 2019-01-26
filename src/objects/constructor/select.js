@@ -45,7 +45,7 @@ export default class Select {
       this.sprite.anchor.setTo(0.5);
     }
 
-    this.soundClick = this.game.soundOver.add('click');
+    this.soundClick = this.game.sound.add('click');
   }
 
   correctPosition(pos) {
