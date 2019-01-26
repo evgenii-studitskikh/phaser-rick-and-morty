@@ -43,8 +43,8 @@ export default class Intro extends Phaser.State {
     this.buttonAccept.scale.setTo(0.7);
     this.buttonAccept.anchor.setTo(0.5);
 
-    //sound of enter
-    this.soundEnter = this.sound.add('enter');
+    //soundOver of enter
+    this.soundEnter = this.soundOver.add('enter');
   }
   
   handleRightClick() {
