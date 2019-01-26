@@ -134,7 +134,7 @@ export default class Enterence extends Phaser.State {
       1170, 
       this.game.height - 320,
       'constructor-to-club',
-      this.onApplyButton
+      this.onApplyButtonClick
     );
     this.goToClub.anchor.setTo(0.5);
 
@@ -142,13 +142,21 @@ export default class Enterence extends Phaser.State {
       1150, 
       this.game.height - 220,
       'constructor-to-constructor',
-      this.onApplyButton
+      this.onToConstructorClick
     );
     this.goToConstructor.anchor.setTo(0.5);
   }
 
   onConstructorSelect(value) {
     console.log(value);
+  }
+
+  onApplyButtonClick() {
+    this.game.state.start('Party');
+  }
+
+  onToConstructorClick() {
+    
   }
 
   update() {

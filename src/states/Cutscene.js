@@ -103,8 +103,9 @@ export default class Cutscene extends Phaser.State {
 		tweenCharScale.onComplete.add(this.showDialog, this);
 		
 		this.music = this.soundOver.add('13track');
-		
-		this.soundOver.setDecodedCallback([ this.music ], this.start, this);
+
+		// this.sound.setDecodedCallback([ this.music ], this.start, this);
+
 	}
 	
 	start() {
@@ -173,7 +174,7 @@ export default class Cutscene extends Phaser.State {
 				Phaser.Easing.easeInOut,
 				true,
 				false
-			);
+			).onComplete.add(() => this.dialog.destroy());
 
 			this.add.tween(this.buttonSkip).to( 
 				{ alpha: 0 }, 
@@ -181,7 +182,7 @@ export default class Cutscene extends Phaser.State {
 				Phaser.Easing.easeInOut,
 				true,
 				false
-			);
+			).onComplete.add(() => this.buttonSkip.destroy());
 
 			this.add.tween(this.buttonBack).to( 
 				{ alpha: 0 }, 
@@ -189,15 +190,15 @@ export default class Cutscene extends Phaser.State {
 				Phaser.Easing.easeInOut,
 				true,
 				false
-			);
-			
+			).onComplete.add(() => this.buttonBack.destroy());
+
 			this.add.tween(this.dialogText).to( 
 				{ alpha: 0 }, 
 				100, 
 				Phaser.Easing.easeInOut,
 				true,
 				false
-			);
+			).onComplete.add(() => this.dialogText.destroy());
 
 			this.add.tween(this.char).to( 
 				{ x: this.game.width - 200, y: this.game.height - 350}, 
@@ -216,60 +217,6 @@ export default class Cutscene extends Phaser.State {
 			);
 
 			tweenCharScale.onComplete.add(this.showInvitation, this);
-
-			// this.add.tween(this.planet.scale).to( 
-			// 	{ x: 10, y: 10 }, 
-			// 	3000, 
-			// 	Phaser.Easing.easeInOut,
-			// 	true,
-			// 	10000
-			// );
-	
-			// this.add.tween(this.planet).to( 
-			// 	{ 
-			// 		x: window.innerWidth*1.2 * window.devicePixelRatio, 
-			// 		y: window.innerHeight*3 * window.devicePixelRatio,  
-			// 	}, 
-			// 	3000, 
-			// 	Phaser.Easing.easeInOut,
-			// 	true,
-			// 	10000
-			// );
-
-			// this.add.tween(this.planet).to( 
-			// 	{ alpha: 0 }, 
-			// 	3000, 
-			// 	Phaser.Easing.easeInOut,
-			// 	true,
-			// 	12000
-			// );
-
-			// this.add.tween(this.space).to( 
-			// 	{ alpha: 0 }, 
-			// 	1000, 
-			// 	Phaser.Easing.easeInOut,
-			// 	true,
-			// 	12000
-			// );
-
-			// this.add.tween(this.planet.scale).to( 
-			// 	{ x: 5, y: 5 }, 
-			// 	6000, 
-			// 	Phaser.Easing.easeInOut,
-			// 	true,
-			// 	10000
-			// );
-	
-			// this.add.tween(this.planet).to( 
-			// 	{ 
-			// 		x: window.innerWidth*1.2 * window.devicePixelRatio, 
-			// 		y: window.innerHeight*2.8 * window.devicePixelRatio,  
-			// 	}, 
-			// 	6000, 
-			// 	Phaser.Easing.easeInOut,
-			// 	true,
-			// 	10000
-			// );
 		}
 	}
 
@@ -277,7 +224,7 @@ export default class Cutscene extends Phaser.State {
 
 		this.invateText1 = this.add.text(
       this.world.centerX, 
-			this.world.centerY - 300,
+			this.world.centerY - 70,
       'У нас день рождения, и мы приглашаем всех \n на виртуальную вечеринку', 
       { 
         font: 'Lasco', 
@@ -290,7 +237,7 @@ export default class Cutscene extends Phaser.State {
 
 		this.invateText2 = this.add.text(
       this.world.centerX, 
-			this.world.centerY - 200,
+			this.world.centerY,
       'Создай своё альтер-эго, придумай имя и давай к нам на праздник', 
       { 
         font: 'Lasco', 
@@ -303,16 +250,43 @@ export default class Cutscene extends Phaser.State {
 
 		this.enterPartyButton = this.add.button(
       this.world.centerX,
-			this.world.centerY,
+			this.world.centerY + 70,
       'cutscene-accept-button',
+      () => this.moveToEnterence()
+    );
+		this.enterPartyButton.anchor.setTo(0.5);
+
+		this.enterPartyButtonText = this.add.text(
+      this.world.centerX,
+			this.world.centerY + 70,
+      'О-о-о... Да… Пора швифтануться...', 
+      { 
+        font: 'Lasco', 
+        fontSize: 14, 
+        fill: '#FFFFFF',
+        align: 'center'
+      }
+    );
+		this.enterPartyButtonText.anchor.setTo(0.5);
+	}
+
+	moveToEnterence() {
+
+		const tweenPlanetScale = this.add.tween(this.planet.scale).to( 
+				{ x: 10, y: 10 }, 
+				3000, 
+				Phaser.Easing.easeInOut,
+				true
+			);
+
+		tweenPlanetScale.onComplete.add(
       () => this.game.state.start('Enterence')
     );
-		this.enterPartyButton.anchor.setTo(0.5, 0.5);
 	}
 
   update() {
     this.space.tilePosition.x -= 20.0;
-		
+
 		if (this.char.rotation > 0.5) {
 			this.charDirection = 'right';
 		}
