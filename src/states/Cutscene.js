@@ -16,6 +16,16 @@ export default class Cutscene extends Phaser.State {
 		this.currentDialog = 0;
 	}
 
+	hideSprite(sprite, duration) {
+		this.add.tween(sprite).to( 
+			{ alpha: 0 }, 
+			duration, 
+			Phaser.Easing.easeInOut,
+			true,
+			false
+		).onComplete.add(() => sprite.destroy());
+	}
+
 	preload() {
 
 		this.fontLoader = this.add.text(
@@ -167,40 +177,13 @@ export default class Cutscene extends Phaser.State {
 		} 
 		else {
 
-			this.add.tween(this.dialog).to( 
-				{ alpha: 0 }, 
-				500, 
-				Phaser.Easing.easeInOut,
-				true,
-				false
-			).onComplete.add(() => this.dialog.destroy());
-
-			this.add.tween(this.buttonSkip).to( 
-				{ alpha: 0 }, 
-				100, 
-				Phaser.Easing.easeInOut,
-				true,
-				false
-			).onComplete.add(() => this.buttonSkip.destroy());
-
-			this.add.tween(this.buttonBack).to( 
-				{ alpha: 0 }, 
-				100, 
-				Phaser.Easing.easeInOut,
-				true,
-				false
-			).onComplete.add(() => this.buttonBack.destroy());
-
-			this.add.tween(this.dialogText).to( 
-				{ alpha: 0 }, 
-				100, 
-				Phaser.Easing.easeInOut,
-				true,
-				false
-			).onComplete.add(() => this.dialogText.destroy());
+			this.hideSprite(this.dialog, 100);
+			this.hideSprite(this.buttonSkip, 100);
+			this.hideSprite(this.buttonBack, 100);
+			this.hideSprite(this.dialogText, 100);
 
 			this.add.tween(this.char).to( 
-				{ x: this.game.width - 200, y: this.game.height - 350}, 
+				{ x: this.game.width - 180, y: this.game.height - 230}, 
 				4000, 
 				Phaser.Easing.easeInOut,
 				true,
@@ -271,12 +254,17 @@ export default class Cutscene extends Phaser.State {
 
 	moveToEnterence() {
 
+		this.hideSprite(this.invateText1, 100);
+		this.hideSprite(this.invateText2, 100);
+		this.hideSprite(this.enterPartyButton, 100);
+		this.hideSprite(this.enterPartyButtonText, 100);
+
 		const tweenPlanetScale = this.add.tween(this.planet.scale).to( 
-				{ x: 10, y: 10 }, 
-				3000, 
-				Phaser.Easing.easeInOut,
-				true
-			);
+			{ x: 10, y: 10 }, 
+			3000, 
+			Phaser.Easing.easeInOut,
+			true
+		);
 
 		tweenPlanetScale.onComplete.add(
       () => this.game.state.start('Enterence')

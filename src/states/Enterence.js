@@ -118,10 +118,10 @@ export default class Enterence extends Phaser.State {
       this.inputStyles
     );
 
-    this.onApplyButton();
+    this.onCreateButtonClick();
   }
 
-  onApplyButton() {
+  onCreateButtonClick() {
 
     this.tube = this.game.add.sprite(
       1150, 
@@ -156,7 +156,7 @@ export default class Enterence extends Phaser.State {
   }
 
   onToConstructorClick() {
-    
+
   }
 
   update() {
