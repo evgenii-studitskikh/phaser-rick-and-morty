@@ -139,7 +139,7 @@ export default class Party extends Phaser.State {
     this.indexMusic = this.randomInteger(0, this.musicArr.length);
 
     //запуск музыки:
-    // this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
+    // this.soundOver.setDecodedCallback( this.musicArr, this.startMusic, this);
 
     //Двигаем камеру:
     this.input.onDown.add(this.toggle, this);
@@ -197,24 +197,18 @@ export default class Party extends Phaser.State {
     this.buttonNext.events.onInputDown.add(this.changePhotoProjector, this);
 
     //портал для перехода на конечную страницу:
-    // this.buttonPortalParty = this.add.button(2013,84,'portal-sprite-party', this.handlerClickButtonPortalParty,this, this.handlerOverButtonPortalParty);
-    // this.buttonPortalParty.input.pixelPerfectClick = true;
-    // this.buttonPortalParty.animations.add('animatePortal', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], 15, false);
 
-    // this.buttonPortalParty = this.add.sprite(2013,84,'audio-monitor-sprite-one');
-    // this.buttonPortalParty = this.add.button(2013,84,'portal-party', this.handlerClickButtonPortalParty,this);
-    // this.buttonPortalParty.anchor.setTo(0.5, 0.5);
-    // this.buttonPortalParty.scale.setTo(0.5, 0.5);
-    //
-    // this.partyPortalAnimate = this.add.tween(this.buttonPortalParty);
-    // this.partyPortalAnimate.to(this.buttonPortalParty.scale.setTo(1, 1), 1000);
-
-    this.buttonPortalParty = this.add.sprite(2013,84,'portal-sprite-party', 0);
+    this.buttonPortalParty = this.add.sprite(2030,84,'portal-sprite-party', 0);
+    this.buttonPortalParty.customParams =
+      {
+        soundOver: self.add.audio('rickportal-sound', 0.9),
+        soundOut: self.add.audio('rickportal-sound-reverse', 0.9)
+      };
     this.buttonPortalParty.inputEnabled = true;
     this.buttonPortalParty.input.pixelPerfectClick = true;
     this.buttonPortalParty.input.useHandCursor = true;
-    this.buttonPortalParty.animations.add('animatePortalOver', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], 14, false);
-    this.buttonPortalParty.animations.add('animatePortalOut', [13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 14, false);
+    this.buttonPortalParty.animations.add('animatePortalOver', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], 8, false);
+    this.buttonPortalParty.animations.add('animatePortalOut', [13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 8, false);
     this.buttonPortalParty.events.onInputDown.add(this.handlerClickButtonPortalParty, this);
 
     this.buttonPortalParty.events.onInputOver.add(this.handlerOverButtonPortalParty, this);
@@ -227,10 +221,12 @@ export default class Party extends Phaser.State {
 
   handlerOverButtonPortalParty() {
     this.buttonPortalParty.play('animatePortalOver');
+    this.buttonPortalParty.customParams.soundOver.play();
   }
 
   handlerOutButtonPortalParty() {
     this.buttonPortalParty.play('animatePortalOut');
+    this.buttonPortalParty.customParams.soundOut.play();
   }
 
   changePhotoProjector(button, event) {
