@@ -134,6 +134,7 @@ body {
   padding: 17px 16px 10px;
   border-top: 1px solid #E0E0E0;
   transition: background-color 250ms ease-out, border 250ms ease-out;
+  cursor: pointer;
 }
 
 .comments__item:first-child {
