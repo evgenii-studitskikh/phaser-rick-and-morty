@@ -2,12 +2,17 @@ import { bodyparts } from '../../data/Bodyparts';
 
 export default class Character {
 
-  constructor(game, figure){
+  constructor(game, data){
 
-    if (figure) {
+    if (data) {
+      let figure = {};
+
+      data.split(';').map(item => {
+        figure[item.split(':')[0]] = parseInt(item.split(':')[1]);
+      })
 
       if (figure.arm_right) {
-        
+
         const x = bodyparts[`arm_right${figure.arm_right}`] ? bodyparts[`arm_right${figure.arm_right}`].x : 0;
         const y = bodyparts[`arm_right${figure.arm_right}`] ? bodyparts[`arm_right${figure.arm_right}`].y : 0;
 

@@ -63,7 +63,7 @@ export default class Select {
       this.soundClick.play();
       this.correctPosition(bodyparts[name]);
       this.sprite.loadTexture(name);
-      this.onSelect(name);
+      this.onSelect(this.currentSprite);
     }
     else {
       this.currentSprite++;
@@ -77,7 +77,7 @@ export default class Select {
       this.soundClick.play();
       this.correctPosition(bodyparts[name]);
       this.sprite.loadTexture(name);
-      this.onSelect(name);
+      this.onSelect(this.currentSprite);
     }
     else {
       this.currentSprite--;

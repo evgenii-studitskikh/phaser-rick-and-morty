@@ -234,10 +234,20 @@ export default class Party extends Phaser.State {
     this.buttonPortalParty.events.onInputOver.add(this.handlerOverButtonPortalParty, this);
     this.buttonPortalParty.events.onInputOut.add(this.handlerOutButtonPortalParty, this);
 
-    //characters generating function calling
-    this.data.map(char => {
-     new Character(this.game, char.figure);
-    })
+    //request for data fetching
+    const request = new XMLHttpRequest();
+    request.open('GET', 'https://picom.ru/rm-api/?action=list', false);
+    request.send();
+
+    if (request.status != 200) {
+
+      console.log('error')
+    } else {
+
+      JSON.parse(request.response).map(char => {
+        new Character(this.game, char.body);
+      })
+    }
   }
 
   handlerClickButtonPortalParty() {

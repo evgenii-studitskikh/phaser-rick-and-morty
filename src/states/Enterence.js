@@ -17,6 +17,14 @@ export default class Enterence extends Phaser.State {
         borderRadius: 6,
         fillAlpha: '#212121'
     }
+
+    this.char = {
+      head: 1,
+      body: 1,
+      legs: 1,
+      arms_left: 1,
+      arms_right: 1
+    }
   }
 
   create() {
@@ -79,7 +87,9 @@ export default class Enterence extends Phaser.State {
 
     this.constructor = new Constructor({
       game: this.game,
-      onSelect: this.onConstructorSelect,
+      onSelect: (value, part) => {
+        this.char[part] = value
+      }
     });
 
     this.apply = this.game.add.button(
@@ -134,7 +144,7 @@ export default class Enterence extends Phaser.State {
       1170, 
       this.game.height - 320,
       'constructor-to-club',
-      this.onApplyButtonClick
+      () => this.onApplyButtonClick()
     );
     this.goToClub.anchor.setTo(0.5);
 
@@ -147,12 +157,22 @@ export default class Enterence extends Phaser.State {
     this.goToConstructor.anchor.setTo(0.5);
   }
 
-  onConstructorSelect(value, part) {
-    console.log(value, part);
-  }
-
   onApplyButtonClick() {
-    this.game.state.start('Party');
+
+    const { head, body, legs, arms_left, arms_right } = this.char;
+
+    const request = new XMLHttpRequest();
+    const params = `body=head:${head};body:${body};arm_left:${arms_left};arm_right:${arms_right};legs:${legs};x:${1300};y:${10}`;
+    request.open('GET', 'https://picom.ru/rm-api/?action=add&'+params, false);
+    request.send();
+
+    if (request.status != 200) {
+
+      console.log('error')
+    } else {
+
+      this.game.state.start('Party');
+    }
   }
 
   onToConstructorClick() {
