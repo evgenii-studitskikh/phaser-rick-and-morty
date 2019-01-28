@@ -144,6 +144,10 @@ export default class Preload extends Phaser.State {
     this.load.audio('rickportal-sound',['sounds/rickportal.ogg', 'sounds/rickportal.mp3']);
     this.load.audio('rickportal-sound-reverse',['sounds/rickportal-reverse.ogg', 'sounds/rickportal-reverse.mp3']);
 
+    //sharing
+    this.load.image('bg-sharing-ground', 'assets/bg_sharing_ground.svg');
+    this.load.image('office-house', 'assets/office_house.svg');
+
     //audio
     this.load.audio('click', [
       'sounds/click.mp3'
@@ -156,7 +160,7 @@ export default class Preload extends Phaser.State {
 
   create() {
 
-		this.game.state.start('Party');
+		this.game.state.start('Sharing');
 
 	}
 }
