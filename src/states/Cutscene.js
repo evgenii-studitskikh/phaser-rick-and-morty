@@ -39,7 +39,6 @@ export default class Cutscene extends Phaser.State {
 	}
 
   create() {
-
 		//background
     this.space = this.game.add.tileSprite( 
 			0,
@@ -114,8 +113,7 @@ export default class Cutscene extends Phaser.State {
 		
 		this.music = this.sound.add('13track');
 
-		// this.sound.setDecodedCallback([ this.music ], this.start, this);
-
+		this.sound.setDecodedCallback([ this.music ], this.start, this);
 	}
 	
 	start() {
