@@ -143,12 +143,15 @@ export default class Sharing extends Phaser.State {
       if(window.matchMedia("(max-height: " + mobileMaxHeight + "px)").matches) {
         return 300
       }
-      else if(window.matchMedia("(max-height: " + desktopMiddleMaxHeight + "px)").matches) {
-        return 475
-      }
+
       else if(window.matchMedia("(max-height: " + tabletMaxHeight + "px)").matches) {
         return 425
       }
+
+      else if(window.matchMedia("(max-height: " + desktopMiddleMaxHeight + "px)").matches) {
+        return 475
+      }
+
       return 661;
     };
     this.socialsTitle = this.add.text(

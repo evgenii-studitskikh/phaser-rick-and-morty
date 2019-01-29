@@ -113,8 +113,7 @@ export default class Party extends Phaser.State {
     this.buttonNext.events.onInputDown.add(this.changePhotoProjector, this);
 
     //портал для перехода на конечную страницу:
-
-    this.buttonPortalParty = this.add.sprite(2030,84,'portal-sprite-party', 0);
+    this.buttonPortalParty = this.add.sprite(2030, 84, 'portal-sprite-party', 0);
     this.buttonPortalParty.customParams =
       {
         sound: self.add.audio('rickportal-sound', 0.9),
@@ -139,7 +138,7 @@ export default class Party extends Phaser.State {
 
       console.log('error')
     } else {
-      
+
 
       this.commentsNode.classList.add('comments');
       let commentsList = '';
@@ -150,8 +149,8 @@ export default class Party extends Phaser.State {
         let figure = {};
 
         item.body.split(';').map(item => {
-          figure[item.split(':')[0]] = 
-            item.split(':')[0] !== 'name' && item.split(':')[0] !== 'message' 
+          figure[item.split(':')[0]] =
+            item.split(':')[0] !== 'name' && item.split(':')[0] !== 'message'
               ? parseInt(item.split(':')[1])
               : item.split(':')[1]
         });
@@ -169,14 +168,32 @@ export default class Party extends Phaser.State {
           `;
         }
       });
-   
+
       const commentsInner = `
         <h2 class="comments__title">Поздравления</h2>
-        <div class="comments__list-inner">
-          <ul class="comments__list">
-            ${commentsList}
-          </ul>
-        </div>  
+        <div class="comments__inner">
+          <div class="comments__list-inner">
+            <ul class="comments__list">
+              ${commentsList}
+            </ul>
+          </div>
+           <section class="sharing">
+            <a href="https://vk.com/share.php?url=https://www.picom.ru/" target="_blank" class="sharing__link sharing__link--vk">
+              Вконтакте
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.picom.ru%2F&amp;src=sdkpreparse" target="_blank" class="sharing__link sharing__link--facebook">
+              Facebook
+            </a>
+            <a href="http://twitter.com/share?&url=https://www.picom.ru/" target="_blank" class="sharing__link sharing__link--twitter">
+              Twitter
+            </a>
+             <a href="" class="sharing__link sharing__link--help">
+              help
+            </a>
+            
+          </section>
+        </div>
+        
       `;
 
       this.commentsNode.innerHTML = commentsInner;

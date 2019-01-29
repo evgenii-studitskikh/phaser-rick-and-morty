@@ -53,9 +53,51 @@ export default class Preload extends Phaser.State {
 
     this.load.audio('13track',['music/13.Alien_Jazz_Rap.ogg', 'music/13.Alien_Jazz_Rap.mp3']);
 
+    //sharing
+    this.load.image('bg-sharing-ground', 'assets/bg_sharing_ground.svg');
+    this.load.image('bg-sharing-ground2', 'assets/bg_sharing_ground2.svg');
+    this.load.image('office-house', 'assets/office_house.svg');
+    this.load.image('logo-picom', 'assets/logo_picom.svg');
+    this.load.image('btn-back-party', 'assets/button_back_party.svg');
+    this.load.image('btn-create-person', 'assets/button_create_person.svg');
+    this.load.image('facebook', 'assets/socials_facebook.svg');
+    this.load.image('vk', 'assets/socials_vk.svg');
+    this.load.image('twitter', 'assets/socials_twitter.svg');
+    this.load.image('ok', 'assets/socials_ok.svg');
+    this.load.image('bottle', 'assets/bottle.svg');
+
+    //party:
+    this.game.load.image('party-club-bg', 'assets/club_bg.svg');
+    this.game.load.spritesheet('audio-monitor-sprite', 'assets/audio_monitor_sprite.svg', 134, 286, 5);
+    this.game.load.image('audio-monitor', 'assets/audio_monitor.svg');
+    this.game.load.image('planet-photo1', 'assets/projector_photo_1.png');
+    this.game.load.image('planet-photo2', 'assets/projector_photo_2.png');
+    this.game.load.image('planet-photo3', 'assets/projector_photo_3.png');
+    this.game.load.image('planet-photo4', 'assets/projector_photo_4.png');
+    this.game.load.image('planet-photo5', 'assets/projector_photo_5.png');
+    this.game.load.image('planet-photo6', 'assets/projector_photo_6.png');
+    this.game.load.image('change-photo-button', 'assets/change_photo_btn.png');
+    this.game.load.spritesheet('portal-sprite-party', 'assets/portal_sprite_party.svg', 189, 290, 15);
+    this.game.load.image('portal-party', 'assets/portal_party.svg');
+    //partyMusic:
+    this.load.audio('1track',['music/1.Too_short_Shake_That_Monkey.ogg', 'music/1.Too_short_Shake_That_Monkey.mp3']);
+    this.load.audio('2track',['music/2.Tony_toni_tone_Feels_good.ogg', 'music/2.Tony_toni_tone_Feels_good.mp3']);
+    this.load.audio('3track',['music/3.Summer_and_Tinkles.ogg', 'music/3.Summer_and_Tinkles.mp3']);
+    this.load.audio('4track',['music/4.Splack_Pack_Shake_That_Ass_Bitch.ogg', 'music/4.Splack_Pack_Shake_That_Ass_Bitch.mp3']);
+    this.load.audio('5track',['music/5.Ryan_Elder_Head_Bent_Over.ogg', 'music/5.Ryan_Elder_Head_Bent_Over.mp3']);
+    this.load.audio('6track',['music/6.Ryan_Elder_Enigma_Parody_Song.ogg', 'music/6.Ryan_Elder_Enigma_Parody_Song.mp3']);
+    this.load.audio('7track',['music/7.Ryan_Elder_African_Dream_Pop.ogg', 'music/7.Ryan_Elder_African_Dream_Pop.mp3']);
+    this.load.audio('8track',['music/8.Rik_i_Morti_Get_Schwifty_(Andromulus_Remix).ogg', 'music/8.Rik_i_Morti_Get_Schwifty_(Andromulus_Remix).mp3']);
+    this.load.audio('9track',['music/9.Justin_Roiland_Ryan_Elder-Raised_Up.ogg', 'music/9.Justin_Roiland_Ryan_Elder-Raised_Up.mp3']);
+    this.load.audio('10track',['music/10.Let_Me_Out.ogg', 'music/10.Let_Me_Out.mp3']);
+    this.load.audio('11track',['music/11.Help_Me_Im_Gonna_Die.ogg', 'music/11.Help_Me_Im_Gonna_Die.mp3']);
+    this.load.audio('12track',['music/12.The_Rick_Dance.ogg', 'music/12.The_Rick_Dance.mp3']);
+    this.load.audio('rickportal-sound',['sounds/rickportal.ogg', 'sounds/rickportal.mp3']);
+    this.load.audio('rickportal-sound-reverse',['sounds/rickportal-reverse.ogg', 'sounds/rickportal-reverse.mp3']);
+
   }
 
   create() {
-		this.game.state.start('Intro');
+		this.game.state.start('Party');
 	}
 }
