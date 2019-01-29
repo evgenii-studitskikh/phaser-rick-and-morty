@@ -7,6 +7,8 @@ export default class Character {
     if (data) {
       let figure = {};
 
+      this.charGroup = game.add.group();
+
       data.split(';').map(item => {
         figure[item.split(':')[0]] = parseInt(item.split(':')[1]);
       })
@@ -22,6 +24,8 @@ export default class Character {
           `arms_right${figure.arm_right}`
         );
         this.armRight.anchor.setTo(0.5);
+
+        this.charGroup.add(this.armRight);
       }
 
       if (figure.legs) {
@@ -35,6 +39,8 @@ export default class Character {
           `legs${figure.legs}`
         );
         this.legs.anchor.setTo(0.5);
+
+        this.charGroup.add(this.legs);
       }
 
       if (figure.body) {
@@ -48,6 +54,8 @@ export default class Character {
           `body${figure.body}`
         );
         this.body.anchor.setTo(0.5);
+
+        this.charGroup.add(this.body);
       }
 
       if (figure.arm_left) {
@@ -61,6 +69,8 @@ export default class Character {
           `arms_left${figure.arm_left}`
         );
         this.armLeft.anchor.setTo(0.5);
+
+        this.charGroup.add(this.armLeft);
       }
 
       if (figure.head) {
@@ -74,8 +84,57 @@ export default class Character {
           `head${figure.head}`
         );
         this.head.anchor.setTo(0.5);
+
+        this.charGroup.add(this.head);
+
+        this.charGroup.scale.setTo(0.7);
+
+        this.charGroup.forEach( 
+          this.makeDraggable
+        )
       }
-      
     }
-	}
+  }
+  
+  makeDraggable(item) {
+    item.inputEnabled = true;
+    item.input.enableDrag();
+
+    let dragStartPos = {
+      x: 0,
+      y: 0
+    };
+
+    let dragStopPos;
+
+    item.events.onDragStart.add((obj, pointer) => {
+      dragStartPos.x = pointer.x;
+      dragStartPos.y = pointer.y;
+    });
+
+    item.events.onDragStop.add((obj, pointer) => {
+      dragStopPos = {
+        x: pointer.x,
+        y: pointer.y
+      };
+    });
+
+    item.events.onDragUpdate.add((obj, pointer, x, y, snapPoint, isFirstUpdate) => {
+      if ( isFirstUpdate ) {
+        obj.origin = new Phaser.Point( obj.x, obj.y )
+        obj.parent.origin = new Phaser.Point( obj.parent.x, obj.parent.y )
+      }
+
+      if (dragStopPos) {
+        dragStartPos.x = dragStopPos.x;
+        dragStartPos.y = dragStopPos.y;
+      }
+
+      obj.parent.x = pointer.x - dragStartPos.x;
+      obj.parent.y = pointer.y - dragStartPos.y;
+
+      obj.x = obj.origin.x
+      obj.y = obj.origin.y
+    });
+  }
 }

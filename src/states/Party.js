@@ -18,7 +18,6 @@ export default class Party extends Phaser.State {
 
   create() {
 
-    this.moving = 0;
     const bgImgWidth = 2649;
     const bgImgHeight = 1632;
     const widthCommentsList = 400;
@@ -56,9 +55,6 @@ export default class Party extends Phaser.State {
 
     //запуск музыки:
     // this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
-
-    //Двигаем камеру:
-    this.input.onDown.add(this.toggle, this);
 
     //Добавляем аудио мониторы:
     this.audioMonitorLeft = this.add.sprite(1800, 600, 'audio-monitor-sprite', 0);
@@ -295,37 +291,24 @@ export default class Party extends Phaser.State {
   }
 
   update() {
-    if (this.moving === 0) {
-      if (this.cursors.up.isDown) {
-        this.camera.y -= 4;
-      }
-      else if (this.cursors.down.isDown) {
-        this.camera.y += 4;
-      }
 
-      if (this.cursors.left.isDown) {
+    if (this.input.x > 0) {
+      if (this.input.x < 100) {
         this.camera.x -= 4;
       }
-      else if (this.cursors.right.isDown) {
+      if (this.input.x > window.innerWidth - 500) {
         this.camera.x += 4;
       }
     }
-    else {
-      if (this.cursors.left.isDown) {
-        this.x -= 4;
-      }
-      else if (this.cursors.right.isDown) {
-        this.x += 4;
-      }
 
-      if (this.cursors.up.isDown) {
-        this.y -= 4;
+    if (this.input.y > 0) {
+      if (this.input.y < 100) {
+        this.camera.y -= 4;
       }
-      else if (this.cursors.down.isDown) {
-        this.y += 4;
+      if (this.input.y > window.innerHeight - 100) {
+        this.camera.y += 4;
       }
     }
-
   }
 
   changeVolume(pointer) {

@@ -11,7 +11,7 @@ class Game extends Phaser.Game {
 	constructor() {
 		super(
 			window.innerWidth, 
-			window.innerHeight
+			window.innerHeight,
 		);
 
 		this.state.add('Boot', Boot, false);
