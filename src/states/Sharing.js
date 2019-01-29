@@ -225,19 +225,19 @@ export default class Sharing extends Phaser.State {
   }
 
   handlerClickVk() {
-    window.open("https://vk.com/share.php?url=https://www.picom.ru/", "_blank");
+    window.open("https://vk.com/share.php?url=http://19.chunks.ru/", "_blank");
   }
 
   handlerClickFacebook(){
-    window.open("https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.picom.ru%2F&amp;src=sdkpreparse", "_blank");
+    window.open("https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F19.chunks.ru%2F&amp;src=sdkpreparse", "_blank");
   }
 
   handlerClickTwitter() {
-    window.open("http://twitter.com/share?&url=https://www.picom.ru/", "_blank");
+    window.open("http://twitter.com/share?&url=http://19.chunks.ru/", "_blank");
   }
 
   handlerClickOk() {
-    window.open("https://connect.ok.ru/offer?url=https://www.picom.ru/", "_blank");
+    window.open("https://connect.ok.ru/offer?url=http://19.chunks.ru/", "_blank");
   }
   // https://connect.ok.ru/offer
   //   ?url=URL_TO_SHARE

@@ -174,10 +174,10 @@ export default class Party extends Phaser.State {
             </ul>
           </div>
            <section class="sharing">
-            <a href="https://vk.com/share.php?url=https://www.picom.ru/" target="_blank" class="sharing__link sharing__link--vk">
+            <a href="https://vk.com/share.php?url=http://19.chunks.ru/" target="_blank" class="sharing__link sharing__link--vk">
               Вконтакте
             </a>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.picom.ru%2F&amp;src=sdkpreparse" target="_blank" class="sharing__link sharing__link--facebook">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F19.chunks.ru%2F&amp;src=sdkpreparse" target="_blank" class="sharing__link sharing__link--facebook">
               Facebook
             </a>
             <a href="http://twitter.com/share?&url=https://www.picom.ru/" target="_blank" class="sharing__link sharing__link--twitter">
