@@ -57,7 +57,8 @@ export default class Cutscene extends Phaser.State {
       velocity: {
         x: -800,
         y: 100
-      }
+      },
+			sound: '5_ball_click'
 		});
 		
 		this.lemon = new Meteor(this.game, {
@@ -68,8 +69,10 @@ export default class Cutscene extends Phaser.State {
       velocity: {
         x: -800,
         y: 0
-      }
+      },
+			sound: '4_lemon_click'
     });
+
 
 		//planet
     this.planet = this.game.add.sprite(
@@ -111,7 +114,7 @@ export default class Cutscene extends Phaser.State {
 
 		tweenCharScale.onComplete.add(this.showDialog, this);
 		
-		this.music = this.sound.add('13track');
+		this.music = this.sound.add('1_bg_space2');
 
 		this.sound.setDecodedCallback([ this.music ], this.start, this);
 	}
@@ -152,6 +155,7 @@ export default class Cutscene extends Phaser.State {
       () => this.handleSkipClick()
     );
 		this.buttonSkip.anchor.setTo(0.5);
+		this.buttonSkipSound = this.add.audio('2_btn_next');
 
 		//back button
 		this.buttonBack = this.add.button(
@@ -161,16 +165,18 @@ export default class Cutscene extends Phaser.State {
       () => this.handleBackClick()
     );
     this.buttonBack.anchor.setTo(0.5);
+    this.buttonBackSound = this.add.audio('3_btn_back');
 	}
 
 	handleBackClick() {
+    this.buttonBackSound.play();
 		if (this.currentDialog > 0) {
 			this.dialogText.text = this.charText[--this.currentDialog]
 		}
 	}
 
 	handleSkipClick() {
-
+    this.buttonSkipSound.play();
 		if (this.currentDialog < this.charText.length - 1) {
 			this.dialogText.text = this.charText[++this.currentDialog]
 		} 
@@ -236,6 +242,7 @@ export default class Cutscene extends Phaser.State {
       () => this.moveToEnterence()
     );
 		this.enterPartyButton.anchor.setTo(0.5);
+    this.enterPartyButtonSound = this.add.audio('13_btn_obshift');
 
 		this.enterPartyButtonText = this.add.text(
       this.world.centerX,
@@ -252,7 +259,8 @@ export default class Cutscene extends Phaser.State {
 	}
 
 	moveToEnterence() {
-
+    this.enterPartyButtonSound.play();
+    this.music.fadeOut(200);
 		this.hideSprite(this.invateText1, 100);
 		this.hideSprite(this.invateText2, 100);
 		this.hideSprite(this.enterPartyButton, 100);

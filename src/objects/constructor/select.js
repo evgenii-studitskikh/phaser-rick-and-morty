@@ -17,6 +17,7 @@ export default class Select {
       () => this.handleRightClick()
     );
     this.arrow_right.anchor.setTo(0.5);
+    this.arrow_right_sound = game.add.audio('3_btn_constructor_right');
     
     this.arrow_left = this.game.add.button(
       450, 
@@ -25,6 +26,8 @@ export default class Select {
       () => this.handleLeftClick()
     );
     this.arrow_left.anchor.setTo(0.5);
+    this.arrow_left_sound = game.add.audio('4_btn_constructor_left');
+
 
     this.selectValue = this.game.add.image(
       525, 
@@ -32,6 +35,7 @@ export default class Select {
       `constructor-select-${options.name}`
     );
     this.selectValue.anchor.setTo(0.5);
+
 
     if (options.spriteY || options.spriteX) {
       const x = bodyparts[`${this.name}1`] ? bodyparts[`${this.name}1`].x : 0;
@@ -45,7 +49,6 @@ export default class Select {
       this.sprite.anchor.setTo(0.5);
     }
 
-    this.soundClick = this.game.sound.add('click');
   }
 
   correctPosition(pos) {
@@ -60,7 +63,7 @@ export default class Select {
     const name = this.name + --this.currentSprite;
 
     if (bodyparts[name]) {
-      this.soundClick.play();
+      this.arrow_left_sound.play();
       this.correctPosition(bodyparts[name]);
       this.sprite.loadTexture(name);
       this.onSelect(this.currentSprite);
@@ -74,7 +77,7 @@ export default class Select {
     const name = this.name + ++this.currentSprite;
 
     if (bodyparts[name]) {
-      this.soundClick.play();
+      this.arrow_right_sound.play();
       this.correctPosition(bodyparts[name]);
       this.sprite.loadTexture(name);
       this.onSelect(this.currentSprite);

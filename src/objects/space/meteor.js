@@ -11,6 +11,13 @@ export default class Meteor {
     );
     this.meteor.anchor.set(0.5);
 
+    this.meteor.inputEnabled = true;
+    this.meteor.input.pixelPerfectClick = true;
+    this.meteor.input.useHandCursor = true;
+    this.meteor.input.useHandCursor = true;
+    this.meteor.sound = this.game.add.audio(options.sound, 1);
+    this.meteor.events.onInputDown.add(()=>{this.meteor.sound.play()}, this);
+
     this.game.physics.enable(this.meteor, Phaser.Physics.ARCADE);
     this.meteor.body.angularVelocity = options.angularVelocity || null;
     this.meteor.body.velocity.setTo(

@@ -54,7 +54,9 @@ export default class Party extends Phaser.State {
     this.indexMusic = this.randomInteger(0, this.musicArr.length);
 
     //запуск музыки:
-    // this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
+
+    // this.onRenderCallback.add( ()=>  this.sound.setDecodedCallback( this.musicArr, this.startMusic, this), this);
+    this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
 
     //Добавляем аудио мониторы:
     this.audioMonitorLeft = this.add.sprite(1800, 600, 'audio-monitor-sprite', 0);
@@ -268,7 +270,7 @@ export default class Party extends Phaser.State {
   }
 
   startMusic() {
-    this.musicArr[this.indexMusic].onPlay.add(this.animateAudioMonitors, this);
+    // this.musicArr[this.indexMusic].onPlay.add(this.animateAudioMonitors, this);
     this.musicArr[this.indexMusic].play();
     this.musicArr[this.indexMusic].onStop.add(() => this.changeMusic(this.indexMusic, this.musicArr), this);
   }

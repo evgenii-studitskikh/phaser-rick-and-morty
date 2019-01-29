@@ -45,6 +45,7 @@ export default class Enterence extends Phaser.State {
       y: 300,
       sprite: 'space-lemon',
       angularVelocity: -200,
+      sound: '4_lemon_click'
     });
 
     this.blueBall = new Meteor(this.game, {
@@ -55,7 +56,8 @@ export default class Enterence extends Phaser.State {
       velocity: {
         x: 300,
         y: 300
-      }
+      },
+      sound: '5_ball_click'
     });
 
     this.greyBall = new Meteor(this.game, {
@@ -66,7 +68,8 @@ export default class Enterence extends Phaser.State {
       velocity: {
         x: 400,
         y: 400
-      }
+      },
+      sound: '5_ball_click'
     });
 
     this.planet = this.game.add.sprite(
@@ -84,6 +87,11 @@ export default class Enterence extends Phaser.State {
       'constructor-yellow-head'
     );
     this.yellowHead.anchor.setTo(0.5);
+    this.yellowHead.inputEnabled = true;
+    this.yellowHead.input.pixelPerfectClick = true;
+    this.yellowHead.input.useHandCursor = true;
+    this.yellowHeadSound = this.add.audio('7_head')
+    this.yellowHead.events.onInputDown.add(()=>{this.yellowHeadSound.play()}, this);
 
     this.constructor = new Constructor({
       game: this.game,
@@ -96,11 +104,13 @@ export default class Enterence extends Phaser.State {
       60, 
       this.game.height - 60,
       'constructor-apply',
-      this.onApplyButton
+      // this.onApplyButton
+      ()=>{this.applySound.play();}
     );
     this.apply.width = 325;
     this.apply.height = 40;
     this.apply.anchor.setTo(0, 1);
+    this.applySound = this.add.audio('2_ready_party');
 
     this.labelName = this.game.add.sprite(
       60, 
@@ -129,6 +139,14 @@ export default class Enterence extends Phaser.State {
     );
 
     this.onCreateButtonClick();
+
+    this.musicEnterence = this.sound.add('1_bg_constructor2');
+    this.sound.setDecodedCallback([ this.musicEnterence ], this.start, this);
+  }
+
+  start() {
+    this.musicEnterence.play();
+    this.musicEnterence.loopFull();
   }
 
   onCreateButtonClick() {
@@ -147,18 +165,21 @@ export default class Enterence extends Phaser.State {
       () => this.onApplyButtonClick()
     );
     this.goToClub.anchor.setTo(0.5);
+    this.goToClubSound = this.add.audio('5_btn_green_arrow');
 
     this.goToConstructor = this.game.add.button(
       1150, 
       this.game.height - 220,
       'constructor-to-constructor',
-      this.onToConstructorClick
+      () => this.onToConstructorClick()
     );
     this.goToConstructor.anchor.setTo(0.5);
+    this.goToConstructorSound = this.add.audio('6_btn_red_arrow');
   }
 
   onApplyButtonClick() {
-
+    this.musicEnterence.pause();
+    this.goToClubSound.play();
     const { head, body, legs, arms_left, arms_right } = this.char;
 
     const request = new XMLHttpRequest();
@@ -176,7 +197,7 @@ export default class Enterence extends Phaser.State {
   }
 
   onToConstructorClick() {
-
+    this.goToConstructorSound.play();
   }
 
   update() {

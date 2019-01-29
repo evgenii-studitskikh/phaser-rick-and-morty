@@ -51,8 +51,6 @@ export default class Preload extends Phaser.State {
     this.game.load.image('cutscene-planet', 'assets/cutscene_planet.svg');
     this.game.load.image('cutscene-accept-button', 'assets/cutscene_accept_button.svg');
 
-    this.load.audio('13track',['music/13.Alien_Jazz_Rap.ogg', 'music/13.Alien_Jazz_Rap.mp3']);
-
 
     this.game.load.image('enterenece-constructor-bg', 'assets/enterence_constructor_bg.svg');
     this.game.load.image('party-club-bg', 'assets/club_bg.svg');
@@ -166,6 +164,7 @@ export default class Preload extends Phaser.State {
     this.load.audio('12track',['music/12.The_Rick_Dance.ogg', 'music/12.The_Rick_Dance.mp3']);
     this.load.audio('rickportal-sound',['sounds/rickportal.ogg', 'sounds/rickportal.mp3']);
     this.load.audio('rickportal-sound-reverse',['sounds/rickportal-reverse.ogg', 'sounds/rickportal-reverse.mp3']);
+    this.load.audio('13track',['music/13.Alien_Jazz_Rap.ogg', 'music/13.Alien_Jazz_Rap.mp3']);
 
     //audio
     this.load.audio('click', [
@@ -184,9 +183,38 @@ export default class Preload extends Phaser.State {
     this.load.image('twitter', 'assets/socials_twitter.svg');
     this.load.image('ok', 'assets/socials_ok.svg');
     this.load.image('bottle', 'assets/bottle.svg');
+
+    //space-sound:
+    this.load.audio('1_bg_space',['sounds/1_space/1_bg_space.ogg', 'sounds/1_space/1_bg_space.mp3']);
+    this.load.audio('1_bg_space2',['sounds/1_space/1_bg_space2.ogg', 'sounds/1_space/1_bg_space2.mp3']);
+    this.load.audio('2_btn_next',['sounds/1_space/2_btn_next.ogg', 'sounds/1_space/2_btn_next.mp3']);
+    this.load.audio('3_btn_back',['sounds/1_space/3_btn_back.ogg', 'sounds/1_space/3_btn_back.mp3']);
+    this.load.audio('4_lemon_click',['sounds/1_space/4_lemon_click.ogg', 'sounds/1_space/4_lemon_click.mp3']);
+    this.load.audio('5_ball_click',['sounds/1_space/5_ball_click.ogg', 'sounds/1_space/5_ball_click.mp3']);
+    this.load.audio('6_rick_click',['sounds/1_space/6_rick_click.ogg', 'sounds/1_space/6_rick_click.mp3']);
+    this.load.audio('7_small_rick_click',['sounds/1_space/7_small_rick_click.ogg', 'sounds/1_space/7_small_rick_click.mp3']);
+    this.load.audio('8_rick_click_3',['sounds/1_space/8_rick_click_3.ogg', 'sounds/1_space/8_rick_click_3.mp3']);
+    this.load.audio('9_ass_click',['sounds/1_space/9_ass_click.ogg', 'sounds/1_space/9_ass_click.mp3']);
+    this.load.audio('10_monster_click',['sounds/1_space/10_monster_click.ogg', 'sounds/1_space/10_monster_click.mp3']);
+    this.load.audio('11_mrrmixis_click',['sounds/1_space/11_mrrmixis_click.ogg', 'sounds/1_space/11_mrrmixis_click.mp3']);
+    this.load.audio('12_girl_click',['sounds/1_space/12_girl_click.ogg', 'sounds/1_space/12_girl_click.mp3']);
+    this.load.audio('13_btn_obshift',['sounds/1_space/13_btn_obshift.ogg', 'sounds/1_space/13_btn_obshift.mp3']);
+
+    //constructor sound:
+    this.load.audio('1_bg_constructor',['sounds/2_constructor/1_bg_constructor.ogg', 'sounds/2_constructor/1_bg_constructor.mp3']);
+    this.load.audio('1_bg_constructor2',['sounds/2_constructor/1_bg_constructor2.ogg', 'sounds/2_constructor/1_bg_constructor2.mp3']);
+    this.load.audio('2_ready_party',['sounds/2_constructor/2_ready_party.ogg', 'sounds/2_constructor/2_ready_party.mp3']);
+    this.load.audio('3_btn_constructor_right',['sounds/2_constructor/3_btn_constructor_right.ogg', 'sounds/2_constructor/3_btn_constructor_right.mp3']);
+    this.load.audio('4_btn_constructor_left',['sounds/2_constructor/4_btn_constructor_left.ogg', 'sounds/2_constructor/4_btn_constructor_left.mp3']);
+    this.load.audio('5_btn_green_arrow',['sounds/2_constructor/5_btn_green_arrow.ogg', 'sounds/2_constructor/5_btn_green_arrow.mp3']);
+    this.load.audio('6_btn_red_arrow',['sounds/2_constructor/6_btn_red_arrow.ogg', 'sounds/2_constructor/6_btn_red_arrow.mp3']);
+    this.load.audio('7_head',['sounds/2_constructor/7_head.ogg', 'sounds/2_constructor/7_head.mp3']);
+    this.load.audio('8_person_user',['sounds/2_constructor/8_person_user.ogg', 'sounds/2_constructor/8_person_user.mp3']);
+
+
   }
 
   create() {
-		this.game.state.start('Sharing');
+		this.game.state.start('Enterence');
 	}
 }
