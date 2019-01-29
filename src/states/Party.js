@@ -11,7 +11,7 @@ export default class Party extends Phaser.State {
       {key: 'planet-photo4', text: ''},
       {key: 'planet-photo5', text: ''},
       {key: 'planet-photo6', text: ''}
-    ]
+    ];
 
     this.commentsNode = document.createElement('section');
   }

@@ -30,8 +30,6 @@ export default class Preload extends Phaser.State {
     );
 		this.LoadingText.anchor.setTo(0.5);
 
-    
-
     //preloading for all game resources
     this.game.load.image('space', 'assets/space.png');
     this.game.load.image('portal', 'assets/portal.svg');
@@ -41,7 +39,7 @@ export default class Preload extends Phaser.State {
     this.game.load.image('space-lemon', 'assets/space/lemon.svg');
     this.game.load.image('space-blue-ball', 'assets/space/blue_ball.svg');
     this.game.load.image('space-grey-ball', 'assets/space/grey_ball.svg');
-    
+
     this.load.audio('enter', [
       'sounds/enter.mp3'
     ]);
@@ -170,12 +168,24 @@ export default class Preload extends Phaser.State {
     //audio
     this.load.audio('click', [
       'sounds/click.mp3'
-		]);
+    ]);
+    
+    //sharing
+    this.load.image('bg-sharing-ground', 'assets/bg_sharing_ground.svg');
+    this.load.image('bg-sharing-ground2', 'assets/bg_sharing_ground2.svg');
+    this.load.image('office-house', 'assets/office_house.svg');
+    this.load.image('logo-picom', 'assets/logo_picom.svg');
+    this.load.image('btn-back-party', 'assets/button_back_party.svg');
+    this.load.image('btn-create-person', 'assets/button_create_person.svg');
+    this.load.image('facebook', 'assets/socials_facebook.svg');
+    this.load.image('vk', 'assets/socials_vk.svg');
+    this.load.image('twitter', 'assets/socials_twitter.svg');
+    this.load.image('ok', 'assets/socials_ok.svg');
+    this.load.image('bottle', 'assets/bottle.svg');
 		
   }
 
   create() {
-
 		this.game.state.start('Party');
 	}
 }
