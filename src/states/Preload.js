@@ -69,6 +69,8 @@ export default class Preload extends Phaser.State {
     this.game.load.image('change-photo-button', 'assets/change_photo_btn.png');
     this.game.load.spritesheet('portal-sprite-party', 'assets/portal_sprite_party.svg', 189, 290, 15);
     this.game.load.image('portal-party', 'assets/portal_party.svg');
+    this.game.load.image('party-help-bg', 'assets/help_bg_party.svg');
+    this.game.load.image('close-btn', 'assets/close_btn.svg');
 
     this.game.load.image('constructor-arrow-left', 'assets/constructor_arrow_left.svg');
     this.game.load.image('constructor-arrow-right', 'assets/constructor_arrow_right.svg');
@@ -147,7 +149,7 @@ export default class Preload extends Phaser.State {
     this.game.load.image('arms_right8', 'assets/constructor/arms_right_8.svg');
     this.game.load.image('arms_right9', 'assets/constructor/arms_right_9.svg');
     this.game.load.image('arms_right10', 'assets/constructor/arms_right_10.svg');
-    
+
 
     //partyMusic:
     this.load.audio('1track',['music/1.Too_short_Shake_That_Monkey.ogg', 'music/1.Too_short_Shake_That_Monkey.mp3']);
@@ -169,7 +171,7 @@ export default class Preload extends Phaser.State {
     this.load.audio('click', [
       'sounds/click.mp3'
     ]);
-    
+
     //sharing
     this.load.image('bg-sharing-ground', 'assets/bg_sharing_ground.svg');
     this.load.image('bg-sharing-ground2', 'assets/bg_sharing_ground2.svg');

@@ -45,7 +45,7 @@ export default class Party extends Phaser.State {
     this.camera.setSize(window.innerWidth - widthCommentsList, window.innerHeight);
     this.camera.setPosition((bgImgWidth - window.innerWidth + widthCommentsList) / 2, (bgImgHeight - window.innerHeight) / 2);
 
-    //дабавляем спрайт фона:
+    // дабавляем спрайт фона:
     this.clubBg = this.add.sprite(0, 0, 'party-club-bg');
 
     //добавляем обработку событий мыши:
@@ -124,8 +124,7 @@ export default class Party extends Phaser.State {
     this.buttonNext.events.onInputDown.add(this.changePhotoProjector, this);
 
     //портал для перехода на конечную страницу:
-
-    this.buttonPortalParty = this.add.sprite(2030,84,'portal-sprite-party', 0);
+    this.buttonPortalParty = this.add.sprite(2030, 84, 'portal-sprite-party', 0);
     this.buttonPortalParty.customParams =
       {
         sound: self.add.audio('rickportal-sound', 0.9),
@@ -150,7 +149,7 @@ export default class Party extends Phaser.State {
 
       console.log('error')
     } else {
-      
+
 
       this.commentsNode.classList.add('comments');
       let commentsList = '';
@@ -164,8 +163,8 @@ export default class Party extends Phaser.State {
         let figure = {};
 
         item.body.split(';').map(item => {
-          figure[item.split(':')[0]] = 
-            item.split(':')[0] !== 'name' && item.split(':')[0] !== 'message' 
+          figure[item.split(':')[0]] =
+            item.split(':')[0] !== 'name' && item.split(':')[0] !== 'message'
               ? parseInt(item.split(':')[1])
               : item.split(':')[1]
         });
@@ -183,19 +182,71 @@ export default class Party extends Phaser.State {
           `;
         }
       });
-   
+
       const commentsInner = `
         <h2 class="comments__title">Поздравления</h2>
-        <div class="comments__list-inner">
-          <ul class="comments__list">
-            ${commentsList}
-          </ul>
-        </div>  
+        <div class="comments__inner">
+          <div class="comments__list-inner">
+            <ul class="comments__list">
+              ${commentsList}
+            </ul>
+          </div>
+           <section class="sharing">
+            <a href="https://vk.com/share.php?url=http://19.chunks.ru/" target="_blank" class="sharing__link sharing__link--vk">
+              Вконтакте
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F19.chunks.ru%2F&amp;src=sdkpreparse" target="_blank" class="sharing__link sharing__link--facebook">
+              Facebook
+            </a>
+            <a href="http://twitter.com/share?&url=https://www.picom.ru/" target="_blank" class="sharing__link sharing__link--twitter">
+              Twitter
+            </a>
+             <a href="" class="sharing__link sharing__link--help">
+              help
+            </a>
+            
+          </section>
+        </div>
+        <button class="close-help" >Закрыть спарвку</button>
+        
       `;
 
       this.commentsNode.innerHTML = commentsInner;
+      this.commentsNode.style="display:block"
       document.body.appendChild(this.commentsNode);
     }
+
+    //добавляем справку:
+    this.help = this.add.sprite(0,0, 'party-help-bg');
+    this.help.inputEnabled = true;
+    this.help.input.useHandCursor = true;
+
+    //кнопка закрытия справки:
+    this.buttonCloseHelp = document.querySelector('.close-help');
+    if(this.buttonCloseHelp){
+      this.buttonCloseHelp.addEventListener('click',(evt)=> this.handlerClickCloseHelp(evt));
+    }
+
+    //кнопка закрытия справки в комментаx:
+    this.buttonOpenHelpComments = document.querySelector('.sharing__link--help');
+    if(this.buttonOpenHelpComments){
+      this.buttonOpenHelpComments.addEventListener('click',(evt)=> this.handlerClickButtonOpenHelpComments(evt));
+    }
+
+    //закрытие справки по клику на ESC:
+    this.escapeKey = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
+    this.escapeKey.onDown.add(this.handlerClickCloseHelp, this);
+  }
+
+  handlerClickCloseHelp() {
+    this.help.kill();
+    this.buttonCloseHelp.style = 'display:none';
+  }
+
+  handlerClickButtonOpenHelpComments(evt){
+    evt.preventDefault();
+    this.help.revive();
+    this.buttonCloseHelp.style = 'display:block';
   }
 
   handlerClickButtonPortalParty() {

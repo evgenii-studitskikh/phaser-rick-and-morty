@@ -64,16 +64,46 @@ export default class Sharing extends Phaser.State {
     );
     this.office.anchor.setTo(0.5);
 
+    const mobileMaxHeight = 600;
+    const tabletMaxHeight = 768;
+    const desktopMiddleMaxHeight = 900;
+
+    const getVerticalPositionLogo = () => {
+      if(window.matchMedia("(max-height: " + mobileMaxHeight + "px)").matches) {
+        return 130
+      }
+      else if(window.matchMedia("(max-height: " + tabletMaxHeight + "px)").matches) {
+        return 200
+      }
+      else if(window.matchMedia("(max-height: " + desktopMiddleMaxHeight + "px)").matches) {
+        return 250
+      }
+      return 337;
+    };
+
     this.logoPicom = this.add.sprite(
       this.world.centerX,
-      337,
+      getVerticalPositionLogo(),
       'logo-picom'
     );
     this.logoPicom.anchor.setTo(0.5);
+    this.getSizePosition();
 
+    const getVerticalPositionThanks = () => {
+      if(window.matchMedia("(max-height: " + mobileMaxHeight + "px)").matches) {
+        return 190
+      }
+      else if(window.matchMedia("(max-height: " + tabletMaxHeight + "px)").matches) {
+        return 275
+      }
+      else if(window.matchMedia("(max-height: " + desktopMiddleMaxHeight + "px)").matches) {
+        return 325
+      }
+      return 475;
+    };
     this.textThanks = this.add.text(
       this.world.centerX,
-      475,
+      getVerticalPositionThanks(),
       'Спасибо, что с нами!',
       {
         font: '28px Lasco',
@@ -82,9 +112,21 @@ export default class Sharing extends Phaser.State {
     );
     this.textThanks.anchor.setTo(0.5);
 
+    const getVerticalPositionButtonsNextStep = () => {
+      if(window.matchMedia("(max-height: " + mobileMaxHeight + "px)").matches) {
+        return 250
+      }
+      else if(window.matchMedia("(max-height: " + tabletMaxHeight + "px)").matches) {
+        return 355
+      }
+      else if(window.matchMedia("(max-height: " + desktopMiddleMaxHeight + "px)").matches) {
+        return 405
+      }
+      return 565;
+    };
     this.buttonBackParty = this.add.button(
       this.world.centerX-140,
-      565,
+      getVerticalPositionButtonsNextStep(),
       'btn-back-party',
       this.handlerClickBackParty,
       this
@@ -94,27 +136,54 @@ export default class Sharing extends Phaser.State {
 
     this.buttonCreatePerson = this.add.button(
       this.world.centerX+140,
-      565,
+      getVerticalPositionButtonsNextStep(),
       'btn-create-person',
       this.handlerClickCreatePerson,
       this
     );
     this.buttonCreatePerson.anchor.set(0.5);
 
-    this.sosialsTitle = this.add.text(
+    const getVerticalPositionSocialsTitle = () => {
+      if(window.matchMedia("(max-height: " + mobileMaxHeight + "px)").matches) {
+        return 300
+      }
+
+      else if(window.matchMedia("(max-height: " + tabletMaxHeight + "px)").matches) {
+        return 425
+      }
+
+      else if(window.matchMedia("(max-height: " + desktopMiddleMaxHeight + "px)").matches) {
+        return 475
+      }
+
+      return 661;
+    };
+    this.socialsTitle = this.add.text(
       this.world.centerX,
-      661,
+      getVerticalPositionSocialsTitle(),
       'Расскажи друзьям о нашей вечеринке:',
       {
         font: '16px Lasco',
         fill: '#fff',
       }
     );
-    this.sosialsTitle.anchor.setTo(0.5);
+    this.socialsTitle.anchor.setTo(0.5);
 
+    const getVerticalPositionSocials = () => {
+      if(window.matchMedia("(max-height: " + mobileMaxHeight + "px)").matches) {
+        return 350
+      }
+      else if(window.matchMedia("(max-height: " + tabletMaxHeight + "px)").matches) {
+        return 475
+      }
+      else if(window.matchMedia("(max-height: " + desktopMiddleMaxHeight + "px)").matches) {
+        return 525
+      }
+      return 717;
+    };
     this.buttonVk = this.add.button(
-      this.world.centerX-102,
-      717,
+      this.world.centerX-68,
+      getVerticalPositionSocials(),
       'vk',
       this.handlerClickVk,
       this
@@ -122,8 +191,8 @@ export default class Sharing extends Phaser.State {
     this.buttonVk.anchor.set(0.5);
 
     this.buttonFacebook = this.add.button(
-      this.world.centerX-34,
-      717,
+      this.world.centerX,
+      getVerticalPositionSocials(),
       'facebook',
       this.handlerClickFacebook,
       this
@@ -131,8 +200,8 @@ export default class Sharing extends Phaser.State {
     this.buttonFacebook.anchor.set(0.5);
 
     this.buttonTwitter= this.add.button(
-      this.world.centerX+34,
-      717,
+      this.world.centerX+68,
+      getVerticalPositionSocials(),
       'twitter',
       this.handlerClickTwitter,
       this
@@ -140,14 +209,14 @@ export default class Sharing extends Phaser.State {
     this.buttonTwitter.anchor.set(0.5);
 
 
-    this.buttonOk= this.add.button(
-      this.world.centerX+102,
-      717,
-      'ok',
-      this.handlerClickOk,
-      this
-    );
-    this.buttonOk.anchor.set(0.5);
+    // this.buttonOk= this.add.button(
+    //   this.world.centerX+102,
+    //   getVerticalPositionSocials(),
+    //   'ok',
+    //   this.handlerClickOk,
+    //   this
+    // );
+    // this.buttonOk.anchor.set(0.5);
 
   };
 
@@ -160,19 +229,19 @@ export default class Sharing extends Phaser.State {
   }
 
   handlerClickVk() {
-    window.open("https://vk.com/share.php?url=https://www.picom.ru/", "_blank");
+    window.open("https://vk.com/share.php?url=http://19.chunks.ru/", "_blank");
   }
 
   handlerClickFacebook(){
-    window.open("https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.picom.ru%2F&amp;src=sdkpreparse", "_blank");
+    window.open("https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F19.chunks.ru%2F&amp;src=sdkpreparse", "_blank");
   }
 
   handlerClickTwitter() {
-    window.open("http://twitter.com/share?&url=https://www.picom.ru/", "_blank");
+    window.open("http://twitter.com/share?&url=http://19.chunks.ru/", "_blank");
   }
 
   handlerClickOk() {
-    window.open("https://connect.ok.ru/offer?url=https://www.picom.ru/", "_blank");
+    window.open("https://connect.ok.ru/offer?url=http://19.chunks.ru/", "_blank");
   }
   // https://connect.ok.ru/offer
   //   ?url=URL_TO_SHARE
@@ -182,5 +251,14 @@ export default class Sharing extends Phaser.State {
   update() {
     this.blueBall.screenWrap();
     this.lemon.screenWrap();
+  }
+
+  getSizePosition(elementHeight) {
+    const groundBottomHeight = 201;
+    let spaceHeight = this.game.height - groundBottomHeight;
+    console.log('---height:', this.game.height);
+    console.log('--- spaceHeight:', spaceHeight);
+
+
   }
 }
