@@ -94,7 +94,6 @@ export default class Intro extends Phaser.State {
       this
     );
 
-
     this.game.load.image('enterenece-constructor-bg', 'assets/enterence_constructor_bg.svg');
     this.game.load.image('party-club-bg', 'assets/club_bg.svg');
     this.game.load.spritesheet('audio-monitor-sprite', 'assets/audio_monitor_sprite.svg', 134, 286, 5);
