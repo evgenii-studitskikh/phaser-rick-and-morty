@@ -20,7 +20,7 @@ export default class Preload extends Phaser.State {
     this.LoadingText = this.add.text(
       this.world.centerX,
 			this.world.centerY + 5,
-      'Загрузка...', 
+      '0%', 
       { 
         font: 'Lasco', 
         fontSize: 16, 
@@ -28,7 +28,7 @@ export default class Preload extends Phaser.State {
         align: 'center'
       }
     );
-		this.LoadingText.anchor.setTo(0.5);
+    this.LoadingText.anchor.setTo(0.5);
 
     //preloading for all game resources
     this.game.load.image('space', 'assets/space.png');
@@ -43,7 +43,7 @@ export default class Preload extends Phaser.State {
     this.load.audio('enter', [
       'sounds/enter.mp3'
     ]);
-    
+
     this.game.load.image('cutscene-char', 'assets/cutscene_char.svg');
     this.game.load.image('cutscene-dialog', 'assets/cutscene_dialog.svg');
     this.game.load.image('cutscene-arrow-next', 'assets/cutscene_button_next.svg');
@@ -53,7 +53,7 @@ export default class Preload extends Phaser.State {
 
     this.load.audio('13track',['music/13.Alien_Jazz_Rap.ogg', 'music/13.Alien_Jazz_Rap.mp3']);
 
-
+    //move it to intro screen
     this.game.load.image('enterenece-constructor-bg', 'assets/enterence_constructor_bg.svg');
     this.game.load.image('party-club-bg', 'assets/club_bg.svg');
     this.game.load.spritesheet('audio-monitor-sprite', 'assets/audio_monitor_sprite.svg', 134, 286, 5);
@@ -74,8 +74,8 @@ export default class Preload extends Phaser.State {
     this.game.load.image('constructor-arrow-right', 'assets/constructor_arrow_right.svg');
     this.game.load.image('constructor-select-head', 'assets/constructor_select_head.svg');
     this.game.load.image('constructor-select-body', 'assets/constructor_select_body.svg');
-    this.game.load.image('constructor-select-arms_left', 'assets/constructor_select_arms.svg');
-    this.game.load.image('constructor-select-arms_right', 'assets/constructor_select_arms.svg');
+    this.game.load.image('constructor-select-arms_left', 'assets/constructor_select_arms_left.svg');
+    this.game.load.image('constructor-select-arms_right', 'assets/constructor_select_arms_right.svg');
     this.game.load.image('constructor-select-legs', 'assets/constructor_select_legs.svg');
     this.game.load.image('constructor-select-random', 'assets/constructor_select_random.svg');
     this.game.load.image('constructor-apply', 'assets/constructor_apply.svg');
@@ -182,10 +182,14 @@ export default class Preload extends Phaser.State {
     this.load.image('twitter', 'assets/socials_twitter.svg');
     this.load.image('ok', 'assets/socials_ok.svg');
     this.load.image('bottle', 'assets/bottle.svg');
-		
+    
+    this.load.onFileComplete.add(
+      (progress) => this.LoadingText.setText(`${progress}%`), 
+      this
+    );
   }
 
   create() {
-		this.game.state.start('Party');
+		this.game.state.start('Enterence');
 	}
 }

@@ -3,6 +3,12 @@ import Meteor from '../objects/space/meteor';
 export default class Sharing extends Phaser.State {
 
   create() {
+
+    this.game.scale.setGameSize(
+      window.innerWidth, 
+      window.innerHeight
+    );
+    
     //background
     this.space = this.add.sprite(
       0,

@@ -39,6 +39,12 @@ export default class Cutscene extends Phaser.State {
 	}
 
   create() {
+
+		this.game.scale.setGameSize(
+      window.innerWidth, 
+      window.innerHeight
+		);
+		
 		//background
     this.space = this.game.add.tileSprite( 
 			0,

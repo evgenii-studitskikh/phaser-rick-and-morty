@@ -7,15 +7,15 @@ export default class Enterence extends Phaser.State {
     super();
 
     this.inputStyles = {
-        font: '18px Lasco',
-        fill: '#212121',
-        width: 305,
-        height: 20,
-        padding: 10,
-        borderColor: '#FFFFFF',
-        backgroundColor: '#EEEEEE',
-        borderRadius: 6,
-        fillAlpha: '#212121'
+      font: '18px Lasco',
+      fill: '#212121',
+      width: 305,
+      height: 20,
+      padding: 10,
+      borderColor: '#FFFFFF',
+      backgroundColor: '#EEEEEE',
+      borderRadius: 6,
+      fillAlpha: '#212121'
     }
 
     this.char = {
@@ -28,6 +28,10 @@ export default class Enterence extends Phaser.State {
   }
 
   create() {
+    this.game.scale.setGameSize(
+      window.innerWidth * 1.2, 
+      window.innerHeight * 1.2
+    );
 
     this.space = this.game.add.tileSprite(
       0,
@@ -96,7 +100,7 @@ export default class Enterence extends Phaser.State {
       60, 
       this.game.height - 60,
       'constructor-apply',
-      this.onApplyButton
+      () => this.onCreateButtonClick()
     );
     this.apply.width = 325;
     this.apply.height = 40;
@@ -128,11 +132,6 @@ export default class Enterence extends Phaser.State {
       this.inputStyles
     );
 
-    this.onCreateButtonClick();
-  }
-
-  onCreateButtonClick() {
-
     this.tube = this.game.add.sprite(
       1150, 
       this.game.height - 55,
@@ -152,9 +151,27 @@ export default class Enterence extends Phaser.State {
       1150, 
       this.game.height - 220,
       'constructor-to-constructor',
-      this.onToConstructorClick
+      () => this.onToConstructorClick()
     );
     this.goToConstructor.anchor.setTo(0.5);
+
+    this.tube.visible = false;
+    this.goToClub.visible = false;
+    this.goToConstructor.visible = false;
+  }
+
+  onCreateButtonClick() {
+
+    this.constructor.hide();
+    this.apply.visible = false;
+    this.labelName.visible = false;
+    this.labelWish.visible = false;
+    this.inputWish.x = -1000;
+    this.inputName.x = -1000;
+
+    this.tube.visible = true;
+    this.goToClub.visible = true;
+    this.goToConstructor.visible = true;
   }
 
   onApplyButtonClick() {
@@ -176,7 +193,16 @@ export default class Enterence extends Phaser.State {
   }
 
   onToConstructorClick() {
+    this.constructor.show();
+    this.apply.visible = true;
+    this.labelName.visible = true;
+    this.labelWish.visible = true;
+    this.inputName.x = 60;
+    this.inputWish.x = 60;
 
+    this.tube.visible = false;
+    this.goToClub.visible = false;
+    this.goToConstructor.visible = false;
   }
 
   update() {

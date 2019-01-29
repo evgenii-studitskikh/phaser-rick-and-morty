@@ -6,9 +6,9 @@ class Boot extends Phaser.State {
 	}
 
 	create() {
-		this.scale.scaleMode = Phaser.ScaleManager.AUTO;
+		this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     this.scale.pageAlignHorizontally = true;
-    this.scale.pageAlignVertically = true;
+		this.scale.pageAlignVertically = true;
 		this.game.state.start('Preload');
 	}
 }

@@ -14,9 +14,24 @@ export default class Party extends Phaser.State {
     ];
 
     this.commentsNode = document.createElement('section');
+
+    this.lockCamera = false;
   }
 
   create() {
+
+    this.game.scale.setGameSize(
+      window.innerWidth, 
+      window.innerHeight
+		);
+
+    if (window.Event) {
+      document.captureEvents(Event.MOUSEMOVE);
+    }
+
+    document.onmousemove = (e) => {
+      this.lockCamera = e.identifier !== 0;
+    };
 
     const bgImgWidth = 2649;
     const bgImgHeight = 1632;
@@ -142,6 +157,9 @@ export default class Party extends Phaser.State {
 
       JSON.parse(request.response).map((item, index) => {
         new Character(this.game, item.body);
+      });
+
+      JSON.parse(request.response).reverse().map((item, index) => {
 
         let figure = {};
 
@@ -243,22 +261,38 @@ export default class Party extends Phaser.State {
   }
 
   update() {
-
-    if (this.input.x > 0) {
-      if (this.input.x < 100) {
-        this.camera.x -= 4;
+    
+    if (!this.lockCamera) {
+      if (this.input.x > 0) {
+        if (this.input.x < 100) {
+          this.camera.x -= 4;
+        }
+        if (this.input.x > window.innerWidth - 500) {
+          this.camera.x += 4;
+        }
+  
+        if (this.input.x < 50) {
+          this.camera.x -= 8;
+        }
+        if (this.input.x > window.innerWidth - 550) {
+          this.camera.x += 8;
+        }
       }
-      if (this.input.x > window.innerWidth - 500) {
-        this.camera.x += 4;
-      }
-    }
-
-    if (this.input.y > 0) {
-      if (this.input.y < 100) {
-        this.camera.y -= 4;
-      }
-      if (this.input.y > window.innerHeight - 100) {
-        this.camera.y += 4;
+  
+      if (this.input.y > 0) {
+        if (this.input.y < 100) {
+          this.camera.y -= 4;
+        }
+        if (this.input.y > window.innerHeight - 100) {
+          this.camera.y += 4;
+        }
+  
+        if (this.input.y < 50) {
+          this.camera.y -= 8;
+        }
+        if (this.input.y > window.innerHeight - 50) {
+          this.camera.y += 8;
+        }
       }
     }
   }

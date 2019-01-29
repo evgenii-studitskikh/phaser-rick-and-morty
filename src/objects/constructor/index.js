@@ -47,5 +47,23 @@ export default class Constructor {
       onSelect: (value) => onSelect(value, 'head')
     });
 
-	}
+  }
+  
+  hide() {
+    this.frame.hide();
+    this.armsRight.hide();
+    this.legs.hide();
+    this.body.hide();
+    this.armsLeft.hide();
+    this.head.hide();
+  }
+
+  show() {
+    this.frame.show();
+    this.armsRight.show();
+    this.legs.show();
+    this.body.show();
+    this.armsLeft.show();
+    this.head.show();
+  }
 }

@@ -11,4 +11,12 @@ export default class Frame {
     this.frame.height = 788;
     this.frame.anchor.setTo(0, 1);
   }
+
+  hide() {
+    this.frame.visible = false;
+  }
+
+  show() {
+    this.frame.visible = true;
+  }
 }
