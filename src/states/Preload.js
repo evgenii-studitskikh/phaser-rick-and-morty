@@ -53,21 +53,9 @@ export default class Preload extends Phaser.State {
 
     this.load.audio('13track',['music/13.Alien_Jazz_Rap.ogg', 'music/13.Alien_Jazz_Rap.mp3']);
 
-    //sharing
-    this.load.image('bg-sharing-ground', 'assets/bg_sharing_ground.svg');
-    this.load.image('bg-sharing-ground2', 'assets/bg_sharing_ground2.svg');
-    this.load.image('office-house', 'assets/office_house.svg');
-    this.load.image('logo-picom', 'assets/logo_picom.svg');
-    this.load.image('btn-back-party', 'assets/button_back_party.svg');
-    this.load.image('btn-create-person', 'assets/button_create_person.svg');
-    this.load.image('facebook', 'assets/socials_facebook.svg');
-    this.load.image('vk', 'assets/socials_vk.svg');
-    this.load.image('twitter', 'assets/socials_twitter.svg');
-    this.load.image('ok', 'assets/socials_ok.svg');
-    this.load.image('bottle', 'assets/bottle.svg');
   }
 
   create() {
-		this.game.state.start('Sharing');
+		this.game.state.start('Intro');
 	}
 }

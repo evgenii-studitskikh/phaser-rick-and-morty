@@ -3,6 +3,8 @@ import Meteor from '../objects/space/meteor';
 export default class Sharing extends Phaser.State {
 
   create() {
+    this.world.setBounds(0, 0, this.game.width, this.game.height);
+
     //background
     this.space = this.add.sprite(
       0,
@@ -58,16 +60,46 @@ export default class Sharing extends Phaser.State {
     );
     this.office.anchor.setTo(0.5);
 
+    const mobileMaxHeight = 600;
+    const tabletMaxHeight = 768;
+    const desktopMiddleMaxHeight = 900;
+
+    const getVerticalPositionLogo = () => {
+      if(window.matchMedia("(max-height: " + mobileMaxHeight + "px)").matches) {
+        return 130
+      }
+      else if(window.matchMedia("(max-height: " + tabletMaxHeight + "px)").matches) {
+        return 200
+      }
+      else if(window.matchMedia("(max-height: " + desktopMiddleMaxHeight + "px)").matches) {
+        return 250
+      }
+      return 337;
+    };
+
     this.logoPicom = this.add.sprite(
       this.world.centerX,
-      337,
+      getVerticalPositionLogo(),
       'logo-picom'
     );
     this.logoPicom.anchor.setTo(0.5);
+    this.getSizePosition();
 
+    const getVerticalPositionThanks = () => {
+      if(window.matchMedia("(max-height: " + mobileMaxHeight + "px)").matches) {
+        return 190
+      }
+      else if(window.matchMedia("(max-height: " + tabletMaxHeight + "px)").matches) {
+        return 275
+      }
+      else if(window.matchMedia("(max-height: " + desktopMiddleMaxHeight + "px)").matches) {
+        return 325
+      }
+      return 475;
+    };
     this.textThanks = this.add.text(
       this.world.centerX,
-      475,
+      getVerticalPositionThanks(),
       'Спасибо, что с нами!',
       {
         font: '28px Lasco',
@@ -76,9 +108,21 @@ export default class Sharing extends Phaser.State {
     );
     this.textThanks.anchor.setTo(0.5);
 
+    const getVerticalPositionButtonsNextStep = () => {
+      if(window.matchMedia("(max-height: " + mobileMaxHeight + "px)").matches) {
+        return 250
+      }
+      else if(window.matchMedia("(max-height: " + tabletMaxHeight + "px)").matches) {
+        return 355
+      }
+      else if(window.matchMedia("(max-height: " + desktopMiddleMaxHeight + "px)").matches) {
+        return 405
+      }
+      return 565;
+    };
     this.buttonBackParty = this.add.button(
       this.world.centerX-140,
-      565,
+      getVerticalPositionButtonsNextStep(),
       'btn-back-party',
       this.handlerClickBackParty,
       this
@@ -88,27 +132,51 @@ export default class Sharing extends Phaser.State {
 
     this.buttonCreatePerson = this.add.button(
       this.world.centerX+140,
-      565,
+      getVerticalPositionButtonsNextStep(),
       'btn-create-person',
       this.handlerClickCreatePerson,
       this
     );
     this.buttonCreatePerson.anchor.set(0.5);
 
-    this.sosialsTitle = this.add.text(
+    const getVerticalPositionSocialsTitle = () => {
+      if(window.matchMedia("(max-height: " + mobileMaxHeight + "px)").matches) {
+        return 300
+      }
+      else if(window.matchMedia("(max-height: " + desktopMiddleMaxHeight + "px)").matches) {
+        return 475
+      }
+      else if(window.matchMedia("(max-height: " + tabletMaxHeight + "px)").matches) {
+        return 425
+      }
+      return 661;
+    };
+    this.socialsTitle = this.add.text(
       this.world.centerX,
-      661,
+      getVerticalPositionSocialsTitle(),
       'Расскажи друзьям о нашей вечеринке:',
       {
         font: '16px Lasco',
         fill: '#fff',
       }
     );
-    this.sosialsTitle.anchor.setTo(0.5);
+    this.socialsTitle.anchor.setTo(0.5);
 
+    const getVerticalPositionSocials = () => {
+      if(window.matchMedia("(max-height: " + mobileMaxHeight + "px)").matches) {
+        return 350
+      }
+      else if(window.matchMedia("(max-height: " + tabletMaxHeight + "px)").matches) {
+        return 475
+      }
+      else if(window.matchMedia("(max-height: " + desktopMiddleMaxHeight + "px)").matches) {
+        return 525
+      }
+      return 717;
+    };
     this.buttonVk = this.add.button(
       this.world.centerX-102,
-      717,
+      getVerticalPositionSocials(),
       'vk',
       this.handlerClickVk,
       this
@@ -117,7 +185,7 @@ export default class Sharing extends Phaser.State {
 
     this.buttonFacebook = this.add.button(
       this.world.centerX-34,
-      717,
+      getVerticalPositionSocials(),
       'facebook',
       this.handlerClickFacebook,
       this
@@ -126,7 +194,7 @@ export default class Sharing extends Phaser.State {
 
     this.buttonTwitter= this.add.button(
       this.world.centerX+34,
-      717,
+      getVerticalPositionSocials(),
       'twitter',
       this.handlerClickTwitter,
       this
@@ -136,7 +204,7 @@ export default class Sharing extends Phaser.State {
 
     this.buttonOk= this.add.button(
       this.world.centerX+102,
-      717,
+      getVerticalPositionSocials(),
       'ok',
       this.handlerClickOk,
       this
@@ -176,5 +244,14 @@ export default class Sharing extends Phaser.State {
   update() {
     this.blueBall.screenWrap();
     this.lemon.screenWrap();
+  }
+
+  getSizePosition(elementHeight) {
+    const groundBottomHeight = 201;
+    let spaceHeight = this.game.height - groundBottomHeight;
+    console.log('---height:', this.game.height);
+    console.log('--- spaceHeight:', spaceHeight);
+
+
   }
 }

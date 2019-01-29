@@ -206,6 +206,32 @@ export default class Intro extends Phaser.State {
     this.load.audio('rickportal-sound',['sounds/rickportal.ogg', 'sounds/rickportal.mp3']);
     this.load.audio('rickportal-sound-reverse',['sounds/rickportal-reverse.ogg', 'sounds/rickportal-reverse.mp3']);
 
+    //sharing
+    this.load.image('bg-sharing-ground', 'assets/bg_sharing_ground.svg');
+    this.load.image('bg-sharing-ground2', 'assets/bg_sharing_ground2.svg');
+    this.load.image('office-house', 'assets/office_house.svg');
+    this.load.image('logo-picom', 'assets/logo_picom.svg');
+    this.load.image('btn-back-party', 'assets/button_back_party.svg');
+    this.load.image('btn-create-person', 'assets/button_create_person.svg');
+    this.load.image('facebook', 'assets/socials_facebook.svg');
+    this.load.image('vk', 'assets/socials_vk.svg');
+    this.load.image('twitter', 'assets/socials_twitter.svg');
+    this.load.image('ok', 'assets/socials_ok.svg');
+    this.load.image('bottle', 'assets/bottle.svg');
+
+    //sharing
+    this.load.image('bg-sharing-ground', 'assets/bg_sharing_ground.svg');
+    this.load.image('bg-sharing-ground2', 'assets/bg_sharing_ground2.svg');
+    this.load.image('office-house', 'assets/office_house.svg');
+    this.load.image('logo-picom', 'assets/logo_picom.svg');
+    this.load.image('btn-back-party', 'assets/button_back_party.svg');
+    this.load.image('btn-create-person', 'assets/button_create_person.svg');
+    this.load.image('facebook', 'assets/socials_facebook.svg');
+    this.load.image('vk', 'assets/socials_vk.svg');
+    this.load.image('twitter', 'assets/socials_twitter.svg');
+    this.load.image('ok', 'assets/socials_ok.svg');
+    this.load.image('bottle', 'assets/bottle.svg');
+
     //audio
     this.load.audio('click', [
       'sounds/click.mp3'
