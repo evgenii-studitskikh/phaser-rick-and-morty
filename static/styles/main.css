@@ -44,6 +44,7 @@ body {
 }
 
 .comments {
+  display: block;
   position: absolute;
   right: 0;
   top: 0;
@@ -241,6 +242,23 @@ body {
   width: 47px;
   height: 47px;
   border-radius: 50%;
+}
+
+.close-help {
+  position: fixed;
+  right: 437px;
+  top: 45px;
+  width: 44px;
+  height: 44px;
+  display: block;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font-size: 0;
+  background: url(../assets/close_btn.svg) no-repeat center;
+  -webkit-background-size: contain;
+  background-size: contain;
+  cursor:pointer;
 }
 
 

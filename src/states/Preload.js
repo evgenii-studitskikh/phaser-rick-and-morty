@@ -69,6 +69,8 @@ export default class Preload extends Phaser.State {
     this.game.load.image('change-photo-button', 'assets/change_photo_btn.png');
     this.game.load.spritesheet('portal-sprite-party', 'assets/portal_sprite_party.svg', 189, 290, 15);
     this.game.load.image('portal-party', 'assets/portal_party.svg');
+    this.game.load.image('party-help-bg', 'assets/help_bg_party.svg');
+    this.game.load.image('close-btn', 'assets/close_btn.svg');
 
     this.game.load.image('constructor-arrow-left', 'assets/constructor_arrow_left.svg');
     this.game.load.image('constructor-arrow-right', 'assets/constructor_arrow_right.svg');
@@ -185,6 +187,6 @@ export default class Preload extends Phaser.State {
   }
 
   create() {
-		this.game.state.start('Sharing');
+		this.game.state.start('Party');
 	}
 }

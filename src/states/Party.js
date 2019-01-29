@@ -189,10 +189,12 @@ export default class Party extends Phaser.State {
             
           </section>
         </div>
+        <button class="close-help" >Закрыть спарвку</button>
         
       `;
 
       this.commentsNode.innerHTML = commentsInner;
+      this.commentsNode.style="display:block"
       document.body.appendChild(this.commentsNode);
     }
 
@@ -202,30 +204,31 @@ export default class Party extends Phaser.State {
     this.help.input.useHandCursor = true;
 
     //кнопка закрытия справки:
-    this.buttonCloseHelp = this.add.button(bgImgWidth - 92, 42,'close-btn', this.handlerClickCloseHelp, this);
+    this.buttonCloseHelp = document.querySelector('.close-help');
+    if(this.buttonCloseHelp){
+      this.buttonCloseHelp.addEventListener('click',(evt)=> this.handlerClickCloseHelp(evt));
+    }
 
     //кнопка закрытия справки в комментаx:
     this.buttonOpenHelpComments = document.querySelector('.sharing__link--help');
     if(this.buttonOpenHelpComments){
       this.buttonOpenHelpComments.addEventListener('click',(evt)=> this.handlerClickButtonOpenHelpComments(evt));
     }
+
+    //закрытие справки по клику на ESC:
+    this.escapeKey = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
+    this.escapeKey.onDown.add(this.handlerClickCloseHelp, this);
   }
 
   handlerClickCloseHelp() {
-    console.log('---', 'close help');
     this.help.kill();
-    this.buttonCloseHelp.kill();
+    this.buttonCloseHelp.style = 'display:none';
   }
 
   handlerClickButtonOpenHelpComments(evt){
-    console.log('---', 'open help');
     evt.preventDefault();
     this.help.revive();
-    this.buttonCloseHelp.revive();
-  }
-
-  destroySprite(sprite){
-    sprite.destroy();
+    this.buttonCloseHelp.style = 'display:block';
   }
 
   handlerClickButtonPortalParty() {
