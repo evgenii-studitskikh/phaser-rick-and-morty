@@ -178,7 +178,7 @@ export default class Sharing extends Phaser.State {
       return 717;
     };
     this.buttonVk = this.add.button(
-      this.world.centerX-102,
+      this.world.centerX-68,
       getVerticalPositionSocials(),
       'vk',
       this.handlerClickVk,
@@ -187,7 +187,7 @@ export default class Sharing extends Phaser.State {
     this.buttonVk.anchor.set(0.5);
 
     this.buttonFacebook = this.add.button(
-      this.world.centerX-34,
+      this.world.centerX,
       getVerticalPositionSocials(),
       'facebook',
       this.handlerClickFacebook,
@@ -196,7 +196,7 @@ export default class Sharing extends Phaser.State {
     this.buttonFacebook.anchor.set(0.5);
 
     this.buttonTwitter= this.add.button(
-      this.world.centerX+34,
+      this.world.centerX+68,
       getVerticalPositionSocials(),
       'twitter',
       this.handlerClickTwitter,
@@ -205,14 +205,14 @@ export default class Sharing extends Phaser.State {
     this.buttonTwitter.anchor.set(0.5);
 
 
-    this.buttonOk= this.add.button(
-      this.world.centerX+102,
-      getVerticalPositionSocials(),
-      'ok',
-      this.handlerClickOk,
-      this
-    );
-    this.buttonOk.anchor.set(0.5);
+    // this.buttonOk= this.add.button(
+    //   this.world.centerX+102,
+    //   getVerticalPositionSocials(),
+    //   'ok',
+    //   this.handlerClickOk,
+    //   this
+    // );
+    // this.buttonOk.anchor.set(0.5);
 
   };
 
