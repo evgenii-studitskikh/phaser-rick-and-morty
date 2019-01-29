@@ -79,6 +79,9 @@ export default class Preload extends Phaser.State {
     this.game.load.image('change-photo-button', 'assets/change_photo_btn.png');
     this.game.load.spritesheet('portal-sprite-party', 'assets/portal_sprite_party.svg', 189, 290, 15);
     this.game.load.image('portal-party', 'assets/portal_party.svg');
+    this.game.load.image('party-help-bg', 'assets/help_bg_party.svg');
+    this.game.load.image('close-btn', 'assets/close_btn.svg');
+
     //partyMusic:
     this.load.audio('1track',['music/1.Too_short_Shake_That_Monkey.ogg', 'music/1.Too_short_Shake_That_Monkey.mp3']);
     this.load.audio('2track',['music/2.Tony_toni_tone_Feels_good.ogg', 'music/2.Tony_toni_tone_Feels_good.mp3']);

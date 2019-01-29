@@ -6,28 +6,28 @@
 	 xml:space="preserve">
 <rect x="-923.935" y="-618.226" opacity="0.7" fill="#231F20" width="2640" height="1625"/>
 <g>
-	
+
 		<polyline fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
 		830.492,56.917 847.176,67.638 829.302,74.787 	"/>
 	<path fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
 		M747.887,65.854c19.064-1.19-48.59,2.248-7.951,0.59c58.385-2.381,107.24,1.194,107.24,1.194"/>
 </g>
 <g>
-	
+
 		<polyline fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
 		1074.98,-379.561 1091.662,-368.84 1073.789,-361.69 	"/>
 	<path fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
 		M992.373-370.624c19.066-1.19-48.588,2.248-7.951,0.59c58.385-2.381,107.24,1.194,107.24,1.194"/>
 </g>
 <g>
-	
+
 		<polyline fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
 		1165.351,-38.078 1154.63,-21.395 1147.481,-39.269 	"/>
 	<path fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
 		M1156.414-120.684c1.19,19.064-2.248-48.59-0.59-7.951c2.381,58.385-1.194,107.24-1.194,107.24"/>
 </g>
 <g>
-	
+
 		<circle fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="1645.501" cy="939.074" r="22"/>
 	<g>
 		<path fill="#FFFFFF" d="M1645.482,925.627c4.763,0,7.772,3.199,8.153,6.973c0.343,3.16-1.296,6.818-5.297,8.418V943
@@ -38,9 +38,9 @@
 	</g>
 </g>
 <g>
-	
+
 		<line fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="1634.665" y1="-573.498" x2="1678.665" y2="-529.498"/>
-	
+
 		<line fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="1678.665" y1="-573.498" x2="1634.667" y2="-529.498"/>
 </g>
 <rect x="524.711" y="11.125" fill="none" width="344.982" height="155.992"/>
@@ -50,7 +50,7 @@
 <rect x="765.719" y="-401.865" fill="none" width="267.968" height="122.337"/>
 <text transform="matrix(1 0 0 1 765.719 -366.3647)"><tspan x="0" y="0" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="50">Уйти с</tspan><tspan x="0" y="40" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="50">вечеринки</tspan></text>
 <g>
-	
+
 		<polyline fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
 		-125.198,340.42 -108.514,351.141 -126.388,358.29 	"/>
 	<path fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
@@ -59,7 +59,7 @@
 <rect x="-389.217" y="106.627" fill="none" width="599.79" height="78.376"/>
 <text transform="matrix(1 0 0 1 -389.2166 142.127)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="50">Переместить персонажа</text>
 <g>
-	
+
 		<polyline fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
 		-724.554,41.419 -735.275,58.103 -742.425,40.229 	"/>
 	<path fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
@@ -71,7 +71,7 @@
 	<g>
 		<path fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M996.593,133.775
 			c-0.864,2.629-3.759,4.559-3.759,4.559s1.537,2.113,2.96,5.205"/>
-		
+
 			<path fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="12.1712,12.1712" d="
 			M998.157,155.346c-0.081,13.492-0.657,67.271-0.657,70.988c0,4-0.666,7.999-5.333,11.333s-35.334,18-38.667,20
 			s-11.333,2.001-16.666-0.666c-5.334-2.667-60-28.668-66-31.334s-6.667-9.334-6.667-14s-0.667-30.667,0-34
@@ -217,7 +217,7 @@
 	c0.458-0.049,1.224-0.13,1.224-1.176C-24.234,517.083-24.277,516.903-24.352,516.75z M-30.171,281.996l-0.099-0.767
 	c0,0,0-0.01,0.001-0.013C-30.235,281.476-30.204,281.736-30.171,281.996z"/>
 <g>
-	
+
 		<path fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="12" d="
 		M1255.985-366.688c-1.076-1.077-1.076-4.92-0.923-7.381c0.153-2.459,0.769-4.305,0.461-6.303c-0.308-1.999-0.461-4.92-1.845-6.458
 		c-1.384-1.537-0.461-2.921,0.153-4.305c0.615-1.384-0.308-5.534-0.308-5.534s-1.845-2.614-1.691-3.537
@@ -256,7 +256,7 @@
 		c0.922-1.229,0.922-4.305,0.922-5.996s2.152-1.691,2.46-4.305c0.308-2.614,0.462-5.996,0.462-5.996s0.768-1.538,0.768-2.768
 		s1.385-3.69,2.153-4.305c0.769-0.615,1.076-1.384,1.076-1.384s0,0,0.308-2.152c0.307-2.152-1.076-6.304-1.076-9.225
 		c0-2.922,1.229-8.918,1.537-10.455S1257.061-365.611,1255.985-366.688z"/>
-	
+
 		<path fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="12" d="
 		M1240.455-297.041c0,0,2.768,0.922,3.383-2.152C1244.453-302.269,1241.071-297.964,1240.455-297.041z"/>
 </g>

@@ -31,7 +31,7 @@ export default class Party extends Phaser.State {
     this.camera.setSize(window.innerWidth - widthCommentsList, window.innerHeight);
     this.camera.setPosition((bgImgWidth - window.innerWidth + widthCommentsList) / 2, (bgImgHeight - window.innerHeight) / 2);
 
-    //дабавляем спрайт фона:
+    // дабавляем спрайт фона:
     this.clubBg = this.add.sprite(0, 0, 'party-club-bg');
 
     //добавляем обработку событий мыши:
@@ -199,6 +199,37 @@ export default class Party extends Phaser.State {
       this.commentsNode.innerHTML = commentsInner;
       document.body.appendChild(this.commentsNode);
     }
+
+    //добавляем справку:
+    this.help = this.add.sprite(0,0, 'party-help-bg');
+    this.help.inputEnabled = true;
+    this.help.input.useHandCursor = true;
+
+    //кнопка закрытия справки:
+    this.buttonCloseHelp = this.add.button(bgImgWidth - 92, 42,'close-btn', this.handlerClickCloseHelp, this);
+
+    //кнопка закрытия справки в комментаx:
+    this.buttonOpenHelpComments = document.querySelector('.sharing__link--help');
+    if(this.buttonOpenHelpComments){
+      this.buttonOpenHelpComments.addEventListener('click',(evt)=> this.handlerClickButtonOpenHelpComments(evt));
+    }
+  }
+
+  handlerClickCloseHelp() {
+    console.log('---', 'close help');
+    this.help.kill();
+    this.buttonCloseHelp.kill();
+  }
+
+  handlerClickButtonOpenHelpComments(evt){
+    console.log('---', 'open help');
+    evt.preventDefault();
+    this.help.revive();
+    this.buttonCloseHelp.revive();
+  }
+
+  destroySprite(sprite){
+    sprite.destroy();
   }
 
   handlerClickButtonPortalParty() {
