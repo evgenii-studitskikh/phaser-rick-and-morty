@@ -91,13 +91,11 @@ export default class Select {
     this.arrow_right.visible = false;
     this.arrow_left.visible = false;
     this.selectValue.visible = false;
-    this.sprite.visible = false;
   }
 
   show() {
     this.arrow_right.visible = true;
     this.arrow_left.visible = true;
     this.selectValue.visible = true;
-    this.sprite.visible = true;
   }
 }

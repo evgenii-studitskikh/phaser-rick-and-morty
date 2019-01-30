@@ -7,6 +7,8 @@ export default class Constructor {
 
     this.frame = new Frame(game);
 
+    this.spritesGroup = game.add.group();
+
     this.armsRight = new Select(game, {
       name: 'arms_right',
       y: 440,
@@ -14,6 +16,7 @@ export default class Constructor {
       spriteX: 244,
       onSelect: (value) => onSelect(value, 'arms_right')
     });
+    this.spritesGroup.add(this.armsRight.sprite);
 
     this.legs = new Select(game, {
       name: 'legs',
@@ -22,6 +25,7 @@ export default class Constructor {
       spriteX: 221,
       onSelect: (value) => onSelect(value, 'legs')
     });
+    this.spritesGroup.add(this.legs.sprite);
     
     this.body = new Select(game, {
       name: 'body',
@@ -30,6 +34,7 @@ export default class Constructor {
       spriteX: 210,
       onSelect: (value) => onSelect(value, 'body')
     });
+    this.spritesGroup.add(this.body.sprite);
 
     this.armsLeft = new Select(game, {
       name: 'arms_left',
@@ -38,6 +43,7 @@ export default class Constructor {
       spriteX: 170,
       onSelect: (value) => onSelect(value, 'arms_left')
     });
+    this.spritesGroup.add(this.armsLeft.sprite);
 
     this.head = new Select(game, {
       name: 'head',
@@ -46,6 +52,7 @@ export default class Constructor {
       spriteX: 210,
       onSelect: (value) => onSelect(value, 'head')
     });
+    this.spritesGroup.add(this.head.sprite);
 
   }
   
@@ -65,5 +72,19 @@ export default class Constructor {
     this.body.show();
     this.armsLeft.show();
     this.head.show();
+  }
+
+  preview() {
+
+    this.spritesGroup.scale.setTo(0.6);
+    this.spritesGroup.x = 700;
+    this.spritesGroup.y = 450;
+  }
+
+  reset() {
+
+    this.spritesGroup.scale.setTo(1);
+    this.spritesGroup.x = 0;
+    this.spritesGroup.y = 0;
   }
 }

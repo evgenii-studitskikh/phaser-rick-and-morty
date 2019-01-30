@@ -126,6 +126,7 @@ export default class Character {
       isFirstDrag = false;
     });
 
+
     item.events.onDragUpdate.add((obj, pointer, x, y, snapPoint, isFirstUpdate) => {
       if ( isFirstUpdate ) {
         obj.origin = new Phaser.Point( obj.x, obj.y );
