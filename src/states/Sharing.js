@@ -5,10 +5,12 @@ export default class Sharing extends Phaser.State {
   create() {
 
     this.game.scale.setGameSize(
-      window.innerWidth, 
+      window.innerWidth,
       window.innerHeight
     );
-    
+    //устанавливаем размеры игрового мира:
+    this.world.setBounds(0, 0, window.innerWidth, window.innerHeight);
+
     //background
     this.space = this.add.sprite(
       0,
@@ -24,7 +26,8 @@ export default class Sharing extends Phaser.State {
       velocity: {
         x: -800,
         y: 0
-      }
+      },
+      sound: '4_lemon_click'
     });
 
     this.blueBall = new Meteor(this.game, {
@@ -35,16 +38,10 @@ export default class Sharing extends Phaser.State {
       velocity: {
         x: -800,
         y: 100
-      }
+      },
+      sound: '5_ball_click'
     });
 
-    this.bgGroundSharing = this.add.tileSprite(
-      0,
-      this.world.height-201,
-      this.game.width,
-      201,
-      'bg-sharing-ground2'
-    );
 
     this.bottle = new Meteor(this.game, {
       x: 200,
@@ -54,8 +51,17 @@ export default class Sharing extends Phaser.State {
       velocity: {
         x: 200,
         y: 0
-      }
+      },
+      sound: '5_ball_click'
     });
+
+    this.bgGroundSharing = this.add.tileSprite(
+      0,
+      this.world.height-201,
+      this.game.width,
+      201,
+      'bg-sharing-ground2'
+    );
 
     this.office = this.add.sprite(
       this.world.centerX,
