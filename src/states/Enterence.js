@@ -193,7 +193,7 @@ export default class Enterence extends Phaser.State {
     const { head, body, legs, arms_left, arms_right } = this.char;
 
     const request = new XMLHttpRequest();
-    const params = `body=head:${head};body:${body};arm_left:${arms_left};arm_right:${arms_right};legs:${legs};x:${100};y:${100};name:${this.inputName.value || 'Аноним'};message:${this.inputWish.value || 'С днем рождения, Пиком!'}`;
+    const params = `body=head:${head};body:${body};arm_left:${arms_left};arm_right:${arms_right};legs:${legs};x:${Math.floor(Math.random() * 3000) + 100};y:${Math.floor(Math.random() * 500) + 200};name:${this.inputName.value || 'Аноним'};message:${this.inputWish.value || 'С днем рождения, Пиком!'}`;
     request.open('GET', 'https://picom.ru/rm-api/?action=add&'+params, false);
     request.send();
 
