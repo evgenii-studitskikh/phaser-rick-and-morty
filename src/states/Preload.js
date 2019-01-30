@@ -214,6 +214,10 @@ export default class Preload extends Phaser.State {
     this.load.audio('7_head',['sounds/2_constructor/7_head.ogg', 'sounds/2_constructor/7_head.mp3']);
     this.load.audio('8_person_user',['sounds/2_constructor/8_person_user.ogg', 'sounds/2_constructor/8_person_user.mp3']);
 
+    //Sharing sound:
+    this.load.audio('1_final_bg',['sounds/4_final_page/1_final_bg.ogg', 'sounds/4_final_page/1_final_bg.mp3']);
+
+
     this.load.onFileComplete.add(
       (progress) => this.LoadingText.setText(`${progress}%`), 
       this
@@ -221,7 +225,7 @@ export default class Preload extends Phaser.State {
   }
 
   create() {
-    this.game.state.start('Party');
+    this.game.state.start('Enterence');
     
   }
 }

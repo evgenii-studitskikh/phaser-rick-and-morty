@@ -141,7 +141,7 @@ export default class Enterence extends Phaser.State {
       this.inputStyles
     );
 
-    this.musicEnterence = this.sound.add('1_bg_constructor2');
+    this.musicEnterence = this.sound.add('1_bg_constructor');
     this.sound.setDecodedCallback([ this.musicEnterence ], this.start, this);
   }
 
@@ -152,7 +152,7 @@ export default class Enterence extends Phaser.State {
 
   onCreateButtonClick() {
 
-    this.applySound.play()
+    this.applySound.play();
 
     this.constructor.hide();
     this.apply.visible = false;

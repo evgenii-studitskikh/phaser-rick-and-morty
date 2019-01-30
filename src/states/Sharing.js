@@ -93,7 +93,6 @@ export default class Sharing extends Phaser.State {
       'logo-picom'
     );
     this.logoPicom.anchor.setTo(0.5);
-    this.getSizePosition();
 
     const getVerticalPositionThanks = () => {
       if(window.matchMedia("(max-height: " + mobileMaxHeight + "px)").matches) {
@@ -223,15 +222,28 @@ export default class Sharing extends Phaser.State {
     //   this
     // );
     // this.buttonOk.anchor.set(0.5);
-
+    this.musicBgSharing = this.sound.add('1_final_bg');
+    this.sound.setDecodedCallback([ this.musicBgSharing ], this.startMusicSharing, this);
   };
+
+  startMusicSharing() {
+    this.musicBgSharing.play();
+    this.musicBgSharing.loopFull();
+  }
+
+  stopMusicSharing() {
+    this.musicBgSharing.fadeOut(200);
+    this.musicBgSharing.stop();
+  }
 
   handlerClickBackParty() {
     this.game.state.start('Party');
+    this.stopMusicSharing();
   }
 
   handlerClickCreatePerson() {
     this.game.state.start('Enterence');
+    this.stopMusicSharing();
   }
 
   handlerClickVk() {

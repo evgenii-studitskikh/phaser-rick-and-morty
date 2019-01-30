@@ -120,14 +120,14 @@ export default class Cutscene extends Phaser.State {
 
 		tweenCharScale.onComplete.add(this.showDialog, this);
 		
-		this.music = this.sound.add('1_bg_space2');
+		this.cutsceneMusic = this.sound.add('1_bg_space');
 
-		this.sound.setDecodedCallback([ this.music ], this.start, this);
+		this.sound.setDecodedCallback([ this.cutsceneMusic ], this.start, this);
 	}
 	
 	start() {
-		this.music.play();
-		this.music.loopFull();
+		this.cutsceneMusic.play();
+		this.cutsceneMusic.loopFull();
 	}
 
 	showDialog() {
