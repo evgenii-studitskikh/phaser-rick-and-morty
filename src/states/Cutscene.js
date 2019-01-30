@@ -123,8 +123,8 @@ export default class Cutscene extends Phaser.State {
 	}
 	
 	start() {
-		this.music.play();
-		this.music.loopFull();
+		// this.music.play();
+		// this.music.loopFull();
 	}
 
 	showDialog() {
@@ -265,8 +265,8 @@ export default class Cutscene extends Phaser.State {
 		this.hideSprite(this.enterPartyButtonText, 100);
 
 		const tweenPlanetScale = this.add.tween(this.planet.scale).to( 
-			{ x: 10, y: 10 }, 
-			3000, 
+			{ x: 1.2, y: 1.2 }, 
+			5000, 
 			Phaser.Easing.easeInOut,
 			true
 		);
