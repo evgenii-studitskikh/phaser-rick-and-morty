@@ -7,15 +7,15 @@ export default class Enterence extends Phaser.State {
     super();
 
     this.inputStyles = {
-        font: '18px Lasco',
-        fill: '#212121',
-        width: 305,
-        height: 20,
-        padding: 10,
-        borderColor: '#FFFFFF',
-        backgroundColor: '#EEEEEE',
-        borderRadius: 6,
-        fillAlpha: '#212121'
+      font: '18px Lasco',
+      fill: '#212121',
+      width: 305,
+      height: 20,
+      padding: 10,
+      borderColor: '#FFFFFF',
+      backgroundColor: '#EEEEEE',
+      borderRadius: 6,
+      fillAlpha: '#212121'
     }
 
     this.char = {
@@ -28,6 +28,10 @@ export default class Enterence extends Phaser.State {
   }
 
   create() {
+    this.game.scale.setGameSize(
+      window.innerWidth * 1.2, 
+      window.innerHeight * 1.2
+    );
 
     this.space = this.game.add.tileSprite(
       0,
@@ -104,8 +108,7 @@ export default class Enterence extends Phaser.State {
       60, 
       this.game.height - 60,
       'constructor-apply',
-      // this.onApplyButton
-      ()=>{this.applySound.play();}
+      () => this.onCreateButtonClick()
     );
     this.apply.width = 325;
     this.apply.height = 40;
@@ -138,8 +141,6 @@ export default class Enterence extends Phaser.State {
       this.inputStyles
     );
 
-    this.onCreateButtonClick();
-
     this.musicEnterence = this.sound.add('1_bg_constructor2');
     this.sound.setDecodedCallback([ this.musicEnterence ], this.start, this);
   }
@@ -150,6 +151,15 @@ export default class Enterence extends Phaser.State {
   }
 
   onCreateButtonClick() {
+
+    this.applySound.play()
+
+    this.constructor.hide();
+    this.apply.visible = false;
+    this.labelName.visible = false;
+    this.labelWish.visible = false;
+    this.inputWish.x = -1000;
+    this.inputName.x = -1000;
 
     this.tube = this.game.add.sprite(
       1150, 
@@ -183,7 +193,7 @@ export default class Enterence extends Phaser.State {
     const { head, body, legs, arms_left, arms_right } = this.char;
 
     const request = new XMLHttpRequest();
-    const params = `body=head:${head};body:${body};arm_left:${arms_left};arm_right:${arms_right};legs:${legs};x:${1500};y:${-100};name:${this.inputName.value || 'Аноним'};message:${this.inputWish.value || 'С днем рождения, Пиком!'}`;
+    const params = `body=head:${head};body:${body};arm_left:${arms_left};arm_right:${arms_right};legs:${legs};x:${100};y:${100};name:${this.inputName.value || 'Аноним'};message:${this.inputWish.value || 'С днем рождения, Пиком!'}`;
     request.open('GET', 'https://picom.ru/rm-api/?action=add&'+params, false);
     request.send();
 
@@ -198,6 +208,16 @@ export default class Enterence extends Phaser.State {
 
   onToConstructorClick() {
     this.goToConstructorSound.play();
+    this.constructor.show();
+    this.apply.visible = true;
+    this.labelName.visible = true;
+    this.labelWish.visible = true;
+    this.inputName.x = 60;
+    this.inputWish.x = 60;
+
+    this.tube.visible = false;
+    this.goToClub.visible = false;
+    this.goToConstructor.visible = false;
   }
 
   update() {

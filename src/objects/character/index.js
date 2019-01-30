@@ -2,7 +2,7 @@ import { bodyparts } from '../../data/Bodyparts';
 
 export default class Character {
 
-  constructor(game, data){
+  constructor(game, data, background){
 
     if (data) {
       let figure = {};
@@ -20,7 +20,7 @@ export default class Character {
 
         this.armRight = game.add.sprite(
           figure.x + 34 + x,
-          game.height - figure.y + 64 + y,
+          background.height - figure.y + 64 + y,
           `arms_right${figure.arm_right}`
         );
         this.armRight.anchor.setTo(0.5);
@@ -35,7 +35,7 @@ export default class Character {
 
         this.legs = game.add.sprite(
           figure.x + 11 + x,
-          game.height - figure.y + 195 + y,
+          background.height - figure.y + 195 + y,
           `legs${figure.legs}`
         );
         this.legs.anchor.setTo(0.5);
@@ -50,7 +50,7 @@ export default class Character {
 
         this.body = game.add.sprite(
           figure.x + x,
-          game.height - figure.y + y,
+          background.height - figure.y + y,
           `body${figure.body}`
         );
         this.body.anchor.setTo(0.5);
@@ -65,7 +65,7 @@ export default class Character {
 
         this.armLeft = game.add.sprite(
           figure.x - 40 + x,
-          game.height - figure.y + 70 + y,
+          background.height - figure.y + 70 + y,
           `arms_left${figure.arm_left}`
         );
         this.armLeft.anchor.setTo(0.5);
@@ -80,14 +80,14 @@ export default class Character {
 
         this.head = game.add.sprite(
           figure.x + x,
-          game.height - figure.y - 120 + y,
+          background.height - figure.y - 120 + y,
           `head${figure.head}`
         );
         this.head.anchor.setTo(0.5);
 
         this.charGroup.add(this.head);
 
-        this.charGroup.scale.setTo(0.7);
+        this.charGroup.scale.setTo(0.6);
 
         this.charGroup.forEach( 
           this.makeDraggable
