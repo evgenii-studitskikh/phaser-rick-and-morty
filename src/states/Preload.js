@@ -67,6 +67,12 @@ export default class Preload extends Phaser.State {
     this.game.load.image('planet-photo4', 'assets/projector_photo_4.png');
     this.game.load.image('planet-photo5', 'assets/projector_photo_5.png');
     this.game.load.image('planet-photo6', 'assets/projector_photo_6.png');
+    this.game.load.image('planet-photo7', 'assets/projector_photo_7.png');
+    this.game.load.image('planet-photo8', 'assets/projector_photo_8.png');
+    this.game.load.image('planet-photo9', 'assets/projector_photo_9.png');
+    this.game.load.image('planet-photo10', 'assets/projector_photo_10.png');
+    this.game.load.image('planet-photo11', 'assets/projector_photo_11.png');
+    this.game.load.image('planet-photo12', 'assets/projector_photo_12.png');
     this.game.load.image('change-photo-button', 'assets/change_photo_btn.png');
     this.game.load.spritesheet('portal-sprite-party', 'assets/portal_sprite_party.svg', 189, 290, 15);
     this.game.load.image('portal-party', 'assets/portal_party.svg');
@@ -225,7 +231,7 @@ export default class Preload extends Phaser.State {
   }
 
   create() {
-    this.game.state.start('Enterence');
+    this.game.state.start('Party');
     
   }
 }

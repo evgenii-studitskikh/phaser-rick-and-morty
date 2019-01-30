@@ -10,7 +10,13 @@ export default class Party extends Phaser.State {
       {key: 'planet-photo3', text: ''},
       {key: 'planet-photo4', text: ''},
       {key: 'planet-photo5', text: ''},
-      {key: 'planet-photo6', text: ''}
+      {key: 'planet-photo6', text: ''},
+      {key: 'planet-photo7', text: ''},
+      {key: 'planet-photo8', text: ''},
+      {key: 'planet-photo9', text: ''},
+      {key: 'planet-photo10', text: ''},
+      {key: 'planet-photo11', text: ''},
+      {key: 'planet-photo12', text: ''},
     ];
 
     this.commentsNode = document.createElement('section');
@@ -77,7 +83,7 @@ export default class Party extends Phaser.State {
     this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
 
     //Добавляем аудио мониторы:
-    this.audioMonitorLeft = this.add.sprite(1800, 600, 'audio-monitor-sprite', 0);
+    this.audioMonitorLeft = this.add.sprite(1790, 590, 'audio-monitor-sprite', 0);
     this.audioMonitorRight = this.add.sprite(2195, 795, 'audio-monitor-sprite', 0);
     //Включаем обработку событий
     this.audioMonitorLeft.inputEnabled = true;
