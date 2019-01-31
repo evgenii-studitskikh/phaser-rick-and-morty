@@ -163,13 +163,13 @@ export default class Cutscene extends Phaser.State {
       this.world.centerX + 30, 
 			this.world.centerY - 20,
       'cutscene-arrow-next',
-      () => this.handleSkipClick()
-
-      // 'cutscene-arrow-next-sprite',
-      // () => this.handleSkipClick(),this,1,0,2
+			this.handleSkipClick,
+			this,
+			1,
+			0,
+			2
     );
 		this.buttonSkip.anchor.setTo(0.5);
-		this.buttonSkip.scale.setTo(0.5);
 		this.buttonSkipSound = this.add.audio('2_btn_next');
 
 		//back button
@@ -177,13 +177,13 @@ export default class Cutscene extends Phaser.State {
       this.world.centerX - 70, 
 			this.world.centerY - 20,
       'cutscene-arrow-prev',
-      () => this.handleBackClick()
-
-    // 'cutscene-arrow-prev-sprite',
-    //   () => this.handleBackClick(),this,1,0,2
+			this.handleBackClick,
+			this,
+			1,
+			0,
+			2
     );
 		this.buttonBack.anchor.setTo(0.5);
-		this.buttonBack.scale.setTo(0.5);
     this.buttonBackSound = this.add.audio('3_btn_back');
     this.buttonBack.visible = false;
 	}
@@ -270,19 +270,6 @@ export default class Cutscene extends Phaser.State {
     );
 		this.enterPartyButton.anchor.setTo(0.5);
     this.enterPartyButtonSound = this.add.audio('13_btn_obshift');
-
-    // this.enterPartyButtonText = this.add.text(
-    //   this.world.centerX,
-			// this.world.centerY + 70,
-    //   'О-о-о... Да… Пора швифтануться...',
-    //   {
-    //     font: 'Lasco',
-    //     fontSize: 14,
-    //     fill: '#FFFFFF',
-    //     align: 'center'
-    //   }
-    // );
-    // this.enterPartyButtonText.anchor.setTo(0.5);
 	}
 
 	moveToEnterence() {
@@ -291,7 +278,6 @@ export default class Cutscene extends Phaser.State {
 		this.hideSprite(this.invateText1, 100);
 		this.hideSprite(this.invateText2, 100);
 		this.hideSprite(this.enterPartyButton, 100);
-		// this.hideSprite(this.enterPartyButtonText, 100);
 
 		const tweenPlanetScale = this.add.tween(this.planet.scale).to( 
 			{ x: 1.2, y: 1.2 }, 
