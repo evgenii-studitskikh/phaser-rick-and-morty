@@ -82,8 +82,8 @@ export default class Preload extends Phaser.State {
     this.game.load.image('monitor-hover', 'assets/monitor_hover.svg');
     this.game.load.spritesheet('door-party', 'assets/door-party.png', 101,327, 25);
 
-    this.game.load.image('constructor-arrow-left', 'assets/constructor_arrow_left.svg');
-    this.game.load.image('constructor-arrow-right', 'assets/constructor_arrow_right.svg');
+    this.game.load.spritesheet('constructor-arrow-left', 'assets/constructor_arrow-left.svg', 26, 29, 3);
+    this.game.load.spritesheet('constructor-arrow-right', 'assets/constructor_arrow-right.svg', 26, 29, 3);
     this.game.load.image('constructor-select-head', 'assets/constructor_select_head.svg');
     this.game.load.image('constructor-select-body', 'assets/constructor_select_body.svg');
     this.game.load.image('constructor-select-arms_left', 'assets/constructor_select_arms_left.svg');
@@ -91,6 +91,7 @@ export default class Preload extends Phaser.State {
     this.game.load.image('constructor-select-legs', 'assets/constructor_select_legs.svg');
     this.game.load.image('constructor-select-random', 'assets/constructor_select_random.svg');
     this.game.load.image('constructor-apply', 'assets/constructor_apply.svg');
+    this.game.load.image('dialog', 'assets/dialog.svg');
     this.game.load.image('constructor-yellow-head', 'assets/constructor_yellow_head.svg');
     this.game.load.image('constructor-yellow-head2', 'assets/constructor_yellow_head_2.svg');
     this.game.load.image('constructor-name-label', 'assets/constructor_name_label.svg');
@@ -239,7 +240,7 @@ export default class Preload extends Phaser.State {
   }
 
   create() {
-    this.game.state.start('Party');
+    this.game.state.start('Intro');
     
   }
 }

@@ -44,7 +44,7 @@ export default class Intro extends Phaser.State {
       this.world.centerX,
       this.world.centerY + 50,
       'portal-button',
-      () => this.handleRightClick()
+      () => this.handleAcceptClick()
     );
     this.buttonAccept.scale.setTo(0.7);
     this.buttonAccept.anchor.setTo(0.5);
@@ -53,7 +53,7 @@ export default class Intro extends Phaser.State {
     this.soundEnter = this.sound.add('enter');
   }
   
-  handleRightClick() {
+  handleAcceptClick() {
 
     this.soundEnter.play();
 
@@ -81,7 +81,7 @@ export default class Intro extends Phaser.State {
     );
 
     const tweenPortalScale = this.add.tween(this.portal.scale).to( 
-      { x: 5, y: 5 }, 
+      { x: 2.5, y: 2.5 }, 
       4000,
       Phaser.Easing.easeInOut,
       true,

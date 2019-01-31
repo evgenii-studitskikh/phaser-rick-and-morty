@@ -270,9 +270,5 @@ export default class Sharing extends Phaser.State {
   getSizePosition(elementHeight) {
     const groundBottomHeight = 201;
     let spaceHeight = this.game.height - groundBottomHeight;
-    console.log('---height:', this.game.height);
-    console.log('--- spaceHeight:', spaceHeight);
-
-
   }
 }

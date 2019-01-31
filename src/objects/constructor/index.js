@@ -3,7 +3,7 @@ import Select from './select';
 
 export default class Constructor {
 
-  constructor({game, onSelect}){
+  constructor({game, onSelect, wishText}){
 
     this.frame = new Frame(game);
 
@@ -54,6 +54,29 @@ export default class Constructor {
     });
     this.spritesGroup.add(this.head.sprite);
 
+    this.dialog = game.add.sprite(
+      850, 
+      game.height - 400,
+      'dialog'
+    );
+    this.dialog.anchor.setTo(0.5);
+    this.dialog.scale.setTo(0.7);
+
+    this.dialogText = game.add.text(
+      850, 
+      game.height - 420,
+      '',
+      {
+        font: '14px Lasco',
+        fill: '#000',
+        align: 'center',
+        wordWrap: true, 
+        wordWrapWidth: 180
+      }
+    );
+    this.dialogText.anchor.setTo(0.5);
+    this.dialogText.visible = false;
+    this.dialog.visible = false;
   }
   
   hide() {
@@ -63,6 +86,9 @@ export default class Constructor {
     this.body.hide();
     this.armsLeft.hide();
     this.head.hide();
+
+    this.dialogText.visible = true;
+    this.dialog.visible = true;
   }
 
   show() {
@@ -72,13 +98,33 @@ export default class Constructor {
     this.body.show();
     this.armsLeft.show();
     this.head.show();
+
+    this.dialogText.visible = false;
+    this.dialog.visible = false;
   }
 
-  preview() {
+  preview(wishText) {
 
     this.spritesGroup.scale.setTo(0.6);
-    this.spritesGroup.x = 700;
-    this.spritesGroup.y = 450;
+    this.spritesGroup.x = 600;
+
+    if (this.legs.currentSprite === 7) {
+      this.spritesGroup.y = 550;
+      this.dialogText.y = 600;
+      this.dialog.y = 620;
+    } else if (this.legs.currentSprite === 2) {
+      this.spritesGroup.y = 500;
+      this.dialogText.y = 550;
+      this.dialog.y = 570;
+    } else {
+      this.spritesGroup.y = 450;
+      this.dialogText.y = 500;
+      this.dialog.y = 520;
+    }
+
+    this.dialogText.text = wishText.length > 50 
+      ? wishText.substring(0, 50) + '...'
+      : wishText;
   }
 
   reset() {
