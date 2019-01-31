@@ -2,7 +2,9 @@ import { bodyparts } from '../../data/Bodyparts';
 
 export default class Character {
 
-  constructor(game, data, background){
+  constructor(game, data, height){
+
+    this.game = game;
 
     if (data) {
       let figure = {};
@@ -20,7 +22,7 @@ export default class Character {
 
         this.armRight = game.add.sprite(
           figure.x + 34 + x,
-          background.height - figure.y + 64 + y,
+          height + figure.y + 64 + y,
           `arms_right${figure.arm_right}`
         );
         this.armRight.anchor.setTo(0.5);
@@ -35,7 +37,7 @@ export default class Character {
 
         this.legs = game.add.sprite(
           figure.x + 11 + x,
-          background.height - figure.y + 195 + y,
+          height + figure.y + 195 + y,
           `legs${figure.legs}`
         );
         this.legs.anchor.setTo(0.5);
@@ -50,7 +52,7 @@ export default class Character {
 
         this.body = game.add.sprite(
           figure.x + x,
-          background.height - figure.y + y,
+          height + figure.y + y,
           `body${figure.body}`
         );
         this.body.anchor.setTo(0.5);
@@ -65,7 +67,7 @@ export default class Character {
 
         this.armLeft = game.add.sprite(
           figure.x - 40 + x,
-          background.height - figure.y + 70 + y,
+          height + figure.y + 70 + y,
           `arms_left${figure.arm_left}`
         );
         this.armLeft.anchor.setTo(0.5);
@@ -80,7 +82,7 @@ export default class Character {
 
         this.head = game.add.sprite(
           figure.x + x,
-          background.height - figure.y - 120 + y,
+          height + figure.y - 120 + y,
           `head${figure.head}`
         );
         this.head.anchor.setTo(0.5);
@@ -90,7 +92,7 @@ export default class Character {
         this.charGroup.scale.setTo(0.6);
 
         this.charGroup.forEach( 
-          this.makeDraggable
+          (item) => this.makeDraggable(item)
         )
       }
     }
@@ -104,37 +106,45 @@ export default class Character {
       x: 0,
       y: 0
     };
-
-    let dragStopPos;
+    let isFirstDrag = true;
+    let dragCameraStart = {
+      x: this.game.camera.x,
+      y: this.game.camera.y
+    }
 
     item.events.onDragStart.add((obj, pointer) => {
-      dragStartPos.x = pointer.x;
-      dragStartPos.y = pointer.y;
+      if (isFirstDrag) {
+        dragStartPos.x = pointer.x;
+        dragStartPos.y = pointer.y;
+      }
+
+      dragCameraStart = {
+        x: this.game.camera.x,
+        y: this.game.camera.y
+      }
+
+      isFirstDrag = false;
     });
 
-    item.events.onDragStop.add((obj, pointer) => {
-      dragStopPos = {
-        x: pointer.x,
-        y: pointer.y
-      };
-    });
 
     item.events.onDragUpdate.add((obj, pointer, x, y, snapPoint, isFirstUpdate) => {
       if ( isFirstUpdate ) {
-        obj.origin = new Phaser.Point( obj.x, obj.y )
-        obj.parent.origin = new Phaser.Point( obj.parent.x, obj.parent.y )
+        obj.origin = new Phaser.Point( obj.x, obj.y );
+        obj.parent.origin = new Phaser.Point( obj.parent.x, obj.parent.y );
+
+        dragCameraStart = {
+          x: this.game.camera.x,
+          y: this.game.camera.y
+        }
       }
 
-      if (dragStopPos) {
-        dragStartPos.x = dragStopPos.x;
-        dragStartPos.y = dragStopPos.y;
-      }
+      obj.parent.x = pointer.x - dragStartPos.x - dragCameraStart.x + this.game.camera.x;
+      obj.parent.y = pointer.y - dragStartPos.y - dragCameraStart.y + this.game.camera.y;
 
-      obj.parent.x = pointer.x - dragStartPos.x;
-      obj.parent.y = pointer.y - dragStartPos.y;
+      obj.x = obj.origin.x;
+      obj.y = obj.origin.y;
 
-      obj.x = obj.origin.x
-      obj.y = obj.origin.y
+      console.log(pointer.x + this.game.camera.x, pointer.y + this.game.camera.y);
     });
   }
 }

@@ -165,7 +165,7 @@ export default class Party extends Phaser.State {
       let commentsList = '';
 
       JSON.parse(request.response).map((item, index) => {
-        new Character(this.game, item.body, this.clubBg);
+        new Character(this.game, item.body, bgImgHeight);
       });
 
       JSON.parse(request.response).reverse().map((item, index) => {

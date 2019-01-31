@@ -95,7 +95,11 @@ export default class Enterence extends Phaser.State {
     this.yellowHead.input.pixelPerfectClick = true;
     this.yellowHead.input.useHandCursor = true;
     this.yellowHeadSound = this.add.audio('7_head')
-    this.yellowHead.events.onInputDown.add(()=>{this.yellowHeadSound.play()}, this);
+    this.yellowHead.events.onInputDown.add(()=>{
+      this.yellowHeadSound.play();
+      this.headSpeak(20, this.yellowHead);
+    }, this);
+    this.yellowHead.scale.setTo(0);
 
     this.constructor = new Constructor({
       game: this.game,
@@ -161,6 +165,17 @@ export default class Enterence extends Phaser.State {
     this.inputWish.x = -1000;
     this.inputName.x = -1000;
 
+    this.constructor.preview();
+    
+    this.add.tween(this.yellowHead.scale).to( 
+			{ x: 1, y: 1 }, 
+			1000, 
+			Phaser.Easing.easeOut,
+			true
+    );
+    this.yellowHeadSound.play();
+    this.headSpeak(20, this.yellowHead);
+
     this.tube = this.game.add.sprite(
       1150, 
       this.game.height - 55,
@@ -193,7 +208,7 @@ export default class Enterence extends Phaser.State {
     const { head, body, legs, arms_left, arms_right } = this.char;
 
     const request = new XMLHttpRequest();
-    const params = `body=head:${head};body:${body};arm_left:${arms_left};arm_right:${arms_right};legs:${legs};x:${100};y:${100};name:${this.inputName.value || 'Аноним'};message:${this.inputWish.value || 'С днем рождения, Пиком!'}`;
+    const params = `body=head:${head};body:${body};arm_left:${arms_left};arm_right:${arms_right};legs:${legs};x:${Math.floor(Math.random() * 3000) + 100};y:${Math.floor(Math.random() * 500) + 200};name:${this.inputName.value || 'Аноним'};message:${this.inputWish.value || 'С днем рождения, Пиком!'}`;
     request.open('GET', 'https://picom.ru/rm-api/?action=add&'+params, false);
     request.send();
 
@@ -218,6 +233,8 @@ export default class Enterence extends Phaser.State {
     this.tube.visible = false;
     this.goToClub.visible = false;
     this.goToConstructor.visible = false;
+
+    this.constructor.reset();
   }
 
   update() {
@@ -226,5 +243,18 @@ export default class Enterence extends Phaser.State {
     this.lemon.screenWrap();
     this.blueBall.screenWrap();
     this.greyBall.screenWrap();
+  }
+
+  headSpeak(i, sprite) {
+    (function myLoop (i) {          
+      setTimeout(() => {   
+         if (i%2 === 0) {
+          sprite.loadTexture('constructor-yellow-head2');
+         } else {
+          sprite.loadTexture('constructor-yellow-head');
+         }
+         if (--i) myLoop(i);
+      }, 150)
+   })(i);  
   }
 }

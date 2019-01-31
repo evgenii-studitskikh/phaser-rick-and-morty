@@ -166,6 +166,7 @@ export default class Cutscene extends Phaser.State {
       () => this.handleSkipClick()
     );
 		this.buttonSkip.anchor.setTo(0.5);
+		this.buttonSkip.scale.setTo(0.5);
 		this.buttonSkipSound = this.add.audio('2_btn_next');
 
 		//back button
@@ -175,7 +176,8 @@ export default class Cutscene extends Phaser.State {
       'cutscene-arrow-prev',
       () => this.handleBackClick()
     );
-    this.buttonBack.anchor.setTo(0.5);
+		this.buttonBack.anchor.setTo(0.5);
+		this.buttonBack.scale.setTo(0.5);
     this.buttonBackSound = this.add.audio('3_btn_back');
 	}
 
