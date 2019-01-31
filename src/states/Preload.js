@@ -187,10 +187,9 @@ export default class Preload extends Phaser.State {
     this.load.image('logo-picom', 'assets/logo_picom.svg');
     this.load.image('btn-back-party', 'assets/button_back_party.svg');
     this.load.image('btn-create-person', 'assets/button_create_person.svg');
-    this.load.image('facebook', 'assets/socials_facebook.svg');
-    this.load.image('vk', 'assets/socials_vk.svg');
-    this.load.image('twitter', 'assets/socials_twitter.svg');
-    this.load.image('ok', 'assets/socials_ok.svg');
+    this.load.spritesheet('vk-sprite', 'assets/socials_vk_sprite.svg', 44, 46);
+    this.load.spritesheet('twitter-sprite', 'assets/socials_twitter_sprite.svg', 44, 46);
+    this.load.spritesheet('facebook-sprite', 'assets/socials_facebook_sprite.svg', 44, 46);
     this.load.image('bottle', 'assets/bottle.svg');
 
     //space-sound:
@@ -231,7 +230,7 @@ export default class Preload extends Phaser.State {
   }
 
   create() {
-    this.game.state.start('Party');
+    this.game.state.start('Sharing');
     
   }
 }

@@ -187,44 +187,36 @@ export default class Sharing extends Phaser.State {
       }
       return 717;
     };
+
     this.buttonVk = this.add.button(
       this.world.centerX-68,
       getVerticalPositionSocials(),
-      'vk',
+      'vk-sprite',
       this.handlerClickVk,
-      this
+      this, 1,2,0
     );
     this.buttonVk.anchor.set(0.5);
 
     this.buttonFacebook = this.add.button(
       this.world.centerX,
       getVerticalPositionSocials(),
-      'facebook',
+      'facebook-sprite',
       this.handlerClickFacebook,
-      this
+      this, 1, 2, 0
     );
     this.buttonFacebook.anchor.set(0.5);
 
     this.buttonTwitter= this.add.button(
       this.world.centerX+68,
       getVerticalPositionSocials(),
-      'twitter',
+      'twitter-sprite',
       this.handlerClickTwitter,
-      this
+      this, 1, 2, 0
     );
     this.buttonTwitter.anchor.set(0.5);
 
-
-    // this.buttonOk= this.add.button(
-    //   this.world.centerX+102,
-    //   getVerticalPositionSocials(),
-    //   'ok',
-    //   this.handlerClickOk,
-    //   this
-    // );
-    // this.buttonOk.anchor.set(0.5);
     this.musicBgSharing = this.sound.add('1_final_bg');
-    this.sound.setDecodedCallback([ this.musicBgSharing ], this.startMusicSharing, this);
+    // this.sound.setDecodedCallback([ this.musicBgSharing ], this.startMusicSharing, this);
   };
 
   startMusicSharing() {
@@ -262,10 +254,6 @@ export default class Sharing extends Phaser.State {
   handlerClickOk() {
     window.open("https://connect.ok.ru/offer?url=http://19.chunks.ru/", "_blank");
   }
-  // https://connect.ok.ru/offer
-  //   ?url=URL_TO_SHARE
-  // &title=TITLE
-  // &imageUrl=IMAGE_URL
 
   update() {
     this.blueBall.screenWrap();
