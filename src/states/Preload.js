@@ -57,7 +57,7 @@ export default class Preload extends Phaser.State {
     //move it to intro screen
     this.game.load.image('enterenece-constructor-bg', 'assets/enterence_constructor_bg.svg');
     this.game.load.image('party-club-bg', 'assets/club_bg.svg');
-    this.game.load.spritesheet('audio-monitor-sprite', 'assets/audio_monitor_sprite.svg', 134, 286, 5);
+    this.game.load.spritesheet('audio-monitor-sprite', 'assets/audio_monitor_sprite.svg', 134, 286, 6);
     this.game.load.image('audio-monitor', 'assets/audio_monitor.svg');
     this.game.load.image('backdrop', 'assets/backdrop.png');
     this.game.load.image('planet-enterence', 'assets/planet_enterence.png');
@@ -78,6 +78,8 @@ export default class Preload extends Phaser.State {
     this.game.load.image('portal-party', 'assets/portal_party.svg');
     this.game.load.image('party-help-bg', 'assets/help_bg_party.svg');
     this.game.load.image('close-btn', 'assets/close_btn.svg');
+    this.game.load.image('close-btn', 'assets/close_btn.svg');
+    this.game.load.image('monitor-hover', 'assets/monitor_hover.svg');
 
     this.game.load.image('constructor-arrow-left', 'assets/constructor_arrow_left.svg');
     this.game.load.image('constructor-arrow-right', 'assets/constructor_arrow_right.svg');
