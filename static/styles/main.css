@@ -313,6 +313,9 @@ body * {
     align-items: center;
     line-height: 30px;
     font-size: 18px;
+    color: #fff;
+    -webkit-background-size: cover;
+    background-size: cover;
   }
   .logo {
     max-width: 537px;
