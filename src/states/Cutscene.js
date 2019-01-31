@@ -96,6 +96,11 @@ export default class Cutscene extends Phaser.State {
 			window.innerHeight,
 			'cutscene-char'
 		);
+    this.char.inputEnabled = true;
+    this.char.input.pixelPerfectClick = true;
+    this.char.input.useHandCursor = true;
+    this.soundCharArr = [this.add.audio('6_rick_click'), this.add.audio('8_rick_click_3'), this.add.audio('7_small_rick_click')];
+		this.char.events.onInputDown.add(()=>{this.soundCharArr[this.randomInteger(0, 2)].play()});
 
 		this.charDirection = 'left';
 		this.char.rotation = 0.50;
@@ -120,7 +125,7 @@ export default class Cutscene extends Phaser.State {
 
 		tweenCharScale.onComplete.add(this.showDialog, this);
 		
-		this.cutsceneMusic = this.sound.add('1_bg_space');
+		this.cutsceneMusic = this.sound.add('1_bg_space', 0.4);
 
 		this.sound.setDecodedCallback([ this.cutsceneMusic ], this.start, this);
 	}
@@ -266,7 +271,7 @@ export default class Cutscene extends Phaser.State {
 
 	moveToEnterence() {
     this.enterPartyButtonSound.play();
-    this.music.fadeOut(200);
+    this.cutsceneMusic.fadeOut(200);
 		this.hideSprite(this.invateText1, 100);
 		this.hideSprite(this.invateText2, 100);
 		this.hideSprite(this.enterPartyButton, 100);
@@ -305,5 +310,11 @@ export default class Cutscene extends Phaser.State {
 
 		this.blueBall.screenWrap();
 		this.lemon.screenWrap();
+  }
+
+  randomInteger(min, max) {
+    let rand = min + Math.random() * (max + 1 - min);
+    rand = Math.floor(rand);
+    return rand;
   }
 }

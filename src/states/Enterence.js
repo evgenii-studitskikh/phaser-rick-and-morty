@@ -184,7 +184,7 @@ export default class Enterence extends Phaser.State {
       () => this.onToConstructorClick()
     );
     this.goToConstructor.anchor.setTo(0.5);
-    this.goToConstructorSound = this.add.audio('6_btn_red_arrow');
+    this.goToConstructorSound = this.add.audio('6_btn_red_arrow', 0.4);
   }
 
   onApplyButtonClick() {

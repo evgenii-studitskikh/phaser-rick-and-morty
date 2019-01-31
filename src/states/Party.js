@@ -58,18 +58,18 @@ export default class Party extends Phaser.State {
     this.cursors = this.input.keyboard.createCursorKeys();
 
     //подключаем фоновую музыку:
-    this.music1 = this.add.audio('1track');
-    this.music2 = this.add.audio('2track');
-    this.music3 = this.add.audio('3track');
-    this.music4 = this.add.audio('4track');
-    this.music5 = this.add.audio('6track');
-    this.music6 = this.add.audio('7track');
-    this.music7 = this.add.audio('8track');
-    this.music8 = this.add.audio('9track');
-    this.music9 = this.add.audio('10track');
-    this.music10 = this.add.audio('11track');
-    this.music11 = this.add.audio('12track');
-    this.music12 = this.add.audio('13track');
+    this.music1 = this.add.audio('1track', 0.4);
+    this.music2 = this.add.audio('2track', 0.4);
+    this.music3 = this.add.audio('3track', 0.4);
+    this.music4 = this.add.audio('4track', 0.4);
+    this.music5 = this.add.audio('6track', 0.4);
+    this.music6 = this.add.audio('7track', 0.4);
+    this.music7 = this.add.audio('8track', 0.4);
+    this.music8 = this.add.audio('9track', 0.4);
+    this.music9 = this.add.audio('10track', 0.4);
+    this.music10 = this.add.audio('11track', 0.4);
+    this.music11 = this.add.audio('12track', 0.4);
+    this.music12 = this.add.audio('13track', 0.4);
     this.musicArr = [this.music1, this.music2, this.music3, this.music4, this.music5, this.music6, this.music7, this.music8, this.music9, this.music10, this.music11, this.music12];
     this.isRandom = false;
     if(!this.isRandom) {
@@ -77,10 +77,9 @@ export default class Party extends Phaser.State {
       this.isRandom = true;
     }
 
-
     //запуск музыки:
     // this.onRenderCallback.add( ()=>  this.sound.setDecodedCallback( this.musicArr, this.startMusic, this), this);
-    // this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
+    this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
 
     //Добавляем аудио мониторы:
     this.audioMonitorLeft = this.add.sprite(1790, 590, 'audio-monitor-sprite', 0);
