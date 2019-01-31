@@ -228,12 +228,36 @@ body {
   background: url(../assets/socials_vk.svg) no-repeat center;
 }
 
+.sharing__link--vk:hover {
+  background: url(../assets/socials_vk_hover.svg) no-repeat center;
+}
+
+.sharing__link--vk:active {
+  background: url(../assets/socials_vk_active.svg) no-repeat center;
+}
+
 .sharing__link--facebook {
   background: url(../assets/socials_facebook.svg) no-repeat center;
 }
 
+.sharing__link--facebook:hover {
+  background: url(../assets/socials_facebook_hover.svg) no-repeat center;
+}
+
+.sharing__link--facebook:active {
+  background: url(../assets/socials_facebook_active.svg) no-repeat center;
+}
+
 .sharing__link--twitter {
   background: url(../assets/socials_twitter.svg) no-repeat center;
+}
+
+.sharing__link--twitter:hover {
+  background: url(../assets/socials_twitter_hover.svg) no-repeat center;
+}
+
+.sharing__link--twitter:active {
+  background: url(../assets/socials_twitter_active.svg) no-repeat center;
 }
 
 .sharing__link--help {
