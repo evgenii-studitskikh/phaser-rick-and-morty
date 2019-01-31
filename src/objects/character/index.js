@@ -15,15 +15,15 @@ export default class Character {
         figure[item.split(':')[0]] = parseInt(item.split(':')[1]);
       })
 
-      if (figure.arm_right) {
-
-        const x = bodyparts[`arm_right${figure.arm_right}`] ? bodyparts[`arm_right${figure.arm_right}`].x : 0;
-        const y = bodyparts[`arm_right${figure.arm_right}`] ? bodyparts[`arm_right${figure.arm_right}`].y : 0;
+      if (figure.arms_right) {
+        
+        const x = bodyparts[`arms_right${figure.arms_right}`] ? bodyparts[`arms_right${figure.arms_right}`].x : 0;
+        const y = bodyparts[`arms_right${figure.arms_right}`] ? bodyparts[`arms_right${figure.arms_right}`].y : 0;
 
         this.armRight = game.add.sprite(
           figure.x + 34 + x,
           height + figure.y + 64 + y,
-          `arms_right${figure.arm_right}`
+          `arms_right${figure.arms_right}`
         );
         this.armRight.anchor.setTo(0.5);
 
@@ -60,20 +60,21 @@ export default class Character {
         this.charGroup.add(this.body);
       }
 
-      if (figure.arm_left) {
-        
-        const x = bodyparts[`arm_left${figure.arm_left}`] ? bodyparts[`arm_left${figure.arm_left}`].x : 0;
-        const y = bodyparts[`arm_left${figure.arm_left}`] ? bodyparts[`arm_left${figure.arm_left}`].y : 0;
+      if (figure.arms_left) {
+
+        const x = bodyparts[`arms_left${figure.arms_left}`] ? bodyparts[`arms_left${figure.arms_left}`].x : 0;
+        const y = bodyparts[`arms_left${figure.arms_left}`] ? bodyparts[`arms_left${figure.arms_left}`].y : 0;
 
         this.armLeft = game.add.sprite(
           figure.x - 40 + x,
           height + figure.y + 70 + y,
-          `arms_left${figure.arm_left}`
+          `arms_left${figure.arms_left}`
         );
         this.armLeft.anchor.setTo(0.5);
 
         this.charGroup.add(this.armLeft);
       }
+
 
       if (figure.head) {
         
@@ -91,9 +92,9 @@ export default class Character {
 
         this.charGroup.scale.setTo(0.6);
 
-        this.charGroup.forEach( 
-          (item) => this.makeDraggable(item)
-        )
+        // this.charGroup.forEach( 
+        //   (item) => this.makeDraggable(item)
+        // )
       }
     }
   }

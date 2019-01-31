@@ -14,7 +14,8 @@ export default class Select {
       600, 
       this.game.height - options.y, 
       'constructor-arrow-right', 
-      () => this.handleRightClick()
+      this.handleRightClick,
+      this, 0, 1, 0
     );
     this.arrow_right.anchor.setTo(0.5);
     this.arrow_right_sound = game.add.audio('3_btn_constructor_right');
@@ -23,7 +24,8 @@ export default class Select {
       450, 
       this.game.height - options.y,
       'constructor-arrow-left', 
-      () => this.handleLeftClick()
+      this.handleLeftClick,
+      this, 0, 1, 0
     );
     this.arrow_left.anchor.setTo(0.5);
     this.arrow_left_sound = game.add.audio('4_btn_constructor_left');

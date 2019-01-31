@@ -86,7 +86,7 @@ export default class Enterence extends Phaser.State {
     this.planet.height = this.game.height;
 
     this.yellowHead = this.game.add.sprite(
-      650,
+      550,
       this.game.height - 600,
       'constructor-yellow-head'
     );
@@ -94,7 +94,7 @@ export default class Enterence extends Phaser.State {
     this.yellowHead.inputEnabled = true;
     this.yellowHead.input.pixelPerfectClick = true;
     this.yellowHead.input.useHandCursor = true;
-    this.yellowHeadSound = this.add.audio('7_head')
+    this.yellowHeadSound = this.add.audio('7_head', 2)
     this.yellowHead.events.onInputDown.add(()=>{
       this.yellowHeadSound.play();
       this.headSpeak(20, this.yellowHead);
@@ -145,7 +145,7 @@ export default class Enterence extends Phaser.State {
       this.inputStyles
     );
 
-    this.musicEnterence = this.sound.add('1_bg_constructor');
+    this.musicEnterence = this.sound.add('1_bg_constructor', 0.2);
     this.sound.setDecodedCallback([ this.musicEnterence ], this.start, this);
   }
 
@@ -165,7 +165,7 @@ export default class Enterence extends Phaser.State {
     this.inputWish.x = -1000;
     this.inputName.x = -1000;
 
-    this.constructor.preview();
+    this.constructor.preview(this.inputWish.value || 'С днем рождения, Пиком!');
     
     this.add.tween(this.yellowHead.scale).to( 
 			{ x: 1, y: 1 }, 
@@ -199,7 +199,7 @@ export default class Enterence extends Phaser.State {
       () => this.onToConstructorClick()
     );
     this.goToConstructor.anchor.setTo(0.5);
-    this.goToConstructorSound = this.add.audio('6_btn_red_arrow', 0.4);
+    this.goToConstructorSound = this.add.audio('6_btn_red_arrow', 2);
   }
 
   onApplyButtonClick() {
@@ -208,7 +208,7 @@ export default class Enterence extends Phaser.State {
     const { head, body, legs, arms_left, arms_right } = this.char;
 
     const request = new XMLHttpRequest();
-    const params = `body=head:${head};body:${body};arm_left:${arms_left};arm_right:${arms_right};legs:${legs};x:${Math.floor(Math.random() * 3000) + 100};y:${Math.floor(Math.random() * 500) + 200};name:${this.inputName.value || 'Аноним'};message:${this.inputWish.value || 'С днем рождения, Пиком!'}`;
+    const params = `body=head:${head};body:${body};arms_left:${arms_left};arms_right:${arms_right};legs:${legs};x:${Math.floor(Math.random() * 3800) + 100};y:${Math.floor(Math.random() * 500) + 200};name:${this.inputName.value || 'Аноним'};message:${this.inputWish.value || 'С днем рождения, Пиком!'}`;
     request.open('GET', 'https://picom.ru/rm-api/?action=add&'+params, false);
     request.send();
 
@@ -246,14 +246,14 @@ export default class Enterence extends Phaser.State {
   }
 
   headSpeak(i, sprite) {
-    (function myLoop (i) {          
+    (function mouthMove (i) {          
       setTimeout(() => {   
          if (i%2 === 0) {
           sprite.loadTexture('constructor-yellow-head2');
          } else {
           sprite.loadTexture('constructor-yellow-head');
          }
-         if (--i) myLoop(i);
+         if (--i) mouthMove(i);
       }, 150)
    })(i);  
   }

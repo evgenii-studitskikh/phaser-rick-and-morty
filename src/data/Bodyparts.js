@@ -128,8 +128,8 @@ export const bodyparts = {
     y: 3,
   },
   legs10: {
-    x: -4,
-    y: 3,
+    x: 2,
+    y: 15,
   },
   arms_left1: {
     x: 0,
@@ -204,11 +204,11 @@ export const bodyparts = {
     y: -15,
   },
   arms_right9: {
-    x: 1,
-    y: -2,
+    x: 40,
+    y: -45,
   },
   arms_right10: {
-    x: 1,
-    y: -2,
+    x: 25,
+    y: -20,
   }
 }
