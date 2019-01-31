@@ -177,7 +177,7 @@ export default class Cutscene extends Phaser.State {
       () => this.handleBackClick(),this,1,0,2
     );
 		this.buttonBack.anchor.setTo(0.5);
-		this.buttonBack.scale.setTo(0.5);
+		// this.buttonBack.scale.setTo(0.5);
     this.buttonBackSound = this.add.audio('3_btn_back');
     this.buttonBack.visible = false;
 	}
