@@ -102,9 +102,9 @@ export default class Preload extends Phaser.State {
     this.game.load.image('constructor-wish-label', 'assets/constructor_wish_label.svg');
     this.game.load.image('constructor-tube', 'assets/constructor_tube.svg');
     this.game.load.image('constructor-to-constructor', 'assets/constructor_to_constructor.svg');
+    this.game.load.spritesheet('constructor-to-constructor-sprite', 'assets/constructor_to_constructor_sprite.svg',293,90,3);
     this.game.load.image('constructor-to-club', 'assets/constructor_to_club.svg');
     this.game.load.image('constructor-scared-chars', 'assets/constructor_scared_chars.svg');
-
     this.game.load.spritesheet('constructor-to-club-sprite', 'assets/constructor_to_club_sprite.svg',292,90,3);
 
     //constructor heads
@@ -247,7 +247,7 @@ export default class Preload extends Phaser.State {
   }
 
   create() {
-    this.game.state.start('Intro');
+    this.game.state.start('Enterence');
     
   }
 }
