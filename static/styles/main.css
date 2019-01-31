@@ -40,7 +40,6 @@ body {
   justify-content: center;
   align-items: flex-start;
   overflow: hidden;
-  background: url(../assets/cap_tablet768x1024.jpg) no-repeat center#000;
   -webkit-background-size: cover;
   background-size: cover;
   font-family: 'Comic Relief', sans-serif;
@@ -49,7 +48,7 @@ body {
   line-height: 30px;
   font-size: 18px;
   text-align: center;
-  color: #fff;
+  color: #000;
 }
 
 body * {
@@ -310,6 +309,7 @@ body * {
 @media(max-width: 768px) {
 
   body {
+    background: url(../assets/cap_tablet768x1024.jpg) no-repeat center#000;
     align-items: center;
     line-height: 30px;
     font-size: 18px;
