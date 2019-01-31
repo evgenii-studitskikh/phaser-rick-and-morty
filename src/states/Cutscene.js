@@ -162,8 +162,12 @@ export default class Cutscene extends Phaser.State {
 		this.buttonSkip = this.add.button(
       this.world.centerX + 30, 
 			this.world.centerY - 20,
-      'cutscene-arrow-next-sprite',
-      () => this.handleSkipClick(),this,1,0,2
+      'cutscene-arrow-next',
+			this.handleSkipClick,
+			this,
+			1,
+			0,
+			2
     );
 		this.buttonSkip.anchor.setTo(0.5);
 		// this.buttonSkip.scale.setTo(0.5);
@@ -173,8 +177,12 @@ export default class Cutscene extends Phaser.State {
 		this.buttonBack = this.add.button(
       this.world.centerX - 70, 
 			this.world.centerY - 20,
-      'cutscene-arrow-prev-sprite',
-      () => this.handleBackClick(),this,1,0,2
+      'cutscene-arrow-prev',
+			this.handleBackClick,
+			this,
+			1,
+			0,
+			2
     );
 		this.buttonBack.anchor.setTo(0.5);
 		// this.buttonBack.scale.setTo(0.5);

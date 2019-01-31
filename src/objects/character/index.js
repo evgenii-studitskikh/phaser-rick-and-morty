@@ -13,7 +13,10 @@ export default class Character {
       this.charGroup = game.add.group();
 
       data.split(';').map(item => {
-        figure[item.split(':')[0]] = parseInt(item.split(':')[1]);
+        figure[item.split(':')[0]] =
+          item.split(':')[0] !== 'name' && item.split(':')[0] !== 'message'
+            ? parseInt(item.split(':')[1])
+            : item.split(':')[1]
       })
 
       if (figure.arms_right) {
@@ -93,10 +96,41 @@ export default class Character {
 
         this.charGroup.scale.setTo(0.6);
 
-        // this.charGroup.forEach( 
+        this.dialog = game.add.sprite(
+          figure.x + x + 210,
+          height + figure.y - 230 + y,
+          'dialog'
+        );
+        this.dialog.anchor.setTo(0.5);
+        this.charGroup.add(this.dialog);
+    
+        this.dialogText = game.add.text(
+          figure.x + x + 210,
+          height + figure.y - 250 + y,
+          '',
+          {
+            font: '14px Lasco',
+            fill: '#000',
+            align: 'center',
+            wordWrap: true, 
+            wordWrapWidth: 180
+          }
+        );
+        this.dialogText.anchor.setTo(0.5);
+        this.dialogText.scale.setTo(1.4);
+        this.charGroup.add(this.dialogText);
+
+        this.dialogText.text = figure.message.length > 50 
+          ? figure.message.substring(0, 50) + '...'
+          : figure.message;
+
+        this.dialog.visible = false;
+        this.dialogText.visible = false;
+      }
+
+       // this.charGroup.forEach( 
         //   (item) => this.makeDraggable(item)
         // )
-      }
     }
   }
   
@@ -152,9 +186,15 @@ export default class Character {
 
   toggleDialog(id) {
     if(id === this.id) {
-      console.log('show dialog');
+      this.dialog.visible = true;
+      this.dialogText.visible = true;
+      this.game.world.bringToTop(this.charGroup)
+      // this.game.camera.x = this.dialog.x;
+      // this.game.camera.y = this.dialog.y;
     } else {
-      console.log('hide dialog');
+      this.dialog.visible = false;
+      this.dialogText.visible = false;
+      
     }
   }
 }

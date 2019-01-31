@@ -47,13 +47,11 @@ export default class Preload extends Phaser.State {
 
     this.game.load.image('cutscene-char', 'assets/cutscene_char.svg');
     this.game.load.image('cutscene-dialog', 'assets/cutscene_dialog.svg');
-    this.game.load.image('cutscene-arrow-next', 'assets/cutscene_button_next.svg');
-    this.game.load.image('cutscene-arrow-prev', 'assets/cutscene_button_prev.svg');
+    this.game.load.spritesheet('cutscene-arrow-next', 'assets/cutscene_button_next.svg', 98, 35, 3);
+    this.game.load.spritesheet('cutscene-arrow-prev', 'assets/cutscene_button_prev.svg', 98, 35, 3);
     this.game.load.image('cutscene-planet', 'assets/cutscene_planet.svg');
     this.game.load.image('cutscene-accept-button', 'assets/cutscene_accept_button.svg');
     this.game.load.spritesheet('cutscene-accept-button-sprite', 'assets/cutscene-accept-button-sprite.svg', 307, 47, 3);
-    this.game.load.spritesheet('cutscene-arrow-next-sprite', 'assets/cutscene_arrow_next_sprite.svg', 95 ,38, 3);
-    this.game.load.spritesheet('cutscene-arrow-prev-sprite', 'assets/cutscene_arrow_prev_sprite.svg', 95 ,38, 3);
 
     this.load.audio('13track',['music/13.Alien_Jazz_Rap.ogg', 'music/13.Alien_Jazz_Rap.mp3']);
 
@@ -247,7 +245,7 @@ export default class Preload extends Phaser.State {
   }
 
   create() {
-    this.game.state.start('Intro');
+    this.game.state.start('Cutscene');
     
   }
 }
