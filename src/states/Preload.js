@@ -35,6 +35,7 @@ export default class Preload extends Phaser.State {
     this.game.load.image('portal', 'assets/portal.svg');
     this.game.load.image('portal-text', 'assets/intro_text.svg');
     this.game.load.image('portal-button', 'assets/intro_button.svg');
+    this.game.load.spritesheet('portal-button-sprite', 'assets/intro_button_sprite.svg',255,47,3);
 
     this.game.load.image('space-lemon', 'assets/space/lemon.svg');
     this.game.load.image('space-blue-ball', 'assets/space/blue_ball.svg');
@@ -50,7 +51,9 @@ export default class Preload extends Phaser.State {
     this.game.load.image('cutscene-arrow-prev', 'assets/cutscene_button_prev.svg');
     this.game.load.image('cutscene-planet', 'assets/cutscene_planet.svg');
     this.game.load.image('cutscene-accept-button', 'assets/cutscene_accept_button.svg');
-
+    this.game.load.spritesheet('cutscene-accept-button-sprite', 'assets/cutscene-accept-button-sprite.svg', 307, 47, 3);
+    this.game.load.spritesheet('cutscene-arrow-next-sprite', 'assets/cutscene_arrow_next_sprite.svg', 95 ,38, 3);
+    this.game.load.spritesheet('cutscene-arrow-prev-sprite', 'assets/cutscene_arrow_prev_sprite.svg', 95 ,38, 3);
 
     this.load.audio('13track',['music/13.Alien_Jazz_Rap.ogg', 'music/13.Alien_Jazz_Rap.mp3']);
 
@@ -91,6 +94,7 @@ export default class Preload extends Phaser.State {
     this.game.load.image('constructor-select-legs', 'assets/constructor_select_legs.svg');
     this.game.load.image('constructor-select-random', 'assets/constructor_select_random.svg');
     this.game.load.image('constructor-apply', 'assets/constructor_apply.svg');
+    this.game.load.spritesheet('constructor-apply-sprite', 'assets/constructor-apply-sprite.svg',377,47,3);
     this.game.load.image('dialog', 'assets/dialog.svg');
     this.game.load.image('constructor-yellow-head', 'assets/constructor_yellow_head.svg');
     this.game.load.image('constructor-yellow-head2', 'assets/constructor_yellow_head_2.svg');
@@ -99,6 +103,7 @@ export default class Preload extends Phaser.State {
     this.game.load.image('constructor-tube', 'assets/constructor_tube.svg');
     this.game.load.image('constructor-to-constructor', 'assets/constructor_to_constructor.svg');
     this.game.load.image('constructor-to-club', 'assets/constructor_to_club.svg');
+    this.game.load.spritesheet('constructor-to-club-sprite', 'assets/constructor_to_club_sprite.svg',292,90,3);
 
     //constructor heads
     this.game.load.image('head1', 'assets/constructor/head_1.svg');
@@ -197,6 +202,7 @@ export default class Preload extends Phaser.State {
     this.load.spritesheet('vk-sprite', 'assets/socials_vk_sprite.svg', 44, 46);
     this.load.spritesheet('twitter-sprite', 'assets/socials_twitter_sprite.svg', 44, 46);
     this.load.spritesheet('facebook-sprite', 'assets/socials_facebook_sprite.svg', 44, 46);
+
     this.load.image('bottle', 'assets/bottle.svg');
 
     //space-sound:
@@ -240,7 +246,7 @@ export default class Preload extends Phaser.State {
   }
 
   create() {
-    this.game.state.start('Party');
+    this.game.state.start('Enterence');
     
   }
 }

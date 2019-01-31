@@ -111,8 +111,8 @@ export default class Enterence extends Phaser.State {
     this.apply = this.game.add.button(
       60, 
       this.game.height - 60,
-      'constructor-apply',
-      () => this.onCreateButtonClick()
+      'constructor-apply-sprite',
+      () => this.onCreateButtonClick(),this,1,0,2
     );
     this.apply.width = 325;
     this.apply.height = 40;
@@ -186,8 +186,8 @@ export default class Enterence extends Phaser.State {
     this.goToClub = this.game.add.button(
       1170, 
       this.game.height - 320,
-      'constructor-to-club',
-      () => this.onApplyButtonClick()
+      'constructor-to-club-sprite',
+      () => this.onApplyButtonClick(),this, 1, 0, 2
     );
     this.goToClub.anchor.setTo(0.5);
     this.goToClubSound = this.add.audio('5_btn_green_arrow');

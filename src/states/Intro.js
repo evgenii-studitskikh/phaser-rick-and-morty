@@ -43,11 +43,13 @@ export default class Intro extends Phaser.State {
     this.buttonAccept = this.add.button(
       this.world.centerX,
       this.world.centerY + 50,
-      'portal-button',
-      () => this.handleAcceptClick()
+      'portal-button-sprite',
+      () => this.handleAcceptClick(),this,1,0,2
     );
-    this.buttonAccept.scale.setTo(0.7);
+    // this.buttonAccept.scale.setTo(0.7);
     this.buttonAccept.anchor.setTo(0.5);
+    this.buttonAcceptSound = this.sound.add('3_btn_constructor_right');
+    this.buttonAccept.events.onInputOver.add(()=>{this.buttonAcceptSound.play()});
 
     //sound of enter
     this.soundEnter = this.sound.add('enter');
