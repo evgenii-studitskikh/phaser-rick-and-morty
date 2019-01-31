@@ -38,9 +38,22 @@ body {
   margin: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   overflow: hidden;
-  background-color: #000;
+  background: url(../assets/cap_tablet768x1024.jpg) no-repeat center#000;
+  -webkit-background-size: cover;
+  background-size: cover;
+  font-family: 'Comic Relief', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 30px;
+  font-size: 18px;
+  text-align: center;
+  color: #fff;
+}
+
+body * {
+  display: none;
 }
 
 .comments {
@@ -284,5 +297,114 @@ body {
   background-size: contain;
   cursor:pointer;
 }
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+
+
+@media(max-width: 768px) {
+
+  body {
+    align-items: center;
+    line-height: 30px;
+    font-size: 18px;
+  }
+  .logo {
+    max-width: 537px;
+    width: 100%;
+    margin: 0px auto 35px;
+    /*margin: 210px auto 35px;*/
+    display: block;
+  }
+
+  .content {
+    display: block;
+  }
+
+  .content p {
+    display: block;
+    max-width: 598px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .content p + p {
+    display: block;
+    margin-top: 25px;
+  }
+
+  .button-play-game {
+    height: 64px;
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Lasco', sans-serif;;
+    font-style: normal;
+    line-height: 36px;
+    font-size: 24px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #E53935;
+    box-sizing: border-box;
+    border-radius: 6px;
+    text-decoration: none;
+    max-width: 380px;
+    width: 100%;
+    margin: 35px auto 0;
+    background: url(../assets/btn-play.png) no-repeat center;
+    -webkit-background-size: contain;
+    background-size: contain;
+  }
+
+  .button-play-game:hover {
+    background: url(../assets/btn-play-hover.png) no-repeat center;
+  }
+
+  .button-play-game:active {
+    background: url(../assets/btn-play-active.png) no-repeat center;
+  }
+}
+
+@media(max-width: 440px) {
+  body {
+    align-items: center;
+    background: url(../assets/cap_mobile320x568.jpg) no-repeat center#000;
+    line-height: 20px;
+    font-size: 12px;
+    -webkit-background-size: cover;
+    background-size: cover;
+  }
+
+  .logo {
+    margin: 0 auto 20px;
+  }
+
+  .content p + p {
+    display: block;
+    margin-top: 10px;
+  }
+
+  .button-play-game {
+    margin-top: 20px;
+    max-width: 170px;
+    height: 27px;
+    line-height: 16px;
+    font-size: 11px;
+    text-align: center;
+    -webkit-background-size: contain;
+    background-size: contain;
+    background: url(../assets/btn-play.png) no-repeat center;
+
+  }
+}
+
+
+
 
 
