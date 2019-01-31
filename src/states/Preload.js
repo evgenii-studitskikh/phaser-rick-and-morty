@@ -185,8 +185,8 @@ export default class Preload extends Phaser.State {
     this.load.image('bg-sharing-ground2', 'assets/bg_sharing_ground2.svg');
     this.load.image('office-house', 'assets/office_house.svg');
     this.load.image('logo-picom', 'assets/logo_picom.svg');
-    this.load.image('btn-back-party', 'assets/button_back_party.svg');
-    this.load.image('btn-create-person', 'assets/button_create_person.svg');
+    this.load.spritesheet('btn-back-party-sprite', 'assets/btn-back-party-sprite.svg',255,47);
+    this.load.spritesheet('btn-create-person-sprite', 'assets/button_create_person_sprite.svg',255,47);
     this.load.spritesheet('vk-sprite', 'assets/socials_vk_sprite.svg', 44, 46);
     this.load.spritesheet('twitter-sprite', 'assets/socials_twitter_sprite.svg', 44, 46);
     this.load.spritesheet('facebook-sprite', 'assets/socials_facebook_sprite.svg', 44, 46);
@@ -221,6 +221,9 @@ export default class Preload extends Phaser.State {
 
     //Sharing sound:
     this.load.audio('1_final_bg',['sounds/4_final_page/1_final_bg.ogg', 'sounds/4_final_page/1_final_bg.mp3']);
+    this.load.audio('2_btns_sharing',['sounds/4_final_page/2_btns_sharing.ogg', 'sounds/4_final_page/2_btns_sharing.mp3']);
+    this.load.audio('3_btn_back_party',['sounds/4_final_page/3_btn_back_party.ogg', 'sounds/4_final_page/3_btn_back_party.mp3']);
+    this.load.audio('4_btn_add_new_person',['sounds/4_final_page/4_btn_add_new_person.ogg', 'sounds/4_final_page/4_btn_add_new_person.mp3']);
 
 
     this.load.onFileComplete.add(

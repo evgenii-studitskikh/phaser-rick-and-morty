@@ -133,21 +133,24 @@ export default class Sharing extends Phaser.State {
     this.buttonBackParty = this.add.button(
       this.world.centerX-140,
       getVerticalPositionButtonsNextStep(),
-      'btn-back-party',
+      'btn-back-party-sprite',
       this.handlerClickBackParty,
-      this
+      this, 1, 2, 0
     );
-
     this.buttonBackParty.anchor.set(0.5);
+    this.buttonBackPartySound = this.add.audio('3_btn_back_party');
+    this.buttonBackParty.events.onInputOver.add(()=>{this.buttonBackPartySound.play()});
 
     this.buttonCreatePerson = this.add.button(
       this.world.centerX+140,
       getVerticalPositionButtonsNextStep(),
-      'btn-create-person',
+      'btn-create-person-sprite',
       this.handlerClickCreatePerson,
-      this
+      this, 1, 2, 0
     );
     this.buttonCreatePerson.anchor.set(0.5);
+    this.buttonCreatePersonSound = this.add.audio('4_btn_add_new_person');
+    this.buttonCreatePerson.events.onInputOver.add(()=>{this.buttonCreatePersonSound.play()});
 
     const getVerticalPositionSocialsTitle = () => {
       if(window.matchMedia("(max-height: " + mobileMaxHeight + "px)").matches) {
@@ -196,6 +199,8 @@ export default class Sharing extends Phaser.State {
       this, 1,2,0
     );
     this.buttonVk.anchor.set(0.5);
+    this.buttonSharingSound = this.add.audio('2_btns_sharing');
+    this.buttonVk.events.onInputOver.add(()=>{this.buttonSharingSound.play()});
 
     this.buttonFacebook = this.add.button(
       this.world.centerX,
@@ -205,6 +210,7 @@ export default class Sharing extends Phaser.State {
       this, 1, 2, 0
     );
     this.buttonFacebook.anchor.set(0.5);
+    this.buttonFacebook.events.onInputOver.add(()=>{this.buttonSharingSound.play()});
 
     this.buttonTwitter= this.add.button(
       this.world.centerX+68,
@@ -214,9 +220,10 @@ export default class Sharing extends Phaser.State {
       this, 1, 2, 0
     );
     this.buttonTwitter.anchor.set(0.5);
+    this.buttonTwitter.events.onInputOver.add(()=>{this.buttonSharingSound.play()});
 
     this.musicBgSharing = this.sound.add('1_final_bg');
-    // this.sound.setDecodedCallback([ this.musicBgSharing ], this.startMusicSharing, this);
+    this.sound.setDecodedCallback([ this.musicBgSharing ], this.startMusicSharing, this);
   };
 
   startMusicSharing() {
