@@ -178,13 +178,17 @@ export default class Cutscene extends Phaser.State {
     );
 		this.buttonBack.anchor.setTo(0.5);
 		this.buttonBack.scale.setTo(0.5);
-    this.buttonBackSound = this.add.audio('3_btn_back');
+		this.buttonBackSound = this.add.audio('3_btn_back');
+		this.buttonBack.visible = false;
 	}
 
 	handleBackClick() {
     this.buttonBackSound.play();
 		if (this.currentDialog > 0) {
 			this.dialogText.text = this.charText[--this.currentDialog]
+		}
+		if (this.currentDialog === 0) {
+			this.buttonBack.visible = false;
 		}
 	}
 
@@ -217,6 +221,10 @@ export default class Cutscene extends Phaser.State {
 			);
 
 			tweenCharScale.onComplete.add(this.showInvitation, this);
+		}
+
+		if (this.currentDialog > 0) {
+			this.buttonBack.visible = true;
 		}
 	}
 

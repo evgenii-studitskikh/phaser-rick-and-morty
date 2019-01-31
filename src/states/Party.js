@@ -22,6 +22,8 @@ export default class Party extends Phaser.State {
     this.commentsNode = document.createElement('section');
 
     this.lockCamera = false;
+
+    this.characters = [];
   }
 
   create() {
@@ -188,7 +190,14 @@ export default class Party extends Phaser.State {
       let commentsList = '';
 
       JSON.parse(request.response).map((item, index) => {
-        new Character(this.game, item.body, bgImgHeight);
+        const char = new Character({
+          game: this.game, 
+          data: item.body, 
+          height: bgImgHeight,
+          id: item.id
+        });
+
+        this.characters.push(char);
       });
 
       JSON.parse(request.response).reverse().map((item, index) => {
@@ -204,7 +213,7 @@ export default class Party extends Phaser.State {
 
         if (figure.name && figure.message) {
           commentsList += `
-            <li class="comments__item" data-id=${index}>
+            <li class="comments__item" data-id=${item.id}>
               <div class="comments__header">
                 <div class="comments__user">${figure.name}</div>
               </div>
@@ -249,6 +258,14 @@ export default class Party extends Phaser.State {
       document.body.appendChild(this.commentsNode);
       // this.musicArr[this.indexMusic].onPlay.add(this.animateAudioMonitors, this);
       this.animateAudioMonitors();
+
+      const commentsCollection = this.commentsNode.querySelectorAll('.comments__item')
+
+      Array.from(commentsCollection).map(comment => {
+        comment.addEventListener('click', () => {
+          this.characters.map(char => char.toggleDialog(comment.dataset.id));
+        })
+      });
     }
 
     //дверь перехода в конструктор:
