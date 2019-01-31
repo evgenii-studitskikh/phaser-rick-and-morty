@@ -2,9 +2,10 @@ import { bodyparts } from '../../data/Bodyparts';
 
 export default class Character {
 
-  constructor(game, data, height){
+  constructor({id, game, data, height}){
 
     this.game = game;
+    this.id = id;
 
     if (data) {
       let figure = {};
@@ -147,5 +148,13 @@ export default class Character {
 
       console.log(pointer.x + this.game.camera.x, pointer.y + this.game.camera.y);
     });
+  }
+
+  toggleDialog(id) {
+    if(id === this.id) {
+      console.log('show dialog');
+    } else {
+      console.log('hide dialog');
+    }
   }
 }

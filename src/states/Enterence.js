@@ -85,8 +85,15 @@ export default class Enterence extends Phaser.State {
     this.planet.width = this.game.width;
     this.planet.height = this.game.height;
 
+    this.scaredChars = this.game.add.sprite(
+      1080, 
+      this.game.height - 150,
+      'constructor-scared-chars'
+    );
+    this.scaredChars.anchor.setTo(0.5);
+
     this.yellowHead = this.game.add.sprite(
-      650,
+      550,
       this.game.height - 600,
       'constructor-yellow-head'
     );
@@ -164,6 +171,7 @@ export default class Enterence extends Phaser.State {
     this.labelWish.visible = false;
     this.inputWish.x = -1000;
     this.inputName.x = -1000;
+    this.scaredChars.visible = false;
 
     this.constructor.preview(this.inputWish.value || 'С днем рождения, Пиком!');
     
@@ -233,6 +241,7 @@ export default class Enterence extends Phaser.State {
     this.tube.visible = false;
     this.goToClub.visible = false;
     this.goToConstructor.visible = false;
+    this.scaredChars.visible = true;
 
     this.constructor.reset();
   }
