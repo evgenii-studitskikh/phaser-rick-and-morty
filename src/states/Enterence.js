@@ -6,18 +6,6 @@ export default class Enterence extends Phaser.State {
   constructor() {
     super();
 
-    this.inputStyles = {
-      font: '18px Lasco',
-      fill: '#212121',
-      width: 305,
-      height: 20,
-      padding: 10,
-      borderColor: '#FFFFFF',
-      backgroundColor: '#EEEEEE',
-      borderRadius: 6,
-      fillAlpha: '#212121'
-    }
-
     this.char = {
       head: 1,
       body: 1,
@@ -143,14 +131,38 @@ export default class Enterence extends Phaser.State {
     this.inputWish = this.game.add.inputField(
       60, 
       this.game.height - 155, 
-      this.inputStyles
+      {
+        font: '18px Lasco',
+        fill: '#212121',
+        width: 305,
+        height: 20,
+        padding: 10,
+        borderColor: '#FFFFFF',
+        backgroundColor: '#EEEEEE',
+        borderRadius: 6,
+        fillAlpha: '#212121',
+        placeHolder: 'Мой тост Пикому',
+      }
     );
 
     this.inputName = this.game.add.inputField(
       60, 
       this.game.height - 775, 
-      this.inputStyles
+      {
+        font: '18px Lasco',
+        fill: '#212121',
+        width: 305,
+        height: 20,
+        padding: 10,
+        borderColor: '#FFFFFF',
+        backgroundColor: '#EEEEEE',
+        borderRadius: 6,
+        fillAlpha: '#212121',
+        placeHolder: 'Ник, псевдоним, погоняло',
+      }
     );
+
+    this.inputName.startFocus();
 
     this.musicEnterence = this.sound.add('1_bg_constructor', 0.1);
     this.sound.setDecodedCallback([ this.musicEnterence ], this.start, this);
@@ -257,12 +269,12 @@ export default class Enterence extends Phaser.State {
   headSpeak(i, sprite) {
     (function mouthMove (i) {
       setTimeout(() => {   
-         if (i%2 === 0) {
+        if (i%2 === 0) {
           sprite.loadTexture('constructor-yellow-head2');
-         } else {
+        } else {
           sprite.loadTexture('constructor-yellow-head');
-         }
-         if (--i) mouthMove(i);
+        }
+        if (--i) mouthMove(i);
       }, 150)
    })(i);  
   }
