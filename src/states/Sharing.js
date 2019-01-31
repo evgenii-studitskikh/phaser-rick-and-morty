@@ -53,7 +53,7 @@ export default class Sharing extends Phaser.State {
         x: 200,
         y: 0
       },
-      sound: '5_ball_click'
+      sound: '12_girl_click'
     });
 
     this.bgGroundSharing = this.add.tileSprite(
@@ -247,19 +247,19 @@ export default class Sharing extends Phaser.State {
   }
 
   handlerClickVk() {
-    window.open("https://vk.com/share.php?url=http://19.chunks.ru/", "_blank");
+    window.open("https://vk.com/share.php?url=https://picom.ru/19years/", "_blank");
   }
 
   handlerClickFacebook(){
-    window.open("https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F19.chunks.ru%2F&amp;src=sdkpreparse", "_blank");
+    window.open("https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fpicom.ru%2F19years%2F&amp;src=sdkpreparse", "_blank");
   }
 
   handlerClickTwitter() {
-    window.open("http://twitter.com/share?&url=http://19.chunks.ru/", "_blank");
+    window.open("http://twitter.com/share?&url=https://picom.ru/19years/", "_blank");
   }
 
   handlerClickOk() {
-    window.open("https://connect.ok.ru/offer?url=http://19.chunks.ru/", "_blank");
+    window.open("https://connect.ok.ru/offer?url=https://picom.ru/19years/", "_blank");
   }
 
   update() {

@@ -132,7 +132,7 @@ export default class Party extends Phaser.State {
     });
 
     this.photoProjectorHoverImg = this.add.sprite(1960, 566,'monitor-hover');
-    this.photoProjectorHoverImg.alpha = 1;
+    this.photoProjectorHoverImg.alpha = 0;
     // this.intervalHover = this.addInterval(this.photoProjectorHoverImg, 2000, 10000);
 
 
@@ -251,6 +251,20 @@ export default class Party extends Phaser.State {
       this.animateAudioMonitors();
     }
 
+    //дверь перехода в конструктор:
+    this.doorBackConstructor = this.add.sprite(129, 701, 'door-party', 0);
+    this.doorBackConstructor.alpha = 1;
+    this.doorBackConstructor.inputEnabled = true;
+    this.doorBackConstructor.input.useHandCursor = true;
+    this.doorBackConstructor.input.pixelPerfectClick = true;
+    this.doorBackInimationMouseOver = this.doorBackConstructor.animations.add('animateDoorOver', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14], 12, false);
+    this.doorBackInimationMouseOut = this.doorBackConstructor.animations.add('animateDoorOut', [14,13,12,11,10,9,8,7,6,5,4,3,2,1,0], 16, false);
+    this.doorBackConstructor.events.onInputOver.add(this.handlerOverBackConstructor, this);
+    this.doorBackConstructor.events.onInputOut.add(this.handlerOutDoorBackConstructor, this);
+    this.doorBackConstructor.events.onInputDown.add(this.handlerClickDoorBackConstructor, this);
+    this.doorBackConstructorSoundOver =  this.add.audio('door_creak_open', 0.3);
+    this.doorBackConstructorSoundOut =  this.add.audio('door_creak_close', 0.2);
+
     //добавляем справку:
     this.help = this.add.sprite(0,0, 'party-help-bg');
     this.help.inputEnabled = true;
@@ -271,6 +285,23 @@ export default class Party extends Phaser.State {
     //закрытие справки по клику на ESC:
     this.escapeKey = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
     this.escapeKey.onDown.add(this.handlerClickCloseHelp, this);
+
+  }
+
+  handlerOverBackConstructor() {
+    this.doorBackInimationMouseOver.play();
+    this.doorBackConstructorSoundOver.play();
+  }
+
+  handlerOutDoorBackConstructor() {
+    this.doorBackInimationMouseOut.play();
+    this.doorBackConstructorSoundOut.play();
+  }
+
+  handlerClickDoorBackConstructor() {
+    this.commentsNode.style.display = 'none';
+    this.stopMusic();
+    this.game.state.start('Enterence');
   }
 
   handlerClickCloseHelp() {
@@ -288,7 +319,6 @@ export default class Party extends Phaser.State {
     this.commentsNode.style.display = 'none';
     this.stopMusic();
     this.game.state.start('Sharing');
-    console.log('---', 'portal');
   }
 
   handlerOverButtonPortalParty() {

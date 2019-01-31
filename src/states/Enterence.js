@@ -73,7 +73,7 @@ export default class Enterence extends Phaser.State {
         x: 400,
         y: 400
       },
-      sound: '5_ball_click'
+      sound: '10_monster_click'
     });
 
     this.planet = this.game.add.sprite(
@@ -94,7 +94,7 @@ export default class Enterence extends Phaser.State {
     this.yellowHead.inputEnabled = true;
     this.yellowHead.input.pixelPerfectClick = true;
     this.yellowHead.input.useHandCursor = true;
-    this.yellowHeadSound = this.add.audio('7_head')
+    this.yellowHeadSound = this.add.audio('7_head');
     this.yellowHead.events.onInputDown.add(()=>{
       this.yellowHeadSound.play();
       this.headSpeak(20, this.yellowHead);
@@ -145,7 +145,7 @@ export default class Enterence extends Phaser.State {
       this.inputStyles
     );
 
-    this.musicEnterence = this.sound.add('1_bg_constructor');
+    this.musicEnterence = this.sound.add('1_bg_constructor', 0.2);
     this.sound.setDecodedCallback([ this.musicEnterence ], this.start, this);
   }
 

@@ -80,6 +80,7 @@ export default class Preload extends Phaser.State {
     this.game.load.image('close-btn', 'assets/close_btn.svg');
     this.game.load.image('close-btn', 'assets/close_btn.svg');
     this.game.load.image('monitor-hover', 'assets/monitor_hover.svg');
+    this.game.load.spritesheet('door-party', 'assets/door-party.png', 101,327, 25);
 
     this.game.load.image('constructor-arrow-left', 'assets/constructor_arrow_left.svg');
     this.game.load.image('constructor-arrow-right', 'assets/constructor_arrow_right.svg');
@@ -177,6 +178,8 @@ export default class Preload extends Phaser.State {
     this.load.audio('rickportal-sound',['sounds/rickportal.ogg', 'sounds/rickportal.mp3']);
     this.load.audio('rickportal-sound-reverse',['sounds/rickportal-reverse.ogg', 'sounds/rickportal-reverse.mp3']);
     this.load.audio('13track',['music/13.Alien_Jazz_Rap.ogg', 'music/13.Alien_Jazz_Rap.mp3']);
+    this.load.audio('door_creak_close',['sounds/3_party/door_creak_close.ogg', 'sounds/3_party/door_creak_close.mp3']);
+    this.load.audio('door_creak_open',['sounds/3_party/door_creak_open.ogg', 'sounds/3_party/door_creak_open.mp3']);
 
     //audio
     this.load.audio('click', [
@@ -236,7 +239,7 @@ export default class Preload extends Phaser.State {
   }
 
   create() {
-    this.game.state.start('Cutscene');
+    this.game.state.start('Party');
     
   }
 }
