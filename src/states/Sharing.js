@@ -222,7 +222,7 @@ export default class Sharing extends Phaser.State {
     this.buttonTwitter.anchor.set(0.5);
     this.buttonTwitter.events.onInputOver.add(()=>{this.buttonSharingSound.play()});
 
-    this.musicBgSharing = this.sound.add('1_final_bg', 0.4);
+    this.musicBgSharing = this.sound.add('1_final_bg', 0.3);
     this.sound.setDecodedCallback([ this.musicBgSharing ], this.startMusicSharing, this);
   };
 

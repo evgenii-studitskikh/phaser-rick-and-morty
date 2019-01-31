@@ -58,18 +58,18 @@ export default class Party extends Phaser.State {
     this.cursors = this.input.keyboard.createCursorKeys();
 
     //подключаем фоновую музыку:
-    this.music1 = this.add.audio('1track', 0.4);
-    this.music2 = this.add.audio('2track', 0.4);
-    this.music3 = this.add.audio('3track', 0.4);
-    this.music4 = this.add.audio('4track', 0.4);
-    this.music5 = this.add.audio('6track', 0.4);
-    this.music6 = this.add.audio('7track', 0.4);
-    this.music7 = this.add.audio('8track', 0.4);
-    this.music8 = this.add.audio('9track', 0.4);
-    this.music9 = this.add.audio('10track', 0.4);
-    this.music10 = this.add.audio('11track', 0.4);
-    this.music11 = this.add.audio('12track', 0.4);
-    this.music12 = this.add.audio('13track', 0.4);
+    this.music1 = this.add.audio('1track', 0.2);
+    this.music2 = this.add.audio('2track', 0.2);
+    this.music3 = this.add.audio('3track', 0.2);
+    this.music4 = this.add.audio('4track', 0.2);
+    this.music5 = this.add.audio('6track', 0.2);
+    this.music6 = this.add.audio('7track', 0.2);
+    this.music7 = this.add.audio('8track', 0.2);
+    this.music8 = this.add.audio('9track', 0.2);
+    this.music9 = this.add.audio('10track', 0.2);
+    this.music10 = this.add.audio('11track', 0.2);
+    this.music11 = this.add.audio('12track', 0.2);
+    this.music12 = this.add.audio('13track', 0.2);
     this.musicArr = [this.music1, this.music2, this.music3, this.music4, this.music5, this.music6, this.music7, this.music8, this.music9, this.music10, this.music11, this.music12];
     this.isRandom = false;
     if(!this.isRandom) {
@@ -79,7 +79,7 @@ export default class Party extends Phaser.State {
 
     //запуск музыки:
     // this.onRenderCallback.add( ()=>  this.sound.setDecodedCallback( this.musicArr, this.startMusic, this), this);
-    // this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
+    this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
 
     //Добавляем аудио мониторы:
     this.audioMonitorLeft = this.add.sprite(1790, 590, 'audio-monitor-sprite', 0);
@@ -257,13 +257,13 @@ export default class Party extends Phaser.State {
     this.doorBackConstructor.inputEnabled = true;
     this.doorBackConstructor.input.useHandCursor = true;
     this.doorBackConstructor.input.pixelPerfectClick = true;
-    this.doorBackInimationMouseOver = this.doorBackConstructor.animations.add('animateDoorOver', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14], 12, false);
-    this.doorBackInimationMouseOut = this.doorBackConstructor.animations.add('animateDoorOut', [14,13,12,11,10,9,8,7,6,5,4,3,2,1,0], 16, false);
+    this.doorBackInimationMouseOver = this.doorBackConstructor.animations.add('animateDoorOver', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14], 10, false);
+    this.doorBackInimationMouseOut = this.doorBackConstructor.animations.add('animateDoorOut', [14,13,12,11,10,9,8,7,6,5,4,3,2,1,0], 12, false);
     this.doorBackConstructor.events.onInputOver.add(this.handlerOverBackConstructor, this);
     this.doorBackConstructor.events.onInputOut.add(this.handlerOutDoorBackConstructor, this);
     this.doorBackConstructor.events.onInputDown.add(this.handlerClickDoorBackConstructor, this);
-    this.doorBackConstructorSoundOver =  this.add.audio('door_creak_open', 0.3);
-    this.doorBackConstructorSoundOut =  this.add.audio('door_creak_close', 0.2);
+    this.doorBackConstructorSoundOver =  this.add.audio('door_creak_open', 0.7);
+    this.doorBackConstructorSoundOut =  this.add.audio('door_creak_close', 0.7);
 
     //добавляем справку:
     this.help = this.add.sprite(0,0, 'party-help-bg');
