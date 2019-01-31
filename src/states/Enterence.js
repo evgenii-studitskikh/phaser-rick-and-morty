@@ -152,7 +152,7 @@ export default class Enterence extends Phaser.State {
       this.inputStyles
     );
 
-    this.musicEnterence = this.sound.add('1_bg_constructor', 0.2);
+    this.musicEnterence = this.sound.add('1_bg_constructor', 0.1);
     this.sound.setDecodedCallback([ this.musicEnterence ], this.start, this);
   }
 
@@ -203,8 +203,8 @@ export default class Enterence extends Phaser.State {
     this.goToConstructor = this.game.add.button(
       1150, 
       this.game.height - 220,
-      'constructor-to-constructor',
-      () => this.onToConstructorClick()
+      'constructor-to-constructor-sprite',
+      () => this.onToConstructorClick(),this, 1, 0, 2
     );
     this.goToConstructor.anchor.setTo(0.5);
     this.goToConstructorSound = this.add.audio('6_btn_red_arrow', 2);

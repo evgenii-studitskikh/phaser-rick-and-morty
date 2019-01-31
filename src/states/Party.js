@@ -81,7 +81,7 @@ export default class Party extends Phaser.State {
 
     //запуск музыки:
     // this.onRenderCallback.add( ()=>  this.sound.setDecodedCallback( this.musicArr, this.startMusic, this), this);
-    this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
+    // this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
 
     //Добавляем аудио мониторы:
     this.audioMonitorLeft = this.add.sprite(1790, 590, 'audio-monitor-sprite', 0);

@@ -163,14 +163,21 @@ export default class Cutscene extends Phaser.State {
       this.world.centerX + 30, 
 			this.world.centerY - 20,
       'cutscene-arrow-next',
+<<<<<<< HEAD
 			this.handleSkipClick,
 			this,
 			1,
 			0,
 			2
+=======
+      () => this.handleSkipClick()
+
+      // 'cutscene-arrow-next-sprite',
+      // () => this.handleSkipClick(),this,1,0,2
+>>>>>>> cdf3fb8d1270411b7403e4f069783315a023e9fe
     );
 		this.buttonSkip.anchor.setTo(0.5);
-		// this.buttonSkip.scale.setTo(0.5);
+		this.buttonSkip.scale.setTo(0.5);
 		this.buttonSkipSound = this.add.audio('2_btn_next');
 
 		//back button
@@ -178,14 +185,21 @@ export default class Cutscene extends Phaser.State {
       this.world.centerX - 70, 
 			this.world.centerY - 20,
       'cutscene-arrow-prev',
+<<<<<<< HEAD
 			this.handleBackClick,
 			this,
 			1,
 			0,
 			2
+=======
+      () => this.handleBackClick()
+
+    // 'cutscene-arrow-prev-sprite',
+    //   () => this.handleBackClick(),this,1,0,2
+>>>>>>> cdf3fb8d1270411b7403e4f069783315a023e9fe
     );
 		this.buttonBack.anchor.setTo(0.5);
-		// this.buttonBack.scale.setTo(0.5);
+		this.buttonBack.scale.setTo(0.5);
     this.buttonBackSound = this.add.audio('3_btn_back');
     this.buttonBack.visible = false;
 	}
