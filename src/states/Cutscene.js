@@ -39,6 +39,12 @@ export default class Cutscene extends Phaser.State {
 	}
 
   create() {
+
+		this.game.scale.setGameSize(
+      window.innerWidth, 
+      window.innerHeight
+		);
+		
 		//background
     this.space = this.game.add.tileSprite( 
 			0,
@@ -114,14 +120,14 @@ export default class Cutscene extends Phaser.State {
 
 		tweenCharScale.onComplete.add(this.showDialog, this);
 		
-		this.music = this.sound.add('1_bg_space2');
+		this.cutsceneMusic = this.sound.add('1_bg_space');
 
-		this.sound.setDecodedCallback([ this.music ], this.start, this);
+		this.sound.setDecodedCallback([ this.cutsceneMusic ], this.start, this);
 	}
 	
 	start() {
-		this.music.play();
-		this.music.loopFull();
+		this.cutsceneMusic.play();
+		this.cutsceneMusic.loopFull();
 	}
 
 	showDialog() {
@@ -267,8 +273,8 @@ export default class Cutscene extends Phaser.State {
 		this.hideSprite(this.enterPartyButtonText, 100);
 
 		const tweenPlanetScale = this.add.tween(this.planet.scale).to( 
-			{ x: 10, y: 10 }, 
-			3000, 
+			{ x: 1.2, y: 1.2 }, 
+			5000, 
 			Phaser.Easing.easeInOut,
 			true
 		);

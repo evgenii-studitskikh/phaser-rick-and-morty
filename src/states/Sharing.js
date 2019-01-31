@@ -5,9 +5,12 @@ export default class Sharing extends Phaser.State {
   create() {
 
     this.game.scale.setGameSize(
-      window.innerWidth, 
+      window.innerWidth,
       window.innerHeight
     );
+
+    //устанавливаем размеры игрового мира:
+    this.world.setBounds(0, 0, window.innerWidth, window.innerHeight);
     
     //background
     this.space = this.add.sprite(
@@ -24,7 +27,8 @@ export default class Sharing extends Phaser.State {
       velocity: {
         x: -800,
         y: 0
-      }
+      },
+      sound: '4_lemon_click'
     });
 
     this.blueBall = new Meteor(this.game, {
@@ -35,16 +39,10 @@ export default class Sharing extends Phaser.State {
       velocity: {
         x: -800,
         y: 100
-      }
+      },
+      sound: '5_ball_click'
     });
 
-    this.bgGroundSharing = this.add.tileSprite(
-      0,
-      this.world.height-201,
-      this.game.width,
-      201,
-      'bg-sharing-ground2'
-    );
 
     this.bottle = new Meteor(this.game, {
       x: 200,
@@ -54,8 +52,17 @@ export default class Sharing extends Phaser.State {
       velocity: {
         x: 200,
         y: 0
-      }
+      },
+      sound: '5_ball_click'
     });
+
+    this.bgGroundSharing = this.add.tileSprite(
+      0,
+      this.world.height-201,
+      this.game.width,
+      201,
+      'bg-sharing-ground2'
+    );
 
     this.office = this.add.sprite(
       this.world.centerX,
@@ -87,7 +94,6 @@ export default class Sharing extends Phaser.State {
       'logo-picom'
     );
     this.logoPicom.anchor.setTo(0.5);
-    this.getSizePosition();
 
     const getVerticalPositionThanks = () => {
       if(window.matchMedia("(max-height: " + mobileMaxHeight + "px)").matches) {
@@ -217,15 +223,28 @@ export default class Sharing extends Phaser.State {
     //   this
     // );
     // this.buttonOk.anchor.set(0.5);
-
+    this.musicBgSharing = this.sound.add('1_final_bg');
+    this.sound.setDecodedCallback([ this.musicBgSharing ], this.startMusicSharing, this);
   };
+
+  startMusicSharing() {
+    this.musicBgSharing.play();
+    this.musicBgSharing.loopFull();
+  }
+
+  stopMusicSharing() {
+    this.musicBgSharing.fadeOut(200);
+    this.musicBgSharing.stop();
+  }
 
   handlerClickBackParty() {
     this.game.state.start('Party');
+    this.stopMusicSharing();
   }
 
   handlerClickCreatePerson() {
     this.game.state.start('Enterence');
+    this.stopMusicSharing();
   }
 
   handlerClickVk() {

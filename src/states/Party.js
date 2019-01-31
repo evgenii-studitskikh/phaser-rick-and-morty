@@ -10,13 +10,34 @@ export default class Party extends Phaser.State {
       {key: 'planet-photo3', text: ''},
       {key: 'planet-photo4', text: ''},
       {key: 'planet-photo5', text: ''},
-      {key: 'planet-photo6', text: ''}
+      {key: 'planet-photo6', text: ''},
+      {key: 'planet-photo7', text: ''},
+      {key: 'planet-photo8', text: ''},
+      {key: 'planet-photo9', text: ''},
+      {key: 'planet-photo10', text: ''},
+      {key: 'planet-photo11', text: ''},
+      {key: 'planet-photo12', text: ''},
     ];
 
     this.commentsNode = document.createElement('section');
+
+    this.lockCamera = false;
   }
 
   create() {
+
+    this.game.scale.setGameSize(
+      window.innerWidth, 
+      window.innerHeight
+		);
+
+    if (window.Event) {
+      document.captureEvents(Event.MOUSEMOVE);
+    }
+
+    document.onmousemove = (e) => {
+      this.lockCamera = e.identifier !== 0;
+    };
 
     const bgImgWidth = 2649;
     const bgImgHeight = 1632;
@@ -41,25 +62,28 @@ export default class Party extends Phaser.State {
     this.music2 = this.add.audio('2track');
     this.music3 = this.add.audio('3track');
     this.music4 = this.add.audio('4track');
-    this.music5 = this.add.audio('5track');
-    this.music6 = this.add.audio('6track');
-    this.music7 = this.add.audio('7track');
-    this.music8 = this.add.audio('8track');
-    this.music9 = this.add.audio('9track');
-    this.music10 = this.add.audio('10track');
-    this.music11 = this.add.audio('11track');
-    this.music12 = this.add.audio('12track');
-    this.music13 = this.add.audio('13track');
-    this.musicArr = [this.music1, this.music2, this.music3, this.music4, this.music5, this.music6, this.music7, this.music8, this.music9, this.music10, this.music11, this.music12, this.music13];
-    this.indexMusic = this.randomInteger(0, this.musicArr.length);
+    this.music5 = this.add.audio('6track');
+    this.music6 = this.add.audio('7track');
+    this.music7 = this.add.audio('8track');
+    this.music8 = this.add.audio('9track');
+    this.music9 = this.add.audio('10track');
+    this.music10 = this.add.audio('11track');
+    this.music11 = this.add.audio('12track');
+    this.music12 = this.add.audio('13track');
+    this.musicArr = [this.music1, this.music2, this.music3, this.music4, this.music5, this.music6, this.music7, this.music8, this.music9, this.music10, this.music11, this.music12];
+    this.isRandom = false;
+    if(!this.isRandom) {
+      this.indexMusic = this.randomInteger(0, this.musicArr.length);
+      this.isRandom = true;
+    }
+
 
     //запуск музыки:
-
     // this.onRenderCallback.add( ()=>  this.sound.setDecodedCallback( this.musicArr, this.startMusic, this), this);
     this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
 
     //Добавляем аудио мониторы:
-    this.audioMonitorLeft = this.add.sprite(1800, 600, 'audio-monitor-sprite', 0);
+    this.audioMonitorLeft = this.add.sprite(1790, 590, 'audio-monitor-sprite', 0);
     this.audioMonitorRight = this.add.sprite(2195, 795, 'audio-monitor-sprite', 0);
     //Включаем обработку событий
     this.audioMonitorLeft.inputEnabled = true;
@@ -142,7 +166,10 @@ export default class Party extends Phaser.State {
       let commentsList = '';
 
       JSON.parse(request.response).map((item, index) => {
-        new Character(this.game, item.body);
+        new Character(this.game, item.body, this.clubBg);
+      });
+
+      JSON.parse(request.response).reverse().map((item, index) => {
 
         let figure = {};
 
@@ -196,8 +223,10 @@ export default class Party extends Phaser.State {
       `;
 
       this.commentsNode.innerHTML = commentsInner;
-      this.commentsNode.style="display:block"
+      this.commentsNode.style="display:block";
       document.body.appendChild(this.commentsNode);
+      // this.musicArr[this.indexMusic].onPlay.add(this.animateAudioMonitors, this);
+      this.animateAudioMonitors();
     }
 
     //добавляем справку:
@@ -235,7 +264,9 @@ export default class Party extends Phaser.State {
 
   handlerClickButtonPortalParty() {
     this.commentsNode.style.display = 'none';
+    this.stopMusic();
     this.game.state.start('Sharing');
+    console.log('---', 'portal');
   }
 
   handlerOverButtonPortalParty() {
@@ -262,8 +293,7 @@ export default class Party extends Phaser.State {
   }
 
   handlerAudioMonitor() {
-    this.musicArr[this.indexMusic].onStop.add(() => {
-    });
+    this.musicArr[this.indexMusic].onStop.add(() => {});
     this.musicArr[this.indexMusic].stop();
     this.indexMusic = this.indexMusic === this.musicArr.length - 1 ? 0 : ++this.indexMusic;
     this.startMusic();
@@ -281,6 +311,11 @@ export default class Party extends Phaser.State {
     musicArr[indexMusic].onStop.add(() => this.changeMusic(indexMusic, musicArr));
   }
 
+  stopMusic(){
+    this.musicArr[this.indexMusic].onStop.add(() => {});
+    this.musicArr[this.indexMusic].pause();
+  }
+
   animateAudioMonitors() {
     this.audioMonitorLeft.play('animate');
     this.audioMonitorRight.play('animate');
@@ -296,22 +331,38 @@ export default class Party extends Phaser.State {
   }
 
   update() {
-
-    if (this.input.x > 0) {
-      if (this.input.x < 100) {
-        this.camera.x -= 4;
+    
+    if (!this.lockCamera) {
+      if (this.input.x > 0) {
+        if (this.input.x < 100) {
+          this.camera.x -= 4;
+        }
+        if (this.input.x > window.innerWidth - 500) {
+          this.camera.x += 4;
+        }
+  
+        if (this.input.x < 50) {
+          this.camera.x -= 8;
+        }
+        if (this.input.x > window.innerWidth - 550) {
+          this.camera.x += 8;
+        }
       }
-      if (this.input.x > window.innerWidth - 500) {
-        this.camera.x += 4;
-      }
-    }
-
-    if (this.input.y > 0) {
-      if (this.input.y < 100) {
-        this.camera.y -= 4;
-      }
-      if (this.input.y > window.innerHeight - 100) {
-        this.camera.y += 4;
+  
+      if (this.input.y > 0) {
+        if (this.input.y < 100) {
+          this.camera.y -= 4;
+        }
+        if (this.input.y > window.innerHeight - 100) {
+          this.camera.y += 4;
+        }
+  
+        if (this.input.y < 50) {
+          this.camera.y -= 8;
+        }
+        if (this.input.y > window.innerHeight - 50) {
+          this.camera.y += 8;
+        }
       }
     }
   }
