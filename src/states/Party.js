@@ -80,7 +80,7 @@ export default class Party extends Phaser.State {
 
     //запуск музыки:
     // this.onRenderCallback.add( ()=>  this.sound.setDecodedCallback( this.musicArr, this.startMusic, this), this);
-    this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
+    // this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
 
     //Добавляем аудио мониторы:
     this.audioMonitorLeft = this.add.sprite(1790, 590, 'audio-monitor-sprite', 0);
@@ -100,9 +100,27 @@ export default class Party extends Phaser.State {
       this.handlerAudioMonitor();
     }, this);
 
-    //создание анимации акустики
+    this.audioMonitorLeft.events.onInputOver.add(()=>{
+      this.audioMonitorLeft.play('animateHover');
+    }, this);
+    this.audioMonitorRight.events.onInputOver.add(()=>{
+      this.audioMonitorRight.play('animateHover');
+    }, this);
+
+    this.audioMonitorLeft.events.onInputOut.add(()=>{
+      this.audioMonitorLeft.play('animate');
+    }, this);
+    this.audioMonitorRight.events.onInputOut.add(()=>{
+      this.audioMonitorRight.play('animate');
+    }, this);
+
+    //анимации акустики
     this.audioMonitorLeft.animations.add('animate', [0, 1, 2, 3, 4, 2, 4, 3, 2, 1], 3, true);
     this.audioMonitorRight.animations.add('animate', [1, 2, 3, 4, 0, 4, 2, 4, 3, 2], 3, true);
+
+    //ховер акустики
+    this.audioMonitorLeft.animations.add('animateHover', [5], 3, true);
+    this.audioMonitorRight.animations.add('animateHover', [5], 3, true);
 
     //Проектор:
     let photo;
@@ -113,6 +131,11 @@ export default class Party extends Phaser.State {
       photo.alpha = 0;
       return photo;
     });
+
+    this.photoProjectorHoverImg = this.add.sprite(1960, 566,'monitor-hover');
+    this.photoProjectorHoverImg.alpha = 1;
+    // this.intervalHover = this.addInterval(this.photoProjectorHoverImg, 2000, 10000);
+
 
     this.currentPhoto = this.photoProjector.getRandom();
     this.currentPhoto.alpha = 0;
@@ -380,6 +403,17 @@ export default class Party extends Phaser.State {
     let rand = min + Math.random() * (max + 1 - min);
     rand = Math.floor(rand);
     return rand;
+  }
+
+  addInterval(element, delay, duration) {
+    let interval = setInterval(element=>{
+      element.alpha = 1;
+      setInterval(element => {
+        element.alpha = 0;
+      }, delay)
+    }, duration);
+
+    return interval;
   }
 
 }
