@@ -51,6 +51,42 @@ export const bodyparts = {
     x: -2,
     y: -10
   },
+  head14: {
+    x: -2,
+    y: 1
+  },
+  head15: {
+    x: -5,
+    y: 1
+  },
+  head16: {
+    x: -12,
+    y: 15
+  },
+  head17: {
+    x: 18,
+    y: -10
+  },
+  head18: {
+    x: 5,
+    y: -10
+  },
+  head19: {
+    x: -5,
+    y: 1
+  },
+  head20: {
+    x: 4,
+    y: -7
+  },
+  head21: {
+    x: -2,
+    y: 10
+  },
+  head22: {
+    x: 3,
+    y: -6
+  },
   body1: {
     x: -1,
     y: 1,
@@ -90,6 +126,10 @@ export const bodyparts = {
   body10: {
     x: 11,
     y: -8,
+  },
+  body11: {
+    x: 11,
+    y: 50
   },
   legs1: {
     x: -2,
