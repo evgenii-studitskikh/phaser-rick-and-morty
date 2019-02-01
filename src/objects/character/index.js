@@ -128,9 +128,9 @@ export default class Character {
         this.dialogText.visible = false;
       }
 
-       // this.charGroup.forEach( 
-        //   (item) => this.makeDraggable(item)
-        // )
+       this.charGroup.forEach( 
+          (item) => this.makeDraggable(item)
+        )
     }
   }
   
@@ -179,8 +179,6 @@ export default class Character {
 
       obj.x = obj.origin.x;
       obj.y = obj.origin.y;
-
-      console.log(pointer.x + this.game.camera.x, pointer.y + this.game.camera.y);
     });
   }
 
@@ -188,9 +186,7 @@ export default class Character {
     if(id === this.id) {
       this.dialog.visible = true;
       this.dialogText.visible = true;
-      this.game.world.bringToTop(this.charGroup)
-      // this.game.camera.x = this.dialog.x;
-      // this.game.camera.y = this.dialog.y;
+      this.game.world.bringToTop(this.charGroup);
     } else {
       this.dialog.visible = false;
       this.dialogText.visible = false;

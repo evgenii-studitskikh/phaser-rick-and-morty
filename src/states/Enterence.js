@@ -17,8 +17,8 @@ export default class Enterence extends Phaser.State {
 
   create() {
     this.game.scale.setGameSize(
-      window.innerWidth * 1.2, 
-      window.innerHeight * 1.2
+      window.innerWidth * 1.5, 
+      window.innerHeight * 1.5
     );
 
     this.space = this.game.add.tileSprite(
@@ -82,7 +82,7 @@ export default class Enterence extends Phaser.State {
 
     this.yellowHead = this.game.add.sprite(
       550,
-      this.game.height - 600,
+      400,
       'constructor-yellow-head'
     );
     this.yellowHead.anchor.setTo(0.5);

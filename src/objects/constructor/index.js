@@ -6,6 +6,7 @@ export default class Constructor {
   constructor({game, onSelect, wishText}){
 
     this.frame = new Frame(game);
+    this.game = game;
 
     this.spritesGroup = game.add.group();
 
@@ -55,16 +56,16 @@ export default class Constructor {
     this.spritesGroup.add(this.head.sprite);
 
     this.dialog = game.add.sprite(
-      850, 
-      game.height - 400,
+      960, 
+      game.height - 600,
       'dialog'
     );
     this.dialog.anchor.setTo(0.5);
     this.dialog.scale.setTo(0.7);
 
     this.dialogText = game.add.text(
-      850, 
-      game.height - 420,
+      960, 
+      game.height - 620,
       '',
       {
         font: '14px Lasco',
@@ -105,21 +106,20 @@ export default class Constructor {
 
   preview(wishText) {
 
-    this.spritesGroup.scale.setTo(0.6);
     this.spritesGroup.x = 600;
 
     if (this.legs.currentSprite === 7) {
-      this.spritesGroup.y = 550;
-      this.dialogText.y = 600;
-      this.dialog.y = 620;
+      this.spritesGroup.y = 320;
+      this.dialogText.y = this.game.height - 420;
+      this.dialog.y = this.game.height - 400;
     } else if (this.legs.currentSprite === 2) {
-      this.spritesGroup.y = 500;
-      this.dialogText.y = 550;
-      this.dialog.y = 570;
+      this.spritesGroup.y = 200;
+      this.dialogText.y = this.game.height - 520;
+      this.dialog.y = this.game.height - 500;
     } else {
-      this.spritesGroup.y = 450;
-      this.dialogText.y = 500;
-      this.dialog.y = 520;
+      this.spritesGroup.y = 120;
+      this.dialogText.y = this.game.height - 600;
+      this.dialog.y = this.game.height - 580;
     }
 
     this.dialogText.text = wishText.length > 50 

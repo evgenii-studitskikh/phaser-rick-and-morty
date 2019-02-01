@@ -150,8 +150,8 @@ export default class Cutscene extends Phaser.State {
 			this.world.centerY - 110,
       this.charText[this.currentDialog], 
       { 
-        font: 'Lasco', 
-        fontSize: 14, 
+        font: 'Lasco',
+        fontSize: 14,
         fill: '#000000',
         align: 'center'
       }
