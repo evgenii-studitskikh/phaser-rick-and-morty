@@ -34,4 +34,3 @@ if (window.innerWidth <= 768 || (window.matchMedia("(max-width: 768px)").matches
 } else {
   new Game();
 }
-
