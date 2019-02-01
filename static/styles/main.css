@@ -36,25 +36,33 @@ body {
   height: inherit;
   width: inherit;
   margin: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
   align-items: flex-start;
   overflow: hidden;
-  -webkit-background-size: cover;
   background-size: cover;
   font-family: 'Comic Relief', sans-serif;
   font-style: normal;
   font-weight: normal;
   line-height: 30px;
   font-size: 18px;
-  text-align: center;
   color: #000;
 }
-
-body * {
+.logo,
+.title,
+.p,
+.button-play-game {
   display: none;
 }
-
 .comments {
   display: block;
   position: absolute;
@@ -62,6 +70,8 @@ body * {
   top: 0;
   bottom: 0;
   border-top: 15px solid #E0E0E0;
+  -webkit-border-image: url('../assets/comments_border_top.svg') 15 round round;
+  -o-border-image: url('../assets/comments_border_top.svg') 15 round round;
   border-image: url('../assets/comments_border_top.svg') 15 round round;
   width: 400px;
   background: #fff;
@@ -75,7 +85,6 @@ body * {
   top: -5px;
   bottom: -5px;
   background: url('../assets/comments_border_left.svg') center left repeat-y ;
-  -webkit-background-size: 15px auto;
   background-size: 15px auto;
 }
 
@@ -87,7 +96,6 @@ body * {
   top: -5px;
   bottom: -5px;
   background: url('../assets/comments_border_right.svg') center right repeat-y ;
-  -webkit-background-size: 15px auto;
   background-size: 15px auto;
 }
 
@@ -97,8 +105,17 @@ body * {
   line-height: 26px;
   font-size: 24px;
   color: #212121;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
   align-items: center;
   height: 80px;
   border-bottom: 10px solid transparent;
@@ -112,7 +129,6 @@ body * {
   right: 0;
   height: 15px;
   background: url('../assets/comments_border_title.svg') center repeat-x ;
-  -webkit-background-size: auto 15px;
   background-size: auto 15px;
   z-index: 100;
 }
@@ -126,7 +142,6 @@ body * {
   right: 0;
   height: 10px;
   background: url('../assets/comments_border_title.svg') center repeat-x ;
-  -webkit-background-size: auto 15px;
   background-size: auto 15px;
 }
 
@@ -163,6 +178,7 @@ body * {
 .comments__item {
   padding: 17px 16px 10px;
   border-top: 1px solid #E0E0E0;
+  -webkit-transition: background-color 250ms ease-out, border 250ms ease-out;
   transition: background-color 250ms ease-out, border 250ms ease-out;
   cursor: pointer;
 }
@@ -189,9 +205,20 @@ body * {
 
 .comments__header {
   margin-bottom: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
   flex-flow: row nowrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
   align-items: center;
   font-family: 'Lasco', sans-serif;
   line-height: 20px;
@@ -220,8 +247,17 @@ body * {
   width: 310px;
   left: 40px;
   bottom: 22px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -292,7 +328,6 @@ body * {
   margin: 0;
   font-size: 0;
   background: url(../assets/close_btn.svg) no-repeat center;
-  -webkit-background-size: contain;
   background-size: contain;
   cursor:pointer;
 }
@@ -310,18 +345,19 @@ body * {
 
   body {
     background: url(../assets/cap_tablet768x1024.jpg) no-repeat center#000;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
     align-items: center;
     line-height: 30px;
     font-size: 18px;
     color: #fff;
-    -webkit-background-size: cover;
     background-size: cover;
   }
   .logo {
     max-width: 537px;
     width: 100%;
-    margin: 0px auto 35px;
-    /*margin: 210px auto 35px;*/
+    margin: 0 auto 35px;
     display: block;
   }
 
@@ -334,6 +370,7 @@ body * {
     max-width: 598px;
     width: 100%;
     margin: 0 auto;
+    text-align: center;
   }
 
   .content p + p {
@@ -343,9 +380,18 @@ body * {
 
   .button-play-game {
     height: 64px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     font-weight: bold;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
     align-items: center;
     font-family: 'Lasco', sans-serif;;
     font-style: normal;
@@ -361,26 +407,27 @@ body * {
     width: 100%;
     margin: 35px auto 0;
     background: url(../assets/btn-play.png) no-repeat center;
-    -webkit-background-size: contain;
     background-size: contain;
   }
 
-  .button-play-game:hover {
-    background: url(../assets/btn-play-hover.png) no-repeat center;
-  }
+  /*.button-play-game:hover {*/
+  /*background: url(../assets/btn-play-hover.png) no-repeat center;*/
+  /*}*/
 
-  .button-play-game:active {
-    background: url(../assets/btn-play-active.png) no-repeat center;
-  }
+  /*.button-play-game:active {*/
+  /*background: url(../assets/btn-play-active.png) no-repeat center;*/
+  /*}*/
 }
 
 @media(max-width: 440px) {
   body {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
     align-items: center;
     background: url(../assets/cap_mobile320x568.jpg) no-repeat center#000;
     line-height: 20px;
     font-size: 12px;
-    -webkit-background-size: cover;
     background-size: cover;
   }
 
@@ -400,13 +447,11 @@ body * {
     line-height: 16px;
     font-size: 11px;
     text-align: center;
-    -webkit-background-size: contain;
     background-size: contain;
     background: url(../assets/btn-play.png) no-repeat center;
 
   }
 }
-
 
 
 

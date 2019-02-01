@@ -128,8 +128,8 @@ export default class Preload extends Phaser.State {
     this.game.load.image('head20', 'assets/constructor/head_20.svg');
     this.game.load.image('head21', 'assets/constructor/head_21.svg');
     this.game.load.image('head22', 'assets/constructor/head_22.svg');
-    this.game.load.image('head23', 'assets/constructor/head_23.svg');
-    this.game.load.image('head24', 'assets/constructor/head_24.svg');
+    // this.game.load.image('head23', 'assets/constructor/head_23.svg');
+    // this.game.load.image('head24', 'assets/constructor/head_24.svg');
 
     //constructor body
     this.game.load.image('body1', 'assets/constructor/body_1.svg');
@@ -258,7 +258,7 @@ export default class Preload extends Phaser.State {
 
   create() {
 
-    this.game.state.start('Intro');
+    this.game.state.start('Party');
 
 
   }
