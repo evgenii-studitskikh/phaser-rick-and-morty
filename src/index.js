@@ -21,7 +21,7 @@ class Game extends Phaser.Game {
     this.state.add('Intro', Intro, false);
     this.state.add('Party', Party, false);
     this.state.add('Sharing', Sharing, false);
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 768 || (window.matchMedia("(max-width: 768px)").matches) ) {
       console.log('close');
     } else {
       this.state.start('Boot');
@@ -29,7 +29,7 @@ class Game extends Phaser.Game {
   }
 }
 
-if (window.innerWidth <= 768) {
+if (window.innerWidth <= 768 || (window.matchMedia("(max-width: 768px)").matches)) {
   console.log('close');
 } else {
   new Game();

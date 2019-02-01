@@ -10,6 +10,15 @@ export default class Constructor {
 
     this.spritesGroup = game.add.group();
 
+    game.audioHero = game.add.audio('8_person_user');
+
+    this.spritesGroup.inputEnableChildren = true;
+    this.spritesGroup.onChildInputDown.add(()=> {
+      console.log('---', 'click hero');
+      game.audioHero.play();
+    });
+
+
     this.armsRight = new Select(game, {
       name: 'arms_right',
       y: 440,
@@ -54,6 +63,7 @@ export default class Constructor {
       onSelect: (value) => onSelect(value, 'head')
     });
     this.spritesGroup.add(this.head.sprite);
+
 
     this.dialog = game.add.sprite(
       960, 

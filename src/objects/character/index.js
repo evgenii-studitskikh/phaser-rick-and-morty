@@ -12,6 +12,7 @@ export default class Character {
 
       this.charGroup = game.add.group();
 
+
       data.split(';').map(item => {
         figure[item.split(':')[0]] =
           item.split(':')[0] !== 'name' && item.split(':')[0] !== 'message'
@@ -128,9 +129,16 @@ export default class Character {
         this.dialogText.visible = false;
       }
 
+<<<<<<< HEAD
        this.charGroup.forEach( 
           (item) => this.makeDraggable(item)
         )
+=======
+       // this.charGroup.forEach( 
+        //   (item) => this.makeDraggable(item)
+        // )
+
+>>>>>>> 655959ab68f19995dc1d75e427d3e2cca79a218a
     }
   }
   
