@@ -12,6 +12,7 @@ export default class Character {
 
       this.charGroup = game.add.group();
 
+
       data.split(';').map(item => {
         figure[item.split(':')[0]] =
           item.split(':')[0] !== 'name' && item.split(':')[0] !== 'message'
@@ -131,6 +132,7 @@ export default class Character {
        // this.charGroup.forEach( 
         //   (item) => this.makeDraggable(item)
         // )
+
     }
   }
   
