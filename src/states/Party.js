@@ -133,13 +133,18 @@ export default class Party extends Phaser.State {
       return photo;
     });
 
+
     this.photoProjectorHoverImg = this.add.sprite(1960, 566,'monitor-hover');
     this.photoProjectorHoverImg.alpha = 0;
-    // this.intervalHover = this.addInterval(this.photoProjectorHoverImg, 2000, 10000);
 
+    this.photoProjectorHoverImg.inputEnabled = true;
+    // this.photoProjectorHoverImg.input.pixelPerfectClick = true;
+    this.photoProjectorHoverImg.input.useHandCursor = true;
+    this.hoverImgIsActive = false;
 
     this.currentPhoto = this.photoProjector.getRandom();
     this.currentPhoto.alpha = 0;
+
 
     //Кнопки для листания фото:
     this.buttonPrev = this.add.sprite(1960, 566, 'change-photo-button');
@@ -150,6 +155,18 @@ export default class Party extends Phaser.State {
     this.buttonPrev.customParams = {direction: -1};
     this.buttonPrev.events.onInputDown.add(this.changePhotoProjector, this);
 
+    // Отображаем ховер на проекторе 1 раз
+    this.buttonPrev.events.onInputOver.add(()=> {
+      if(!this.hoverImgIsActive) {
+        this.photoProjectorHoverImg.alpha = 1;
+        setTimeout(()=> {
+          this.photoProjectorHoverImg.alpha = 0;
+        },1500);
+        this.hoverImgIsActive = true;
+      }
+    });
+
+
     this.buttonNext = this.add.sprite(2080, 627, 'change-photo-button');
     this.buttonNext.alpha = 0.1;
     this.buttonNext.inputEnabled = true;
@@ -157,6 +174,17 @@ export default class Party extends Phaser.State {
     this.buttonNext.input.useHandCursor = true;
     this.buttonNext.customParams = {direction: 1};
     this.buttonNext.events.onInputDown.add(this.changePhotoProjector, this);
+
+    // Отображаем ховер на проекторе 1 раз
+    this.buttonNext.events.onInputOver.add(()=> {
+      if(!this.hoverImgIsActive) {
+        this.photoProjectorHoverImg.alpha = 1;
+        setTimeout(()=> {
+          this.photoProjectorHoverImg.alpha = 0;
+        },1500);
+        this.hoverImgIsActive = true;
+      }
+    });
 
     //портал для перехода на конечную страницу:
     this.buttonPortalParty = this.add.sprite(2030, 84, 'portal-sprite-party', 0);
