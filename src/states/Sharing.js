@@ -234,16 +234,17 @@ export default class Sharing extends Phaser.State {
   stopMusicSharing() {
     this.musicBgSharing.fadeOut(200);
     this.musicBgSharing.stop();
+    console.log('stop music sharing')
   }
 
   handlerClickBackParty() {
-    this.game.state.start('Party');
     this.stopMusicSharing();
+    this.game.state.start('Party');
   }
 
   handlerClickCreatePerson() {
-    this.game.state.start('Enterence');
     this.stopMusicSharing();
+    this.game.state.start('Enterence');
   }
 
   handlerClickVk() {

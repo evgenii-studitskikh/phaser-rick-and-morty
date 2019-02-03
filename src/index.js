@@ -6,6 +6,7 @@ import Intro from './states/Intro';
 import Party from './states/Party';
 import Sharing from './states/Sharing';
 
+
 class Game extends Phaser.Game {
 
   constructor() {
@@ -21,7 +22,7 @@ class Game extends Phaser.Game {
     this.state.add('Intro', Intro, false);
     this.state.add('Party', Party, false);
     this.state.add('Sharing', Sharing, false);
-    if (window.innerWidth <= 768 || (window.matchMedia("(max-width: 768px)").matches) ) {
+     if (window.innerWidth <= 768 || (window.matchMedia("(max-width: 768px)").matches) ) {
       console.log('close');
     } else {
       this.state.start('Boot');

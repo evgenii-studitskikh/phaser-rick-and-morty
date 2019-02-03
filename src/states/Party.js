@@ -73,18 +73,33 @@ export default class Party extends Phaser.State {
     // this.music11 = this.add.audio('12track', 0.2);
     // this.music12 = this.add.audio('13track', 0.2);
     // this.musicArr = [this.music1, this.music2, this.music3, this.music4, this.music5];
-    // this.isRandom = false;
-    // if(!this.isRandom) {
-    //   this.indexMusic = this.randomInteger(0, this.musicArr.length);
-    //   this.isRandom = true;
-    // }
+
+    this.musicArr = [
+      this.add.audio('1track', 0.2),
+      this.add.audio('2track', 0.2),
+      this.add.audio('3track', 0.2),
+      this.add.audio('4track', 0.2),
+      this.add.audio('6track', 0.2),
+      this.add.audio('7track', 0.2),
+      this.add.audio('8track', 0.2),
+      this.add.audio('9track', 0.2),
+      this.add.audio('10track', 0.2),
+      this.add.audio('11track', 0.2)
+    ];
+
+    this.isRandom = false;
+    if(!this.isRandom) {
+      this.indexMusic = this.randomInteger(0, this.musicArr.length);
+      this.isRandom = true;
+      console.log('---indexMusic: ', this.indexMusic);
+    }
 
     //запуск музыки:
     // this.sound.setDecodedCallback( this.musicArr, this.startMusic, this);
-    this.sound.setDecodedCallback( this.music10 , this.startMusic, this);
+    // this.sound.setDecodedCallback( this.music10 , this.startMusic, this);
 
     // this.musicEnterence = this.sound.add('1_bg_constructor', 0.1);
-    // this.sound.setDecodedCallback([ this.musicEnterence ], this.start, this);
+    this.sound.setDecodedCallback(this.musicArr, this.startMusic, this);
 
     //Добавляем аудио мониторы:
     this.audioMonitorLeft = this.add.sprite(1790, 590, 'audio-monitor-sprite', 0);
@@ -94,15 +109,15 @@ export default class Party extends Phaser.State {
     this.audioMonitorRight.inputEnabled = true;
     this.audioMonitorLeft.input.pixelPerfectClick = true;
     this.audioMonitorRight.input.pixelPerfectClick = true;
-    // this.audioMonitorLeft.input.useHandCursor = true;
-    // this.audioMonitorRight.input.useHandCursor = true;
-    //переключаем треки при клике на монитор
-    // this.audioMonitorLeft.events.onInputDown.add(() => {
-    //   this.handlerAudioMonitor();
-    // }, this);
-    // this.audioMonitorRight.events.onInputDown.add(() => {
-    //   this.handlerAudioMonitor();
-    // }, this);
+    this.audioMonitorLeft.input.useHandCursor = true;
+    this.audioMonitorRight.input.useHandCursor = true;
+    // переключаем треки при клике на монитор
+    this.audioMonitorLeft.events.onInputDown.add(() => {
+      this.changeMusic();
+    }, this);
+    this.audioMonitorRight.events.onInputDown.add(() => {
+      this.changeMusic();
+    }, this);
 
     this.audioMonitorLeft.events.onInputOver.add(()=>{
       this.audioMonitorLeft.play('animateHover');
@@ -348,8 +363,8 @@ export default class Party extends Phaser.State {
 
   handlerClickDoorBackConstructor() {
     this.commentsNode.style.display = 'none';
-    // this.stopMusic();
-    this.music10.stop();
+    this.stopMusic();
+    // this.music10.stop();
     this.game.state.start('Enterence');
   }
 
@@ -366,9 +381,9 @@ export default class Party extends Phaser.State {
 
   handlerClickButtonPortalParty() {
     this.commentsNode.style.display = 'none';
-    // this.stopMusic();
+    // this.music10.stop();
+    this.stopMusic();
     this.game.state.start('Sharing');
-    this.music10.stop();
   }
 
   handlerOverButtonPortalParty() {
@@ -395,30 +410,32 @@ export default class Party extends Phaser.State {
   }
 
   handlerAudioMonitor() {
-    this.musicArr[this.indexMusic].onStop.add(() => {});
-    this.musicArr[this.indexMusic].stop();
+    // this.musicArr[this.indexMusic].onStop.add(() => {});
+    // this.musicArr[this.indexMusic].stop();
     this.indexMusic = this.indexMusic === this.musicArr.length - 1 ? 0 : ++this.indexMusic;
     this.startMusic();
   }
 
   startMusic() {
-
-    this.music10.play();
-    this.music10.loopFull();
+    // this.music10.play();
+    // this.music10.loopFull();
     // // this.musicArr[this.indexMusic].onPlay.add(this.animateAudioMonitors, this);
-    // this.musicArr[this.indexMusic].play();
+    this.musicArr[this.indexMusic].play();
     // this.musicArr[this.indexMusic].onStop.add(() => this.changeMusic(this.indexMusic, this.musicArr), this);
   }
 
   changeMusic(indexMusic, musicArr) {
-    indexMusic = indexMusic === musicArr.length - 1 ? 0 : ++indexMusic;
-    musicArr[indexMusic].play();
-    musicArr[indexMusic].onStop.add(() => this.changeMusic(indexMusic, musicArr));
+    this.stopMusic();
+    this.indexMusic = this.indexMusic === this.musicArr.length - 1 ? 0 : ++this.indexMusic;
+    this.startMusic();
+    // musicArr[indexMusic].play();
+    // musicArr[indexMusic].onStop.add(() => this.changeMusic(indexMusic, musicArr));
   }
 
   stopMusic(){
     // this.musicArr[this.indexMusic].onStop.add(() => {});
-    // this.musicArr[this.indexMusic].pause();
+    this.musicArr[this.indexMusic].stop();
+    console.log('--- stop music');
   }
 
   animateAudioMonitors() {
