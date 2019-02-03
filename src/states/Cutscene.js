@@ -14,6 +14,7 @@ export default class Cutscene extends Phaser.State {
 		]
 
 		this.currentDialog = 0;
+    this.clickedMeteroCount = 0;
 	}
 
 	hideSprite(sprite, duration) {
@@ -64,7 +65,8 @@ export default class Cutscene extends Phaser.State {
         x: -800,
         y: 100
       },
-			sound: '5_ball_click'
+			sound: '5_ball_click',
+			onClick: () => this.clickedMeteroCount++
 		});
 		
 		this.lemon = new Meteor(this.game, {
@@ -76,9 +78,20 @@ export default class Cutscene extends Phaser.State {
         x: -800,
         y: 0
       },
-			sound: '4_lemon_click'
+			sound: '4_lemon_click',
+			onClick: () => this.clickedMeteroCount++
     });
 
+		this.meteorCounter = this.game.add.text(
+      50,
+      50,
+      'Кликнуто по метеорам: ' + this.clickedMeteroCount,
+      {
+        font: '24px Lasco',
+        fill: '#FFFFFF',
+        align: 'center',
+      }
+    );
 
 		//planet
     this.planet = this.game.add.sprite(
@@ -292,7 +305,8 @@ export default class Cutscene extends Phaser.State {
 	}
 
   update() {
-    this.space.tilePosition.x -= 20.0;
+		this.space.tilePosition.x -= 20.0;
+		this.meteorCounter.text = 'Кликнуто по метеорам: ' + this.clickedMeteroCount;
 
 		if (this.char.rotation > 0.5) {
 			this.charDirection = 'right';

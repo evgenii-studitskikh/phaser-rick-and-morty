@@ -257,7 +257,7 @@ export default class Preload extends Phaser.State {
   }
 
   create() {
-    this.game.state.start('Intro');
+    this.game.state.start('Cutscene');
 
   }
 }
