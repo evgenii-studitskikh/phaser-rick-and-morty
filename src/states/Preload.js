@@ -257,13 +257,7 @@ export default class Preload extends Phaser.State {
   }
 
   create() {
-<<<<<<< HEAD
-    this.game.state.start('Enterence');
-=======
-
     this.game.state.start('Intro');
-
->>>>>>> 655959ab68f19995dc1d75e427d3e2cca79a218a
 
   }
 }
