@@ -170,7 +170,6 @@ export default class Enterence extends Phaser.State {
 
   start() {
     this.musicEnterence.play();
-    this.musicEnterence.loopFull();
   }
 
   onCreateButtonClick() {

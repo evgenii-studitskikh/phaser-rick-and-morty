@@ -404,7 +404,6 @@ export default class Party extends Phaser.State {
   startMusic() {
 
     this.music10.play();
-    this.music10.loopFull();
     // // this.musicArr[this.indexMusic].onPlay.add(this.animateAudioMonitors, this);
     // this.musicArr[this.indexMusic].play();
     // this.musicArr[this.indexMusic].onStop.add(() => this.changeMusic(this.indexMusic, this.musicArr), this);

@@ -157,6 +157,7 @@ body {
   top: -2px;
   bottom: 118px;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .comments__inner::after {

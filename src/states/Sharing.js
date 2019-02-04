@@ -228,7 +228,6 @@ export default class Sharing extends Phaser.State {
 
   startMusicSharing() {
     this.musicBgSharing.play();
-    this.musicBgSharing.loopFull();
   }
 
   stopMusicSharing() {

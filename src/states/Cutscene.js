@@ -145,7 +145,6 @@ export default class Cutscene extends Phaser.State {
 	
 	start() {
 		this.cutsceneMusic.play();
-		this.cutsceneMusic.loopFull();
 	}
 
 	showDialog() {
@@ -287,7 +286,7 @@ export default class Cutscene extends Phaser.State {
 
 	moveToEnterence() {
     this.enterPartyButtonSound.play();
-    this.cutsceneMusic.fadeOut(200);
+    this.cutsceneMusic.stop();
 		this.hideSprite(this.invateText1, 100);
 		this.hideSprite(this.invateText2, 100);
 		this.hideSprite(this.enterPartyButton, 100);
